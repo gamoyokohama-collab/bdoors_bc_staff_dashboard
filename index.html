@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>スタッフダッシュボード｜B.DOORS × beauty collection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0A2D5E;
+  --blue: #1556A8;
+  --mid-blue: #2D7DD2;
+  --light-blue: #E8F2FB;
+  --accent: #F5A623;
+  --accent-light: #FEF4E1;
+  --green: #1A7F5A;
+  --green-light: #E6F5EF;
+  --red: #C0392B;
+  --red-light: #FDECEA;
+  --amber: #B45309;
+  --amber-light: #FEF3C7;
+  --text: #111827;
+  --text-sub: #6B7280;
+  --border: #D1DCE8;
+  --bg: #F4F7FB;
+  --white: #FFFFFF;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Sans JP', 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ===== HEADER ===== */
+.header {
+  background: var(--navy);
+  color: white;
+  padding: 16px 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(10,45,94,0.25);
+}
+.header-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.header-title { font-size: 15px; font-weight: 700; line-height: 1.3; }
+.header-sub { font-size: 11px; opacity: 0.65; margin-top: 3px; font-family: 'DM Sans', sans-serif; }
+.event-badge {
+  background: var(--accent);
+  color: var(--navy);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+  font-family: 'DM Sans', sans-serif;
+  flex-shrink: 0;
+}
+
+/* ===== TABS ===== */
+.tabs {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.55);
+  white-space: nowrap;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.tab.active {
+  color: white;
+  border-bottom-color: var(--accent);
+}
+.tab:active { opacity: 0.7; }
+
+/* ===== MAIN ===== */
+.main { padding: 16px; max-width: 640px; margin: 0 auto; }
+.section { display: none; }
+.section.active { display: block; }
+
+/* ===== CARDS ===== */
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+.card-head {
+  padding: 12px 16px;
+  background: var(--light-blue);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card-head-icon {
+  width: 28px; height: 28px;
+  border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.card-head-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+  flex: 1;
+}
+.card-head-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: var(--navy);
+  color: white;
+  white-space: nowrap;
+}
+.card-body { padding: 0; }
+
+/* ===== SECTION LABEL ===== */
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-sub);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 18px 0 8px;
+  padding: 0 2px;
+  font-family: 'DM Sans', sans-serif;
+}
+.section-label:first-child { margin-top: 0; }
+
+/* ===== CHECKLIST ===== */
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  border-bottom: 1px solid #F0F4FA;
+  transition: background 0.15s;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.check-item:last-child { border-bottom: none; }
+.check-item:active { background: #F4F7FB; }
+.check-item.done { background: #FAFCFF; }
+.check-item input[type=checkbox] {
+  width: 24px; height: 24px;
+  cursor: pointer;
+  accent-color: var(--blue);
+  flex-shrink: 0;
+}
+.check-label {
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--text);
+  flex: 1;
+  cursor: pointer;
+}
+.check-item.done .check-label {
+  color: var(--text-sub);
+  text-decoration: line-through;
+}
+.check-progress {
+  font-size: 11px;
+  color: var(--text-sub);
+  padding: 8px 16px;
+  background: #F8FAFD;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.progress-bar-bg {
+  flex: 1;
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: var(--blue);
+  border-radius: 3px;
+  transition: width 0.3s;
+}
+
+/* ===== FLOW STEPS ===== */
+.flow-list { padding: 8px 0; }
+.flow-step {
+  display: flex;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #F0F4FA;
+  align-items: flex-start;
+}
+.flow-step:last-child { border-bottom: none; }
+.step-num {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-family: 'DM Sans', sans-serif;
+}
+.step-body { flex: 1; }
+.step-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 3px;
+}
+.step-note {
+  font-size: 12px;
+  color: var(--text-sub);
+  line-height: 1.6;
+}
+
+/* ===== PRIZE COUNTERS ===== */
+.counter-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+}
+.counter-col {
+  padding: 16px 12px;
+  border-right: 1px solid #F0F4FA;
+  text-align: center;
+}
+.counter-col:last-child { border-right: none; }
+.prize-rank {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  display: inline-block;
+  font-family: 'DM Sans', sans-serif;
+}
+.rank1 { background: #FEF4E1; color: #B45309; }
+.rank2 { background: #F0F4F8; color: #475569; }
+.rank3 { background: #F5F0E8; color: #78614A; }
+.counter-num {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1;
+  margin-bottom: 4px;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.15s;
+}
+.counter-init {
+  font-size: 11px;
+  color: var(--text-sub);
+  margin-bottom: 10px;
+}
+.counter-btns {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+.cbtn {
+  width: 38px; height: 38px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 500;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+  color: var(--navy);
+}
+.cbtn:active { transform: scale(0.92); background: var(--light-blue); }
+.cbtn.minus { color: var(--red); }
+.cbtn.plus { color: var(--blue); }
+.counter-zero .counter-num { color: var(--red); }
+
+/* ===== SCRIPT BOX ===== */
+.script-box {
+  background: #EBF4FF;
+  border-left: 4px solid var(--mid-blue);
+  padding: 14px 16px;
+  font-size: 13px;
+  color: var(--navy);
+  line-height: 1.8;
+  margin: 12px 16px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.script-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--mid-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ===== CETERA COUNTER ===== */
+.cetera-wrap { padding: 20px 16px; text-align: center; }
+.cetera-big {
+  font-size: 64px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1;
+  font-family: 'DM Sans', sans-serif;
+  margin-bottom: 4px;
+}
+.cetera-of { font-size: 16px; color: var(--text-sub); margin-bottom: 16px; font-family: 'DM Sans', sans-serif; }
+.cetera-bar-bg {
+  height: 14px;
+  background: var(--border);
+  border-radius: 7px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.cetera-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue) 0%, var(--mid-blue) 100%);
+  border-radius: 7px;
+  transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.cetera-btns { display: flex; gap: 12px; justify-content: center; margin-bottom: 12px; }
+.cetera-btn {
+  padding: 14px 32px;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: 'DM Sans', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+.cetera-btn:active { transform: scale(0.95); }
+.cetera-btn.minus { background: var(--red-light); color: var(--red); }
+.cetera-btn.plus { background: var(--blue); color: white; }
+.cetera-msg {
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 4px;
+}
+.cetera-msg.remaining { background: var(--light-blue); color: var(--blue); }
+.cetera-msg.done { background: var(--green-light); color: var(--green); }
+
+/* ===== FAQ ===== */
+.faq-item { border-bottom: 1px solid #F0F4FA; }
+.faq-item:last-child { border-bottom: none; }
+.faq-q {
+  padding: 14px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  gap: 10px;
+  -webkit-tap-highlight-color: transparent;
+  line-height: 1.4;
+}
+.faq-q:active { background: #F8FAFD; }
+.faq-arrow {
+  font-size: 12px;
+  color: var(--text-sub);
+  flex-shrink: 0;
+  transition: transform 0.2s;
+  width: 16px; text-align: center;
+}
+.faq-arrow.open { transform: rotate(180deg); }
+.faq-a {
+  display: none;
+  padding: 0 16px 14px;
+  font-size: 13px;
+  color: var(--text-sub);
+  line-height: 1.8;
+  background: #FAFCFF;
+  border-top: 1px dashed #D1DCE8;
+}
+.faq-a.open { display: block; }
+.faq-a strong { color: var(--navy); font-weight: 700; }
+
+/* ===== ALERT ===== */
+.alert-box {
+  background: var(--amber-light);
+  border: 1.5px solid #FDE68A;
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.alert-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+.alert-title { font-size: 14px; font-weight: 700; color: var(--amber); margin-bottom: 5px; }
+.alert-body { font-size: 13px; color: #78613A; line-height: 1.7; }
+.alert-body strong { color: var(--amber); font-weight: 700; font-size: 15px; }
+
+/* ===== SALES LIST ===== */
+.sales-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #F0F4FA;
+}
+.sales-item:last-child { border-bottom: none; }
+.sales-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--blue);
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+.sales-text { font-size: 13px; line-height: 1.6; color: var(--text); }
+
+/* ===== EMERGENCY CONTACTS ===== */
+.contact-grid { padding: 12px 16px; display: flex; flex-direction: column; gap: 8px; }
+.contact-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: var(--light-blue);
+  border-radius: var(--radius-sm);
+  gap: 10px;
+}
+.contact-role { font-size: 12px; color: var(--text-sub); margin-bottom: 2px; }
+.contact-name { font-size: 14px; font-weight: 700; color: var(--navy); }
+.call-btn {
+  padding: 8px 16px;
+  background: var(--blue);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-block;
+  -webkit-tap-highlight-color: transparent;
+}
+.call-btn:active { opacity: 0.8; }
+
+/* ===== INFO CHIP ===== */
+.info-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: var(--light-blue);
+  color: var(--blue);
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  margin: 0 4px 4px 0;
+}
+
+/* ===== SCHEDULE ===== */
+.schedule-row {
+  display: flex;
+  gap: 12px;
+  padding: 10px 16px;
+  border-bottom: 1px solid #F0F4FA;
+  align-items: baseline;
+}
+.schedule-row:last-child { border-bottom: none; }
+.schedule-time {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--blue);
+  font-family: 'DM Sans', sans-serif;
+  min-width: 52px;
+  flex-shrink: 0;
+}
+.schedule-event { font-size: 13px; color: var(--text); line-height: 1.5; }
+.schedule-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 10px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+.sb-bd { background: #E6EDF8; color: var(--navy); }
+.sb-bc { background: #F5EBF8; color: #6B21A8; }
+.sb-all { background: var(--accent-light); color: var(--amber); }
+
+/* ===== UTILITY ===== */
+.p-16 { padding: 16px; }
+.mt-4 { margin-top: 4px; }
+.text-sub { font-size: 12px; color: var(--text-sub); line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div>
+      <div class="header-title">B.DOORS × beauty collection<br>スタッフダッシュボード</div>
+      <div class="header-sub">5月12日｜パシフィコ横浜 ノース</div>
+    </div>
+    <div class="event-badge">5.12 本番</div>
+  </div>
+  <div class="tabs" id="tabs">
+    <div class="tab active" onclick="showTab('schedule',this)">📅 スケジュール</div>
+    <div class="tab" onclick="showTab('checklist',this)">✅ チェックリスト</div>
+    <div class="tab" onclick="showTab('bdoors',this)">🎓 B.DOORS</div>
+    <div class="tab" onclick="showTab('bc',this)">💄 BC受付</div>
+    <div class="tab" onclick="showTab('trouble',this)">🆘 トラブル</div>
+    <div class="tab" onclick="showTab('sales',this)">📊 営業支援</div>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ===== SCHEDULE ===== -->
+<div id="schedule" class="section active">
+  <div class="section-label">当日タイムライン</div>
+  <div class="card">
+    <div class="card-body">
+      <div class="schedule-row">
+        <div class="schedule-time">8:00</div>
+        <div class="schedule-event">スタッフ集合・全体ブリーフィング<span class="schedule-badge sb-all">全員</span></div>
+      </div>
+      <div class="schedule-row">
+        <div class="schedule-time">8:30</div>
+        <div class="schedule-event">各セクション設営・チェックリスト確認<span class="schedule-badge sb-all">全員</span></div>
+      </div>
+      <div class="schedule-row">
+        <div class="schedule-time">9:30</div>
+        <div class="schedule-event">B.DOORS 開場・学生受付開始<span class="schedule-badge sb-bd">B.DOORS</span></div>
+      </div>
+      <div class="schedule-row">
+        <div class="schedule-time">10:00</div>
+        <div class="schedule-event">beauty collection 開場・入場受付開始<span class="schedule-badge sb-bc">BC</span></div>
+      </div>
+      <div class="schedule-row">
+        <div class="schedule-time">12:00</div>
+        <div class="schedule-event">午前の部 景品状況中間報告<span class="schedule-badge sb-bd">B.DOORS</span></div>
+      </div>
+      <div class="schedule-row">
+        <div class="schedule-time">14:00</div>
+        <div class="schedule-event">抽選会（三角くじ）実施<span class="schedule-badge sb-bd">B.DOORS</span></div>
+      </div>
+      <div class="schedule-row">
+        <div class="schedule-time">17:00</div>
+        <div class="schedule-event">beauty collection 閉場<span class="schedule-badge sb-bc">BC</span></div>
+      </div>
+      <div class="schedule-row">
+        <div class="schedule-time">17:30</div>
+        <div class="schedule-event">B.DOORS 閉場・撤収開始<span class="schedule-badge sb-bd">B.DOORS</span></div>
+      </div>
+      <div class="schedule-row">
+        <div class="schedule-time">18:30</div>
+        <div class="schedule-event">全体振り返り・名刺・記録物引き渡し<span class="schedule-badge sb-all">全員</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">緊急連絡先</div>
+  <div class="card">
+    <div class="contact-grid">
+      <div class="contact-row">
+        <div>
+          <div class="contact-role">運営責任者</div>
+          <div class="contact-name">（責任者名を入力）</div>
+        </div>
+        <a class="call-btn" href="tel:090-0000-0001">📞 発信</a>
+      </div>
+      <div class="contact-row">
+        <div>
+          <div class="contact-role">B.DOORSリーダー</div>
+          <div class="contact-name">（担当者名を入力）</div>
+        </div>
+        <a class="call-btn" href="tel:090-0000-0002">📞 発信</a>
+      </div>
+      <div class="contact-row">
+        <div>
+          <div class="contact-role">BC受付リーダー</div>
+          <div class="contact-name">（担当者名を入力）</div>
+        </div>
+        <a class="call-btn" href="tel:090-0000-0003">📞 発信</a>
+      </div>
+      <div class="contact-row">
+        <div>
+          <div class="contact-role">パシフィコ 施設管理</div>
+          <div class="contact-name">045-221-2155</div>
+        </div>
+        <a class="call-btn" href="tel:045-221-2155">📞 発信</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CHECKLIST ===== -->
+<div id="checklist" class="section">
+  <div class="section-label">全般誘導（1〜2名）</div>
+  <div class="card">
+    <div class="card-head">
+      <div class="card-head-icon" style="background:#E8F2FB;">🪧</div>
+      <div class="card-head-title">共通・誘導準備</div>
+      <div class="card-head-badge">1〜2名</div>
+    </div>
+    <div id="cl-general"></div>
+  </div>
+
+  <div class="section-label">B.DOORS チーム（7〜8名）</div>
+  <div class="card">
+    <div class="card-head">
+      <div class="card-head-icon" style="background:#E8F2FB;">🎓</div>
+      <div class="card-head-title">B.DOORS 開場前チェック</div>
+      <div class="card-head-badge">7〜8名</div>
+    </div>
+    <div id="cl-bdoors"></div>
+  </div>
+
+  <div class="section-label">BC受付・抽選（6〜9名）</div>
+  <div class="card">
+    <div class="card-head">
+      <div class="card-head-icon" style="background:#E8F2FB;">💄</div>
+      <div class="card-head-title">BC受付準備チェック</div>
+      <div class="card-head-badge">6〜9名</div>
+    </div>
+    <div id="cl-bc"></div>
+  </div>
+</div>
+
+<!-- ===== B.DOORS ===== -->
+<div id="bdoors" class="section">
+  <div class="section-label">学生誘導フロー</div>
+  <div class="card">
+    <div class="card-head">
+      <div class="card-head-icon" style="background:#E8F2FB;">📋</div>
+      <div class="card-head-title">受付〜スタンプ完了フロー</div>
+    </div>
+    <div class="flow-list" id="flow-bd"></div>
+  </div>
+
+  <div class="section-label">景品カウンター（三角くじ）</div>
+  <div class="card">
+    <div class="card-head">
+      <div class="card-head-icon" style="background:#FEF4E1;">🎁</div>
+      <div class="card-head-title">残数管理</div>
+      <div class="card-head-badge" style="background:var(--accent-light);color:var(--amber);">リアルタイム更新</div>
+    </div>
+    <div class="counter-grid" id="prize-grid"></div>
+    <div style="padding:10px 16px;background:#FAFCFF;border-top:1px solid var(--border);">
+      <button onclick="resetPrizes()" style="font-size:12px;color:var(--text-sub);background:none;border:none;cursor:pointer;text-decoration:underline;">カウンターをリセット</button>
+    </div>
+  </div>
+
+  <div class="section-label">抽選会 進行メモ</div>
+  <div class="card">
+    <div class="p-16">
+      <div class="text-sub">■ くじ引き順序：スタンプ5個完了の学生から順次案内<br>■ 1等が出た場合：全スタッフへトランシーバーで共有<br>■ 景品がなくなり次第、代替ノベルティ（要責任者確認）<br>■ 抽選後は必ず写真撮影して運営リーダーへ共有</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== BC受付 ===== -->
+<div id="bc" class="section">
+  <div class="section-label">入場受付フロー</div>
+  <div class="card">
+    <div class="card-head">
+      <div class="card-head-icon" style="background:#E8F2FB;">📋</div>
+      <div class="card-head-title">BC入場手順</div>
+    </div>
+    <div class="flow-list" id="flow-bc"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <div class="card-head-icon" style="background:#E8F2FB;">🎤</div>
+      <div class="card-head-title">タップ促進スクリプト</div>
+    </div>
+    <div style="padding:12px 16px 16px;">
+      <div class="script-box">
+        <div class="script-label">入場時</div>
+        「本日はご来場ありがとうございます。各メーカーブースにQRコードがございます。ご訪問の際にタップ（読み取り）いただくと、後日担当者よりお得な情報をご案内できます。ぜひご利用ください！」
+      </div>
+      <div class="script-box" style="margin-top:8px;">
+        <div class="script-label">ブース案内時</div>
+        「こちらのブース、ご興味はいかがでしょうか？QRタップしていただくと弊社からもフォローさせていただきます！」
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">cetera 先着100名 ポイント付与カウンター</div>
+  <div class="card">
+    <div class="card-head">
+      <div class="card-head-icon" style="background:#E8F2FB;">🏪</div>
+      <div class="card-head-title">cetera紹介ブース 受付人数</div>
+      <div class="card-head-badge" style="background:#E6F5EF;color:var(--green);">先着100名限定</div>
+    </div>
+    <div class="cetera-wrap">
+      <div class="cetera-big" id="cetera-num">0</div>
+      <div class="cetera-of">/ 100名</div>
+      <div class="cetera-bar-bg"><div class="cetera-bar-fill" id="cetera-bar" style="width:0%"></div></div>
+      <div class="cetera-btns">
+        <button class="cetera-btn minus" onclick="ceteraChange(-1)">－ 1名</button>
+        <button class="cetera-btn plus" onclick="ceteraChange(1)">＋ 1名</button>
+      </div>
+      <div class="cetera-msg remaining" id="cetera-msg">あと100名</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TROUBLE ===== -->
+<div id="trouble" class="section">
+  <div class="section-label">よくあるトラブルと対応</div>
+  <div class="card">
+    <div class="card-body" id="faq-list"></div>
+  </div>
+
+  <div class="section-label">エスカレーション基準</div>
+  <div class="card">
+    <div class="p-16">
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;background:var(--red-light);border-radius:var(--radius-sm);">
+          <span style="color:var(--red);font-size:16px;flex-shrink:0;">🔴</span>
+          <div style="font-size:13px;color:var(--red);font-weight:500;">即時報告（責任者へ直接）<br><span style="font-weight:400;color:#78344D;">けが・体調不良・クレーム発生・紛失・機材故障</span></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;background:var(--amber-light);border-radius:var(--radius-sm);">
+          <span style="color:var(--amber);font-size:16px;flex-shrink:0;">🟡</span>
+          <div style="font-size:13px;color:var(--amber);font-weight:500;">5分以内に報告<br><span style="font-weight:400;color:#78614A;">景品不足・QR不具合・入場者数の急増</span></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;background:var(--green-light);border-radius:var(--radius-sm);">
+          <span style="color:var(--green);font-size:16px;flex-shrink:0;">🟢</span>
+          <div style="font-size:13px;color:var(--green);font-weight:500;">次の報告タイミングで共有<br><span style="font-weight:400;color:#2D6B50;">軽微な問い合わせ・案内ミス・動線の提案</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SALES ===== -->
+<div id="sales" class="section">
+  <div class="alert-box">
+    <div class="alert-icon">⚠️</div>
+    <div>
+      <div class="alert-title">重要：伝票入力の徹底</div>
+      <div class="alert-body">催事後の効果測定のため、今回のイベントで接触した顧客への伝票起伝時は必ず<br><strong>「イベント企画」</strong><br>を担当コード欄に入力してください。漏れなく徹底！</div>
+    </div>
+  </div>
+
+  <div class="section-label">事後フォロー アクションリスト</div>
+  <div class="card">
+    <div id="sales-list"></div>
+  </div>
+
+  <div class="section-label">効果測定 指標</div>
+  <div class="card">
+    <div class="p-16">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div style="padding:12px;background:var(--light-blue);border-radius:var(--radius-sm);text-align:center;">
+          <div style="font-size:11px;color:var(--text-sub);margin-bottom:4px;">タップ件数</div>
+          <div style="font-size:22px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif;">記録中</div>
+        </div>
+        <div style="padding:12px;background:var(--light-blue);border-radius:var(--radius-sm);text-align:center;">
+          <div style="font-size:11px;color:var(--text-sub);margin-bottom:4px;">名刺収集枚数</div>
+          <div style="font-size:22px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif;">記録中</div>
+        </div>
+        <div style="padding:12px;background:var(--light-blue);border-radius:var(--radius-sm);text-align:center;">
+          <div style="font-size:11px;color:var(--text-sub);margin-bottom:4px;">cetera誘導数</div>
+          <div style="font-size:22px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif;" id="kpi-cetera">0</div>
+        </div>
+        <div style="padding:12px;background:var(--light-blue);border-radius:var(--radius-sm);text-align:center;">
+          <div style="font-size:11px;color:var(--text-sub);margin-bottom:4px;">B.DOORS参加者</div>
+          <div style="font-size:22px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif;">記録中</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<script>
+/* ===== DATA ===== */
+var clGeneral=[
+  "メッシュサイン（誘導矢印）の設置完了",
+  "B.DOORS入口・BC入口 分岐案内板の設置",
+  "スタッフ間トランシーバーの動作確認",
+  "全スタッフへ緊急連絡先リストを共有",
+  "当日タイムライン・担当エリアの最終確認"
+];
+var clBdoors=[
+  "学校別プラカード（学校名入り）の準備完了",
+  "リストバンド在庫確認・配布台の設置",
+  "QR読み取り端末（5台）の動作確認",
+  "5ブース 担当者配置の確認",
+  "三角くじ在庫確認（1等4本・2等50本・3等50本）",
+  "抽選会 進行台本・MCシナリオの確認",
+  "景品の保管場所・引き渡しフローの確認"
+];
+var clBc=[
+  "入場証リスト（事前申込分）の印刷・確認",
+  "当日申込用紙・ペンの準備",
+  "cetera紹介ブース 先着100名カウンターの準備",
+  "タップ用QRコード表示と動作確認",
+  "名刺・情報収集シートの準備",
+  "抽選会場セッティング完了確認"
+];
+
+var flowBd=[
+  {n:1,t:"リストバンド装着",d:"学校名を確認し、色分けリストバンドを装着。同行の先生・保護者にも忘れずに。"},
+  {n:2,t:"QR読み取り説明",d:"「各ブース前のQRをスマホで読み取り、スタンプを5つ集めてください」と案内。"},
+  {n:3,t:"5ブース回遊案内",d:"マップを手渡しながらブースを紹介。各ブース10〜15分の滞在を目安に促す。"},
+  {n:4,t:"スタンプ完了確認",d:"5つ揃った学生を抽選会場へ誘導。「全部回れた！おめでとう！」と声がけ。"},
+  {n:5,t:"三角くじ・景品手渡し",d:"くじを1本引かせて景品を手渡し。笑顔で「またぜひ参加してください！」と見送る。"}
+];
+
+var flowBc=[
+  {n:1,t:"事前申込あり",d:"リストから名前を確認 → 入場証を発行 → 「タップをお忘れなく！」と案内。"},
+  {n:2,t:"事前申込なし（当日）",d:"当日申込用紙に記入依頼 → 入場証を発行 → 同様に案内。"},
+  {n:3,t:"名刺・情報収集",d:"「お名刺を1枚いただけますか？」と声がけ。受け取った名刺は担当者へ即時引き継ぎ。"},
+  {n:4,t:"タップ促進の声がけ",d:"「各ブース前のQRからタップをお願いします！」を毎回かかさず案内する。"}
+];
+
+var faqs=[
+  {
+    q:"QRコードが読み込めない",
+    a:"① スマホのカメラアプリを再起動する\n② 明るい場所でQRコードに近づいて試す\n③ それでも無理なら担当スタッフのIDで代理入力\n④ 記録シートに手書きで記入し、後日入力対応"
+  },
+  {
+    q:"リストバンドを紛失した",
+    a:"① 本人確認（学生証・名刺等）を行う\n② 予備リストバンドを1本支給する\n③ 事象を運営リストに記録して報告"
+  },
+  {
+    q:"BC入場証を紛失・忘れた",
+    a:"① 事前申込リストで名前を照合する\n② 確認できれば仮入場証を発行する\n③ 確認できない場合は身分証の提示を求める\n④ 判断できない場合は必ず責任者に確認"
+  },
+  {
+    q:"景品の在庫がなくなった",
+    a:"① 上位等を繰り上げ可能か責任者へ即確認\n② 代替品（非売品ノベルティ）での対応を指示待ち\n③ 「ただいま準備中です」とやわらかく伝え待機\n④ 絶対に独断で判断しない"
+  },
+  {
+    q:"学生が迷子・行方不明になった",
+    a:"① トランシーバーで全スタッフに周知\n② 会場入口・出口スタッフが目視確認\n③ 引率教員へ即座に連絡\n④ 見つかったら責任者へ報告"
+  },
+  {
+    q:"保護者・引率教員からのクレーム",
+    a:"① まず「ご不便をおかけして大変申し訳ございません」と受け止める\n② 詳細をメモしながら傾聴する\n③ 運営責任者へ取り次ぐ（自分で解決しようとしない）\n④ 解決後、再度お礼と謝罪を伝える"
+  },
+  {
+    q:"機材（QR端末・タブレット等）が故障",
+    a:"① 予備機がある場合は即座に交換\n② 予備機がない場合は記録シートで手書き対応\n③ 責任者へ報告し、修理または代替手段を相談"
+  }
+];
+
+var salesItems=[
+  "タップ記録あり顧客 → 翌営業日中に担当者から電話フォロー",
+  "名刺回収顧客 → 「本日はご来場ありがとうございました」のメール送付",
+  "cetera先着100名 → ポイント付与確認後、次回来店促進の案内を送る",
+  "伝票起伝時：担当コード欄に「イベント企画」を必ず入力（漏れ厳禁）",
+  "効果測定：翌週の月次レポートにイベント経由売上を記載",
+  "社内共有：当日のタップ数・名刺数・cetera誘導数を集計して報告"
+];
+
+var prizes=[
+  {label:"1等",init:4,cls:"rank1"},
+  {label:"2等",init:50,cls:"rank2"},
+  {label:"3等",init:50,cls:"rank3"}
+];
+var pcounts=prizes.map(function(p){return p.init;});
+
+var ceteraCount=0;
+
+/* ===== BUILD FUNCTIONS ===== */
+function buildChecklist(items,cid){
+  var c=document.getElementById(cid);
+  var total=items.length,done=0;
+  items.forEach(function(item,i){
+    var div=document.createElement('div');
+    div.className='check-item';
+    div.id='ci_'+cid+'_'+i;
+    var cb=document.createElement('input');
+    cb.type='checkbox';
+    cb.id='cb_'+cid+'_'+i;
+    cb.onchange=function(){
+      var row=document.getElementById('ci_'+cid+'_'+i);
+      row.classList.toggle('done',this.checked);
+      updateProgress(cid,items.length);
+    };
+    var lbl=document.createElement('label');
+    lbl.className='check-label';
+    lbl.htmlFor=cb.id;
+    lbl.textContent=item;
+    div.appendChild(cb);
+    div.appendChild(lbl);
+    div.onclick=function(e){if(e.target!==cb){cb.checked=!cb.checked;cb.dispatchEvent(new Event('change'));}};
+    c.appendChild(div);
+  });
+  var prog=document.createElement('div');
+  prog.className='check-progress';
+  prog.innerHTML='<span id="prog_text_'+cid+'">0 / '+total+' 完了</span><div class="progress-bar-bg"><div class="progress-bar-fill" id="prog_bar_'+cid+'" style="width:0%"></div></div>';
+  c.appendChild(prog);
+}
+
+function updateProgress(cid,total){
+  var checked=document.querySelectorAll('#'+cid+' input[type=checkbox]:checked').length;
+  document.getElementById('prog_text_'+cid).textContent=checked+' / '+total+' 完了';
+  document.getElementById('prog_bar_'+cid).style.width=Math.round(checked/total*100)+'%';
+}
+
+function buildFlow(steps,cid){
+  var c=document.getElementById(cid);
+  steps.forEach(function(s){
+    var div=document.createElement('div');
+    div.className='flow-step';
+    var num=document.createElement('div');
+    num.className='step-num';
+    num.textContent=s.n;
+    var body=document.createElement('div');
+    body.className='step-body';
+    var t=document.createElement('div');
+    t.className='step-title';
+    t.textContent=s.t;
+    var d=document.createElement('div');
+    d.className='step-note';
+    d.textContent=s.d;
+    body.appendChild(t);
+    body.appendChild(d);
+    div.appendChild(num);
+    div.appendChild(body);
+    c.appendChild(div);
+  });
+}
+
+function buildPrizeCounters(){
+  var grid=document.getElementById('prize-grid');
+  prizes.forEach(function(p,i){
+    var col=document.createElement('div');
+    col.className='counter-col';
+    col.id='pc_col_'+i;
+    col.innerHTML=
+      '<div class="prize-rank '+p.cls+'">'+p.label+'</div>'+
+      '<div class="counter-num" id="pc_num_'+i+'">'+pcounts[i]+'</div>'+
+      '<div class="counter-init">初期：'+p.init+'本</div>'+
+      '<div class="counter-btns">'+
+        '<button class="cbtn minus" onclick="pc('+i+',-1)">－</button>'+
+        '<button class="cbtn plus" onclick="pc('+i+',1)">＋</button>'+
+      '</div>';
+    grid.appendChild(col);
+  });
+}
+
+function pc(i,d){
+  pcounts[i]=Math.max(0,Math.min(prizes[i].init,pcounts[i]+d));
+  var el=document.getElementById('pc_num_'+i);
+  el.textContent=pcounts[i];
+  document.getElementById('pc_col_'+i).className='counter-col'+(pcounts[i]===0?' counter-zero':'');
+}
+
+function resetPrizes(){
+  prizes.forEach(function(p,i){
+    pcounts[i]=p.init;
+    document.getElementById('pc_num_'+i).textContent=p.init;
+    document.getElementById('pc_col_'+i).className='counter-col';
+  });
+}
+
+function ceteraChange(d){
+  ceteraCount=Math.max(0,Math.min(100,ceteraCount+d));
+  document.getElementById('cetera-num').textContent=ceteraCount;
+  document.getElementById('cetera-bar').style.width=ceteraCount+'%';
+  var msg=document.getElementById('cetera-msg');
+  var kpi=document.getElementById('kpi-cetera');
+  if(kpi)kpi.textContent=ceteraCount;
+  if(ceteraCount>=100){
+    msg.textContent='先着100名 達成！';
+    msg.className='cetera-msg done';
+  } else {
+    msg.textContent='あと'+(100-ceteraCount)+'名';
+    msg.className='cetera-msg remaining';
+  }
+}
+
+function buildFaq(){
+  var c=document.getElementById('faq-list');
+  faqs.forEach(function(f,i){
+    var item=document.createElement('div');
+    item.className='faq-item';
+    var q=document.createElement('div');
+    q.className='faq-q';
+    q.innerHTML='<span>'+f.q+'</span><span class="faq-arrow" id="fa_'+i+'">▼</span>';
+    q.onclick=function(){
+      var a=document.getElementById('faq_a_'+i);
+      var arr=document.getElementById('fa_'+i);
+      var isOpen=a.classList.contains('open');
+      a.classList.toggle('open',!isOpen);
+      arr.classList.toggle('open',!isOpen);
+    };
+    var a=document.createElement('div');
+    a.className='faq-a';
+    a.id='faq_a_'+i;
+    a.innerHTML=f.a.split('\n').map(function(l){return l?'<strong>'+l.split(' ')[0]+'</strong> '+l.split(' ').slice(1).join(' '):'';}).join('<br>');
+    item.appendChild(q);
+    item.appendChild(a);
+    c.appendChild(item);
+  });
+}
+
+function buildSales(){
+  var c=document.getElementById('sales-list');
+  salesItems.forEach(function(item){
+    var div=document.createElement('div');
+    div.className='sales-item';
+    var dot=document.createElement('div');
+    dot.className='sales-dot';
+    var txt=document.createElement('div');
+    txt.className='sales-text';
+    txt.textContent=item;
+    div.appendChild(dot);
+    div.appendChild(txt);
+    c.appendChild(div);
+  });
+}
+
+function showTab(id,el){
+  document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active');});
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
+  document.getElementById(id).classList.add('active');
+  el.classList.add('active');
+  window.scrollTo(0,0);
+}
+
+/* ===== INIT ===== */
+buildChecklist(clGeneral,'cl-general');
+buildChecklist(clBdoors,'cl-bdoors');
+buildChecklist(clBc,'cl-bc');
+buildFlow(flowBd,'flow-bd');
+buildFlow(flowBc,'flow-bc');
+buildPrizeCounters();
+buildFaq();
+buildSales();
+</script>
+</body>
+</html>
