@@ -3,1070 +3,1219 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>スタッフダッシュボード｜B.DOORS × beauty collection</title>
+<title>スタッフダッシュボード｜B.DOORS × beauty collection 5.12</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --navy: #0A2D5E;
-  --blue: #1556A8;
-  --mid-blue: #2D7DD2;
-  --light-blue: #E8F2FB;
-  --accent: #F5A623;
-  --accent-light: #FEF4E1;
-  --green: #1A7F5A;
-  --green-light: #E6F5EF;
-  --red: #C0392B;
-  --red-light: #FDECEA;
-  --amber: #B45309;
-  --amber-light: #FEF3C7;
-  --text: #111827;
-  --text-sub: #6B7280;
-  --border: #D1DCE8;
-  --bg: #F4F7FB;
-  --white: #FFFFFF;
-  --radius: 12px;
-  --radius-sm: 8px;
+:root{
+  --navy:#0A2D5E;--blue:#1556A8;--mid:#2D7DD2;--lblue:#E8F2FB;
+  --accent:#F5A623;--acc-lt:#FEF4E1;
+  --green:#1A7F5A;--grn-lt:#E6F5EF;
+  --red:#C0392B;--red-lt:#FDECEA;
+  --amber:#B45309;--amb-lt:#FEF3C7;
+  --purple:#5B21B6;--pur-lt:#EDE9FE;
+  --text:#111827;--sub:#6B7280;--border:#D1DCE8;--bg:#F4F7FB;--white:#fff;
+  --r:12px;--rs:8px;
 }
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans JP','DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-text-size-adjust:100%;}
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+.hdr{background:var(--navy);color:#fff;padding:14px 16px 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(10,45,94,.3);}
+.hdr-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px;gap:10px;}
+.hdr-ttl{font-size:15px;font-weight:700;line-height:1.35;}
+.hdr-sub{font-size:11px;opacity:.65;margin-top:3px;}
+.hdr-badge{background:var(--accent);color:var(--navy);font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
+.tabs{display:flex;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{padding:9px 11px;font-size:12px;font-weight:500;color:rgba(255,255,255,.5);white-space:nowrap;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;flex-shrink:0;user-select:none;-webkit-tap-highlight-color:transparent;}
+.tab.active{color:#fff;border-bottom-color:var(--accent);}
 
-body {
-  font-family: 'Noto Sans JP', 'DM Sans', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  -webkit-text-size-adjust: 100%;
-}
+.main{padding:14px;max-width:640px;margin:0 auto;}
+.sec{display:none;}.sec.active{display:block;}
 
-/* ===== HEADER ===== */
-.header {
-  background: var(--navy);
-  color: white;
-  padding: 16px 16px 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 12px rgba(10,45,94,0.25);
-}
-.header-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 12px;
-}
-.header-title { font-size: 15px; font-weight: 700; line-height: 1.3; }
-.header-sub { font-size: 11px; opacity: 0.65; margin-top: 3px; font-family: 'DM Sans', sans-serif; }
-.event-badge {
-  background: var(--accent);
-  color: var(--navy);
-  font-size: 10px;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 20px;
-  white-space: nowrap;
-  font-family: 'DM Sans', sans-serif;
-  flex-shrink: 0;
-}
+.card{background:var(--white);border-radius:var(--r);border:1px solid var(--border);margin-bottom:12px;overflow:hidden;}
+.ch{padding:11px 14px;background:var(--lblue);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
+.ch-ico{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.ch-ttl{font-size:14px;font-weight:700;color:var(--navy);flex:1;}
+.ch-tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;white-space:nowrap;}
+.tag-navy{background:var(--navy);color:#fff;}
+.tag-green{background:var(--grn-lt);color:var(--green);}
+.tag-amber{background:var(--acc-lt);color:var(--amber);}
+.tag-purple{background:var(--pur-lt);color:var(--purple);}
 
-/* ===== TABS ===== */
-.tabs {
-  display: flex;
-  gap: 0;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-}
-.tabs::-webkit-scrollbar { display: none; }
-.tab {
-  padding: 10px 14px;
-  font-size: 12px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.55);
-  white-space: nowrap;
-  cursor: pointer;
-  border-bottom: 3px solid transparent;
-  transition: all 0.2s;
-  flex-shrink: 0;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-}
-.tab.active {
-  color: white;
-  border-bottom-color: var(--accent);
-}
-.tab:active { opacity: 0.7; }
+.slbl{font-size:11px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.08em;margin:16px 0 7px;padding:0 2px;}
+.slbl:first-child{margin-top:0;}
 
-/* ===== MAIN ===== */
-.main { padding: 16px; max-width: 640px; margin: 0 auto; }
-.section { display: none; }
-.section.active { display: block; }
+/* CHECKLIST */
+.ci{display:flex;align-items:center;gap:11px;padding:12px 14px;border-bottom:1px solid #F0F4FA;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.ci:last-child{border-bottom:none;}
+.ci:active{background:#F4F7FB;}
+.ci.done{background:#FAFCFF;}
+.ci input[type=checkbox]{width:23px;height:23px;cursor:pointer;accent-color:var(--blue);flex-shrink:0;}
+.ci-lbl{font-size:14px;line-height:1.4;flex:1;}
+.ci.done .ci-lbl{color:var(--sub);text-decoration:line-through;}
+.prog-row{display:flex;align-items:center;gap:8px;padding:8px 14px;background:#F8FAFD;border-top:1px solid var(--border);}
+.prog-row span{font-size:11px;color:var(--sub);white-space:nowrap;}
+.prog-bg{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden;}
+.prog-fill{height:100%;background:var(--blue);border-radius:3px;transition:width .3s;}
 
-/* ===== CARDS ===== */
-.card {
-  background: var(--white);
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  margin-bottom: 14px;
-  overflow: hidden;
-}
-.card-head {
-  padding: 12px 16px;
-  background: var(--light-blue);
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.card-head-icon {
-  width: 28px; height: 28px;
-  border-radius: 7px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px;
-  flex-shrink: 0;
-}
-.card-head-title {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--navy);
-  flex: 1;
-}
-.card-head-badge {
-  font-size: 10px;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 20px;
-  background: var(--navy);
-  color: white;
-  white-space: nowrap;
-}
-.card-body { padding: 0; }
+/* PERSONNEL */
+.team-block{padding:11px 14px;border-bottom:1px solid #F0F4FA;}
+.team-block:last-child{border-bottom:none;}
+.team-name{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.members{display:flex;flex-wrap:wrap;gap:5px;}
+.member{font-size:12px;padding:3px 9px;border-radius:20px;background:var(--lblue);color:var(--blue);font-weight:500;}
+.member.leader{background:var(--navy);color:#fff;}
+.member.resp{background:var(--accent);color:var(--navy);}
+.walkie{display:inline-flex;align-items:center;gap:5px;font-size:11px;background:#E6F5EF;color:var(--green);font-weight:700;padding:2px 8px;border-radius:20px;margin-left:6px;}
 
-/* ===== SECTION LABEL ===== */
-.section-label {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--text-sub);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin: 18px 0 8px;
-  padding: 0 2px;
-  font-family: 'DM Sans', sans-serif;
-}
-.section-label:first-child { margin-top: 0; }
+/* SCHEDULE */
+.srow{display:flex;gap:10px;padding:10px 14px;border-bottom:1px solid #F0F4FA;align-items:flex-start;}
+.srow:last-child{border-bottom:none;}
+.stime{font-size:13px;font-weight:700;color:var(--blue);font-family:'DM Sans',sans-serif;min-width:52px;flex-shrink:0;padding-top:1px;}
+.sevent{font-size:13px;line-height:1.5;flex:1;}
+.stag{font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:5px;white-space:nowrap;vertical-align:middle;}
+.st-bd{background:#E6EDF8;color:var(--navy);}
+.st-bc{background:var(--pur-lt);color:var(--purple);}
+.st-all{background:var(--acc-lt);color:var(--amber);}
+.st-food{background:var(--grn-lt);color:var(--green);}
 
-/* ===== CHECKLIST ===== */
-.check-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 13px 16px;
-  border-bottom: 1px solid #F0F4FA;
-  transition: background 0.15s;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-.check-item:last-child { border-bottom: none; }
-.check-item:active { background: #F4F7FB; }
-.check-item.done { background: #FAFCFF; }
-.check-item input[type=checkbox] {
-  width: 24px; height: 24px;
-  cursor: pointer;
-  accent-color: var(--blue);
-  flex-shrink: 0;
-}
-.check-label {
-  font-size: 14px;
-  line-height: 1.4;
-  color: var(--text);
-  flex: 1;
-  cursor: pointer;
-}
-.check-item.done .check-label {
-  color: var(--text-sub);
-  text-decoration: line-through;
-}
-.check-progress {
-  font-size: 11px;
-  color: var(--text-sub);
-  padding: 8px 16px;
-  background: #F8FAFD;
-  border-top: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.progress-bar-bg {
-  flex: 1;
-  height: 6px;
-  background: var(--border);
-  border-radius: 3px;
-  overflow: hidden;
-}
-.progress-bar-fill {
-  height: 100%;
-  background: var(--blue);
-  border-radius: 3px;
-  transition: width 0.3s;
-}
+/* FLOW */
+.fstep{display:flex;gap:11px;padding:11px 14px;border-bottom:1px solid #F0F4FA;align-items:flex-start;}
+.fstep:last-child{border-bottom:none;}
+.fnum{width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.fbody{flex:1;}
+.fttl{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:2px;}
+.fnote{font-size:12px;color:var(--sub);line-height:1.6;}
 
-/* ===== FLOW STEPS ===== */
-.flow-list { padding: 8px 0; }
-.flow-step {
-  display: flex;
-  gap: 12px;
-  padding: 12px 16px;
-  border-bottom: 1px solid #F0F4FA;
-  align-items: flex-start;
-}
-.flow-step:last-child { border-bottom: none; }
-.step-num {
-  width: 30px; height: 30px;
-  border-radius: 50%;
-  background: var(--blue);
-  color: white;
-  font-size: 14px;
-  font-weight: 700;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  font-family: 'DM Sans', sans-serif;
-}
-.step-body { flex: 1; }
-.step-title {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--navy);
-  margin-bottom: 3px;
-}
-.step-note {
-  font-size: 12px;
-  color: var(--text-sub);
-  line-height: 1.6;
-}
+/* SCHOOL TABLE */
+.school-table{width:100%;border-collapse:collapse;font-size:12px;}
+.school-table th{padding:8px 10px;background:var(--lblue);color:var(--navy);font-weight:700;text-align:left;border-bottom:1px solid var(--border);}
+.school-table td{padding:9px 10px;border-bottom:1px solid #F0F4FA;vertical-align:middle;}
+.school-table tr:last-child td{border-bottom:none;}
+.school-table tr.subtotal td{background:#F8FAFD;font-weight:700;}
+.school-table tr.total td{background:var(--lblue);font-weight:700;color:var(--navy);}
+.wave{font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;white-space:nowrap;}
+.w10{background:#FDECEA;color:var(--red);}
+.w12{background:#FEF3C7;color:var(--amber);}
+.w13{background:var(--pur-lt);color:var(--purple);}
+.w14{background:var(--grn-lt);color:var(--green);}
+.nb{font-weight:700;font-family:'DM Sans',sans-serif;}
 
-/* ===== PRIZE COUNTERS ===== */
-.counter-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0;
-}
-.counter-col {
-  padding: 16px 12px;
-  border-right: 1px solid #F0F4FA;
-  text-align: center;
-}
-.counter-col:last-child { border-right: none; }
-.prize-rank {
-  font-size: 11px;
-  font-weight: 700;
-  padding: 2px 10px;
-  border-radius: 20px;
-  margin-bottom: 10px;
-  display: inline-block;
-  font-family: 'DM Sans', sans-serif;
-}
-.rank1 { background: #FEF4E1; color: #B45309; }
-.rank2 { background: #F0F4F8; color: #475569; }
-.rank3 { background: #F5F0E8; color: #78614A; }
-.counter-num {
-  font-size: 36px;
-  font-weight: 700;
-  color: var(--navy);
-  line-height: 1;
-  margin-bottom: 4px;
-  font-family: 'DM Sans', sans-serif;
-  transition: all 0.15s;
-}
-.counter-init {
-  font-size: 11px;
-  color: var(--text-sub);
-  margin-bottom: 10px;
-}
-.counter-btns {
-  display: flex;
-  gap: 6px;
-  justify-content: center;
-}
-.cbtn {
-  width: 38px; height: 38px;
-  border-radius: var(--radius-sm);
-  border: 1.5px solid var(--border);
-  background: var(--white);
-  font-size: 20px;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 500;
-  transition: all 0.15s;
-  -webkit-tap-highlight-color: transparent;
-  color: var(--navy);
-}
-.cbtn:active { transform: scale(0.92); background: var(--light-blue); }
-.cbtn.minus { color: var(--red); }
-.cbtn.plus { color: var(--blue); }
-.counter-zero .counter-num { color: var(--red); }
+/* WRISTBAND */
+.wb-legend{display:flex;gap:10px;padding:12px 14px;flex-wrap:wrap;}
+.wb-item{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:500;}
+.wb-dot{width:24px;height:11px;border-radius:6px;}
 
-/* ===== SCRIPT BOX ===== */
-.script-box {
-  background: #EBF4FF;
-  border-left: 4px solid var(--mid-blue);
-  padding: 14px 16px;
-  font-size: 13px;
-  color: var(--navy);
-  line-height: 1.8;
-  margin: 12px 16px;
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-}
-.script-label {
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--mid-blue);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 6px;
-  font-family: 'DM Sans', sans-serif;
-}
+/* PRIZE COUNTERS */
+.prize-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:14px;}
+.prize-card{border:2px solid var(--border);border-radius:var(--rs);padding:12px;text-align:center;}
+.prize-rank-badge{font-size:12px;font-weight:700;padding:3px 12px;border-radius:20px;margin-bottom:6px;display:inline-block;}
+/* 1等:金 2等:青 3等:赤 4等:緑 */
+.rk1{background:#FFF7CC;color:#7A5800;border:2px solid #D4AF37;}
+.rk2{background:#DBEAFE;color:#1E3A5F;border:2px solid #3B82F6;}
+.rk3{background:#FEE2E2;color:#7F1D1D;border:2px solid #EF4444;}
+.rk4{background:var(--grn-lt);color:var(--green);border:2px solid #34D399;}
+.prize-card.rk1-card{border-color:#D4AF37;}
+.prize-card.rk2-card{border-color:#3B82F6;}
+.prize-card.rk3-card{border-color:#EF4444;}
+.prize-card.rk4-card{border-color:#34D399;}
+.prize-name{font-size:11px;color:var(--sub);margin-bottom:5px;line-height:1.4;}
+.prize-num{font-size:32px;font-weight:700;color:var(--navy);line-height:1;margin-bottom:3px;font-family:'DM Sans',sans-serif;}
+.prize-init{font-size:11px;color:var(--sub);margin-bottom:8px;}
+.prize-btns{display:flex;gap:6px;justify-content:center;}
+.cbtn{width:36px;height:36px;border-radius:var(--rs);border:1.5px solid var(--border);background:var(--white);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;}
+.cbtn:active{transform:scale(.9);background:var(--lblue);}
+.cbtn.m{color:var(--red);}
+.cbtn.p{color:var(--blue);}
+.prize-zero .prize-num{color:var(--red);}
+.prize-foot{padding:9px 14px;background:#F8FAFD;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.reset-btn{font-size:12px;color:var(--sub);background:none;border:none;cursor:pointer;text-decoration:underline;}
 
-/* ===== CETERA COUNTER ===== */
-.cetera-wrap { padding: 20px 16px; text-align: center; }
-.cetera-big {
-  font-size: 64px;
-  font-weight: 700;
-  color: var(--navy);
-  line-height: 1;
-  font-family: 'DM Sans', sans-serif;
-  margin-bottom: 4px;
-}
-.cetera-of { font-size: 16px; color: var(--text-sub); margin-bottom: 16px; font-family: 'DM Sans', sans-serif; }
-.cetera-bar-bg {
-  height: 14px;
-  background: var(--border);
-  border-radius: 7px;
-  overflow: hidden;
-  margin-bottom: 20px;
-}
-.cetera-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--blue) 0%, var(--mid-blue) 100%);
-  border-radius: 7px;
-  transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.cetera-btns { display: flex; gap: 12px; justify-content: center; margin-bottom: 12px; }
-.cetera-btn {
-  padding: 14px 32px;
-  font-size: 18px;
-  font-weight: 700;
-  border-radius: var(--radius);
-  border: none;
-  cursor: pointer;
-  transition: all 0.15s;
-  font-family: 'DM Sans', sans-serif;
-  -webkit-tap-highlight-color: transparent;
-}
-.cetera-btn:active { transform: scale(0.95); }
-.cetera-btn.minus { background: var(--red-light); color: var(--red); }
-.cetera-btn.plus { background: var(--blue); color: white; }
-.cetera-msg {
-  font-size: 13px;
-  font-weight: 700;
-  padding: 6px 16px;
-  border-radius: 20px;
-  display: inline-block;
-  margin-bottom: 4px;
-}
-.cetera-msg.remaining { background: var(--light-blue); color: var(--blue); }
-.cetera-msg.done { background: var(--green-light); color: var(--green); }
+/* 3等当選アラート */
+.rk3-alert{background:#FEE2E2;border:1.5px solid #EF4444;border-radius:var(--rs);padding:11px 13px;margin:10px 14px;font-size:12px;color:#7F1D1D;line-height:1.7;}
+.rk3-alert b{color:var(--red);}
 
-/* ===== FAQ ===== */
-.faq-item { border-bottom: 1px solid #F0F4FA; }
-.faq-item:last-child { border-bottom: none; }
-.faq-q {
-  padding: 14px 16px;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--navy);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  gap: 10px;
-  -webkit-tap-highlight-color: transparent;
-  line-height: 1.4;
-}
-.faq-q:active { background: #F8FAFD; }
-.faq-arrow {
-  font-size: 12px;
-  color: var(--text-sub);
-  flex-shrink: 0;
-  transition: transform 0.2s;
-  width: 16px; text-align: center;
-}
-.faq-arrow.open { transform: rotate(180deg); }
-.faq-a {
-  display: none;
-  padding: 0 16px 14px;
-  font-size: 13px;
-  color: var(--text-sub);
-  line-height: 1.8;
-  background: #FAFCFF;
-  border-top: 1px dashed #D1DCE8;
-}
-.faq-a.open { display: block; }
-.faq-a strong { color: var(--navy); font-weight: 700; }
+/* CETERA */
+.cetw{padding:16px 14px;text-align:center;}
+.cet-big{font-size:56px;font-weight:700;color:var(--navy);line-height:1;font-family:'DM Sans',sans-serif;}
+.cet-of{font-size:14px;color:var(--sub);margin:3px 0 12px;}
+.cet-bar-bg{height:12px;background:var(--border);border-radius:6px;overflow:hidden;margin-bottom:16px;}
+.cet-bar{height:100%;background:linear-gradient(90deg,var(--blue),var(--mid));border-radius:6px;transition:width .4s cubic-bezier(.34,1.56,.64,1);}
+.cet-btns{display:flex;gap:10px;justify-content:center;margin-bottom:10px;}
+.cet-btn{padding:13px 26px;font-size:17px;font-weight:700;border-radius:var(--r);border:none;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.cet-btn:active{transform:scale(.95);}
+.cet-btn.m{background:var(--red-lt);color:var(--red);}
+.cet-btn.p{background:var(--blue);color:#fff;}
+.cet-msg{font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;display:inline-block;}
+.cet-rem{background:var(--lblue);color:var(--blue);}
+.cet-done{background:var(--grn-lt);color:var(--green);}
 
-/* ===== ALERT ===== */
-.alert-box {
-  background: var(--amber-light);
-  border: 1.5px solid #FDE68A;
-  border-radius: var(--radius);
-  padding: 14px 16px;
-  margin-bottom: 14px;
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-}
-.alert-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
-.alert-title { font-size: 14px; font-weight: 700; color: var(--amber); margin-bottom: 5px; }
-.alert-body { font-size: 13px; color: #78613A; line-height: 1.7; }
-.alert-body strong { color: var(--amber); font-weight: 700; font-size: 15px; }
+/* SCRIPT */
+.sbox{background:#EBF4FF;border-left:4px solid var(--mid);padding:11px 13px;font-size:13px;color:var(--navy);line-height:1.8;margin:10px 14px;border-radius:0 var(--rs) var(--rs) 0;}
+.sbox-lbl{font-size:10px;font-weight:700;color:var(--mid);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;}
 
-/* ===== SALES LIST ===== */
-.sales-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 12px 16px;
-  border-bottom: 1px solid #F0F4FA;
-}
-.sales-item:last-child { border-bottom: none; }
-.sales-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--blue);
-  flex-shrink: 0;
-  margin-top: 6px;
-}
-.sales-text { font-size: 13px; line-height: 1.6; color: var(--text); }
+/* ALERT */
+.alert{background:var(--amb-lt);border:1.5px solid #FDE68A;border-radius:var(--r);padding:12px 14px;margin-bottom:12px;display:flex;gap:10px;}
+.alert-ico{font-size:18px;flex-shrink:0;margin-top:1px;}
+.alert-ttl{font-size:14px;font-weight:700;color:var(--amber);margin-bottom:4px;}
+.alert-body{font-size:13px;color:#78613A;line-height:1.7;}
+.alert-body strong{color:var(--amber);font-size:15px;}
 
-/* ===== EMERGENCY CONTACTS ===== */
-.contact-grid { padding: 12px 16px; display: flex; flex-direction: column; gap: 8px; }
-.contact-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 12px;
-  background: var(--light-blue);
-  border-radius: var(--radius-sm);
-  gap: 10px;
-}
-.contact-role { font-size: 12px; color: var(--text-sub); margin-bottom: 2px; }
-.contact-name { font-size: 14px; font-weight: 700; color: var(--navy); }
-.call-btn {
-  padding: 8px 16px;
-  background: var(--blue);
-  color: white;
-  border: none;
-  border-radius: var(--radius-sm);
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  white-space: nowrap;
-  text-decoration: none;
-  display: inline-block;
-  -webkit-tap-highlight-color: transparent;
-}
-.call-btn:active { opacity: 0.8; }
+/* INFO BOX */
+.info-box{background:var(--lblue);border-radius:var(--rs);padding:11px 13px;font-size:12px;color:var(--navy);line-height:1.7;margin:10px 14px;}
 
-/* ===== INFO CHIP ===== */
-.info-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 4px 10px;
-  background: var(--light-blue);
-  color: var(--blue);
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 700;
-  margin: 0 4px 4px 0;
-}
+/* SMOKING */
+.smoke-card{background:#FFF7ED;border:1.5px solid #FDBA74;border-radius:var(--r);padding:13px 14px;margin-bottom:12px;}
+.smoke-ttl{font-size:14px;font-weight:700;color:#7C2D12;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.smoke-item{display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid #FDE8C8;font-size:13px;color:#7C2D12;line-height:1.6;}
+.smoke-item:last-child{border-bottom:none;}
+.smoke-tag{font-size:10px;font-weight:700;background:#7C2D12;color:#fff;padding:2px 7px;border-radius:20px;white-space:nowrap;flex-shrink:0;margin-top:1px;}
 
-/* ===== SCHEDULE ===== */
-.schedule-row {
-  display: flex;
-  gap: 12px;
-  padding: 10px 16px;
-  border-bottom: 1px solid #F0F4FA;
-  align-items: baseline;
-}
-.schedule-row:last-child { border-bottom: none; }
-.schedule-time {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--blue);
-  font-family: 'DM Sans', sans-serif;
-  min-width: 52px;
-  flex-shrink: 0;
-}
-.schedule-event { font-size: 13px; color: var(--text); line-height: 1.5; }
-.schedule-badge {
-  font-size: 10px;
-  font-weight: 700;
-  padding: 1px 6px;
-  border-radius: 10px;
-  margin-left: 6px;
-  vertical-align: middle;
-}
-.sb-bd { background: #E6EDF8; color: var(--navy); }
-.sb-bc { background: #F5EBF8; color: #6B21A8; }
-.sb-all { background: var(--accent-light); color: var(--amber); }
+/* FAQ */
+.faq-item{border-bottom:1px solid #F0F4FA;}
+.faq-item:last-child{border-bottom:none;}
+.faq-q{padding:13px 14px;font-size:14px;font-weight:700;color:var(--navy);display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:10px;-webkit-tap-highlight-color:transparent;line-height:1.4;}
+.faq-q:active{background:#F8FAFD;}
+.faq-arr{font-size:11px;color:var(--sub);flex-shrink:0;transition:transform .2s;}
+.faq-arr.open{transform:rotate(180deg);}
+.faq-a{display:none;padding:0 14px 13px;font-size:13px;color:var(--sub);line-height:1.8;background:#FAFCFF;border-top:1px dashed var(--border);}
+.faq-a.open{display:block;}
 
-/* ===== UTILITY ===== */
-.p-16 { padding: 16px; }
-.mt-4 { margin-top: 4px; }
-.text-sub { font-size: 12px; color: var(--text-sub); line-height: 1.6; }
+/* ESC */
+.esc-item{display:flex;gap:10px;align-items:flex-start;padding:10px;border-radius:var(--rs);margin-bottom:7px;}
+.esc-item:last-child{margin-bottom:0;}
+
+/* SALES */
+.sale-item{display:flex;align-items:flex-start;gap:9px;padding:11px 14px;border-bottom:1px solid #F0F4FA;}
+.sale-item:last-child{border-bottom:none;}
+.sale-dot{width:7px;height:7px;border-radius:50%;background:var(--blue);flex-shrink:0;margin-top:6px;}
+.sale-txt{font-size:13px;line-height:1.6;}
+
+/* KPI */
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:12px;}
+.kpi-card{padding:10px;background:var(--lblue);border-radius:var(--rs);text-align:center;}
+.kpi-lbl{font-size:11px;color:var(--sub);margin-bottom:3px;}
+.kpi-val{font-size:20px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif;}
+
+/* MEMO */
+.note-box{padding:12px 14px;}
+.note-box textarea{width:100%;font-size:13px;line-height:1.7;color:var(--text);background:var(--lblue);border:1.5px solid var(--border);border-radius:var(--rs);padding:10px 12px;font-family:'Noto Sans JP',sans-serif;resize:vertical;min-height:72px;}
+.note-box textarea:focus{outline:2px solid var(--accent);border-color:var(--accent);}
+.note-saved{font-size:11px;color:var(--green);display:none;margin-top:4px;}
+
+/* MAP */
+.map-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:10px;}
+.map-legend{display:flex;flex-wrap:wrap;gap:7px;padding:10px 14px;border-top:1px solid var(--border);}
+.leg-item{display:flex;align-items:center;gap:5px;font-size:11px;}
+.leg-dot{width:13px;height:13px;border-radius:3px;flex-shrink:0;}
+
+/* EDIT */
+.edit-btn{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;border:1.5px solid var(--border);background:var(--white);color:var(--sub);cursor:pointer;}
+.edit-btn.on{background:var(--amber);color:#fff;border-color:var(--amber);}
+.ci-lbl[contenteditable=true]{background:#FFFBEB;border-radius:4px;padding:2px 4px;outline:2px solid var(--accent);}
+
+.p14{padding:14px;}
+.tsub{font-size:12px;color:var(--sub);line-height:1.7;}
 </style>
 </head>
 <body>
 
-<div class="header">
-  <div class="header-top">
+<div class="hdr">
+  <div class="hdr-top">
     <div>
-      <div class="header-title">B.DOORS × beauty collection<br>スタッフダッシュボード</div>
-      <div class="header-sub">5月12日｜パシフィコ横浜 ノース</div>
+      <div class="hdr-ttl">B.DOORS × beauty collection<br>スタッフダッシュボード</div>
+      <div class="hdr-sub">5月12日（月）｜パシフィコ横浜 ノース</div>
     </div>
-    <div class="event-badge">5.12 本番</div>
+    <div class="hdr-badge">5.12 本番</div>
   </div>
-  <div class="tabs" id="tabs">
-    <div class="tab active" onclick="showTab('schedule',this)">📅 スケジュール</div>
-    <div class="tab" onclick="showTab('checklist',this)">✅ チェックリスト</div>
+  <div class="tabs">
+    <div class="tab active" onclick="showTab('schedule',this)">📅 時間割</div>
+    <div class="tab" onclick="showTab('team',this)">👥 人員</div>
+    <div class="tab" onclick="showTab('checklist',this)">✅ チェック</div>
     <div class="tab" onclick="showTab('bdoors',this)">🎓 B.DOORS</div>
     <div class="tab" onclick="showTab('bc',this)">💄 BC受付</div>
+    <div class="tab" onclick="showTab('map',this)">🗺️ マップ</div>
     <div class="tab" onclick="showTab('trouble',this)">🆘 トラブル</div>
-    <div class="tab" onclick="showTab('sales',this)">📊 営業支援</div>
+    <div class="tab" onclick="showTab('sales',this)">📊 営業</div>
   </div>
 </div>
 
 <div class="main">
 
-<!-- ===== SCHEDULE ===== -->
-<div id="schedule" class="section active">
-  <div class="section-label">当日タイムライン</div>
+<!-- ===== 時間割 ===== -->
+<div id="schedule" class="sec active">
+  <div class="slbl">当日タイムライン</div>
   <div class="card">
-    <div class="card-body">
-      <div class="schedule-row">
-        <div class="schedule-time">8:00</div>
-        <div class="schedule-event">スタッフ集合・全体ブリーフィング<span class="schedule-badge sb-all">全員</span></div>
-      </div>
-      <div class="schedule-row">
-        <div class="schedule-time">8:30</div>
-        <div class="schedule-event">各セクション設営・チェックリスト確認<span class="schedule-badge sb-all">全員</span></div>
-      </div>
-      <div class="schedule-row">
-        <div class="schedule-time">9:30</div>
-        <div class="schedule-event">B.DOORS 開場・学生受付開始<span class="schedule-badge sb-bd">B.DOORS</span></div>
-      </div>
-      <div class="schedule-row">
-        <div class="schedule-time">10:00</div>
-        <div class="schedule-event">beauty collection 開場・入場受付開始<span class="schedule-badge sb-bc">BC</span></div>
-      </div>
-      <div class="schedule-row">
-        <div class="schedule-time">12:00</div>
-        <div class="schedule-event">午前の部 景品状況中間報告<span class="schedule-badge sb-bd">B.DOORS</span></div>
-      </div>
-      <div class="schedule-row">
-        <div class="schedule-time">14:00</div>
-        <div class="schedule-event">抽選会（三角くじ）実施<span class="schedule-badge sb-bd">B.DOORS</span></div>
-      </div>
-      <div class="schedule-row">
-        <div class="schedule-time">17:00</div>
-        <div class="schedule-event">beauty collection 閉場<span class="schedule-badge sb-bc">BC</span></div>
-      </div>
-      <div class="schedule-row">
-        <div class="schedule-time">17:30</div>
-        <div class="schedule-event">B.DOORS 閉場・撤収開始<span class="schedule-badge sb-bd">B.DOORS</span></div>
-      </div>
-      <div class="schedule-row">
-        <div class="schedule-time">18:30</div>
-        <div class="schedule-event">全体振り返り・名刺・記録物引き渡し<span class="schedule-badge sb-all">全員</span></div>
-      </div>
+    <div class="srow"><div class="stime">8:00</div><div class="sevent">役割あるスタッフ 現地集合・設営開始<span class="stag st-all">全員（役割あり）</span></div></div>
+    <div class="srow"><div class="stime">8:30</div><div class="sevent">それ以外のスタッフ 現地集合<span class="stag st-all">全員</span></div></div>
+    <div class="srow"><div class="stime">9:00</div><div class="sevent">社員のみ朝礼<span class="stag st-all">社員</span></div></div>
+    <div class="srow"><div class="stime">9:30</div><div class="sevent">beauty collection 全体朝礼<span class="stag st-bc">BC</span></div></div>
+    <div class="srow"><div class="stime">〜10:00</div><div class="sevent">BC受付チーム：抽選賞品の仕分け（全員）<span class="stag st-bc">BC受付</span></div></div>
+    <div class="srow"><div class="stime">〜10:00</div><div class="sevent">外誘導スタンバイ（樋口・永井）<br><span style="font-size:11px;color:var(--sub);">ランドマーク方面〜ノース入口まで。10:30頃まで。</span><span class="stag st-all">外誘導</span></div></div>
+    <div class="srow"><div class="stime">10:00</div><div class="sevent">beauty collection 開場<span class="stag st-bc">BC</span></div></div>
+    <div class="srow"><div class="stime">10:00〜</div><div class="sevent">B.DOORS 第1波 受付（307名予定）<br><span style="font-size:11px;color:var(--sub);">アルファ専門・横浜ビューティーアート専門</span><span class="stag st-bd">B.DOORS</span></div></div>
+    <div class="srow"><div class="stime">10:30</div><div class="sevent">外誘導 解散 → 各セクションへ合流<span class="stag st-all">外誘導</span></div></div>
+    <div class="srow"><div class="stime">11:00</div><div class="sevent">🍱 昼食 到着（<b>G103</b>）<br><span style="font-size:11px;color:var(--sub);">ガモウ社員はメーカー様にも随時お声がけを</span><span class="stag st-food">全員</span></div></div>
+    <div class="srow"><div class="stime">12:00〜</div><div class="sevent">B.DOORS 第2波 受付（121名予定）<br><span style="font-size:11px;color:var(--sub);">すず学園・鎌倉早見芸術学園</span><span class="stag st-bd">B.DOORS</span></div></div>
+    <div class="srow"><div class="stime">13:00〜</div><div class="sevent">B.DOORS 第3波 受付（<b>438名・最大波</b>）<br><span style="font-size:11px;color:var(--sub);">横浜Fカレッジ・MDF・岩谷学園 ⚠️ 体制を厚めに</span><span class="stag st-bd">B.DOORS</span></div></div>
+    <div class="srow"><div class="stime">14:00〜</div><div class="sevent">B.DOORS 第4波 受付（68名予定）<br><span style="font-size:11px;color:var(--sub);">アイム湘南美容専門学校</span><span class="stag st-bd">B.DOORS</span></div></div>
+    <div class="srow"><div class="stime">17:00</div><div class="sevent">beauty collection 閉場<span class="stag st-bc">BC</span></div></div>
+    <div class="srow"><div class="stime">17:30</div><div class="sevent">B.DOORS 閉場・撤収<span class="stag st-bd">B.DOORS</span></div></div>
+    <div class="srow"><div class="stime">18:30</div><div class="sevent">全体振り返り・記録物引き渡し<span class="stag st-all">全員</span></div></div>
+  </div>
+
+  <div class="slbl">🚬 喫煙スペース（パシフィコ横浜ノース）</div>
+  <div class="smoke-card">
+    <div class="smoke-ttl">🚬 館内喫煙スペース</div>
+    <div class="smoke-item">
+      <span class="smoke-tag">ノース館内</span>
+      <span><b>ノース 2F 喫煙所</b>（紙タバコ・電子タバコ可）<br>会場フロアから2Fへ移動してご利用ください。</span>
+    </div>
+    <div class="smoke-item">
+      <span class="smoke-tag">注意</span>
+      <span>アネックスホールの喫煙所は今回使用不可。展示ホール内コンコース（電子タバコのみ）はノース会場とは別棟です。</span>
+    </div>
+    <div class="smoke-item">
+      <span class="smoke-tag">館内全館</span>
+      <span>指定喫煙所以外は館内全域禁煙。来場者・メーカー様へもご案内を。</span>
     </div>
   </div>
 
-  <div class="section-label">緊急連絡先</div>
+  <div class="slbl">備考メモ</div>
   <div class="card">
-    <div class="contact-grid">
-      <div class="contact-row">
-        <div>
-          <div class="contact-role">運営責任者</div>
-          <div class="contact-name">（責任者名を入力）</div>
-        </div>
-        <a class="call-btn" href="tel:090-0000-0001">📞 発信</a>
-      </div>
-      <div class="contact-row">
-        <div>
-          <div class="contact-role">B.DOORSリーダー</div>
-          <div class="contact-name">（担当者名を入力）</div>
-        </div>
-        <a class="call-btn" href="tel:090-0000-0002">📞 発信</a>
-      </div>
-      <div class="contact-row">
-        <div>
-          <div class="contact-role">BC受付リーダー</div>
-          <div class="contact-name">（担当者名を入力）</div>
-        </div>
-        <a class="call-btn" href="tel:090-0000-0003">📞 発信</a>
-      </div>
-      <div class="contact-row">
-        <div>
-          <div class="contact-role">パシフィコ 施設管理</div>
-          <div class="contact-name">045-221-2155</div>
-        </div>
-        <a class="call-btn" href="tel:045-221-2155">📞 発信</a>
-      </div>
+    <div class="note-box">
+      <textarea id="memo-schedule" placeholder="当日の変更事項・追記をここにメモ…" rows="3"></textarea>
+      <div class="note-saved" id="saved-schedule">✓ 保存済み</div>
     </div>
   </div>
 </div>
 
-<!-- ===== CHECKLIST ===== -->
-<div id="checklist" class="section">
-  <div class="section-label">全般誘導（1〜2名）</div>
+<!-- ===== 人員配置 ===== -->
+<div id="team" class="sec">
+  <div class="slbl">トランシーバー配布（6台）</div>
   <div class="card">
-    <div class="card-head">
-      <div class="card-head-icon" style="background:#E8F2FB;">🪧</div>
-      <div class="card-head-title">共通・誘導準備</div>
-      <div class="card-head-badge">1〜2名</div>
+    <div class="ch"><div class="ch-ico" style="background:#E6F5EF;">📻</div><div class="ch-ttl">トランシーバー担当者</div><div class="ch-tag tag-green">計6台</div></div>
+    <div class="team-block">
+      <div class="tsub" style="margin-bottom:8px;">各セクションの責任者が1台ずつ使用。<br>その他スタッフは<b>社用スマホ／LINEで情報共有</b>する。</div>
+      <div class="members">
+        <span class="member leader">河合（総責任者）<span class="walkie">📻</span></span>
+        <span class="member leader">菊永（B.DOORS責任者）<span class="walkie">📻</span></span>
+        <span class="member leader">吉岡（BC責任者）<span class="walkie">📻</span></span>
+        <span class="member leader">齋田（B.DOORS受付L）<span class="walkie">📻</span></span>
+        <span class="member leader">大山（B.DOORS学校L）<span class="walkie">📻</span></span>
+        <span class="member leader">井出（BC受付L）<span class="walkie">📻</span></span>
+      </div>
     </div>
-    <div id="cl-general"></div>
   </div>
 
-  <div class="section-label">B.DOORS チーム（7〜8名）</div>
+  <div class="slbl">外誘導</div>
   <div class="card">
-    <div class="card-head">
-      <div class="card-head-icon" style="background:#E8F2FB;">🎓</div>
-      <div class="card-head-title">B.DOORS 開場前チェック</div>
-      <div class="card-head-badge">7〜8名</div>
+    <div class="ch"><div class="ch-ico" style="background:#E8F2FB;">🪧</div><div class="ch-ttl">外誘導チーム</div><div class="ch-tag tag-navy">2名</div></div>
+    <div class="team-block">
+      <div class="members"><span class="member">樋口</span><span class="member">永井</span></div>
     </div>
-    <div id="cl-bdoors"></div>
+    <div class="team-block"><div class="tsub">ランドマーク方面から誘導。10:30頃まで → 解散後各セクションへ合流。<br>連絡手段：社用スマホ／LINE</div></div>
   </div>
 
-  <div class="section-label">BC受付・抽選（6〜9名）</div>
+  <div class="slbl">B.DOORS</div>
   <div class="card">
-    <div class="card-head">
-      <div class="card-head-icon" style="background:#E8F2FB;">💄</div>
-      <div class="card-head-title">BC受付準備チェック</div>
-      <div class="card-head-badge">6〜9名</div>
-    </div>
-    <div id="cl-bc"></div>
+    <div class="ch"><div class="ch-ico" style="background:#E8F2FB;">⭐</div><div class="ch-ttl">B.DOORS 運営責任者</div></div>
+    <div class="team-block"><div class="members"><span class="member resp">菊永 📻</span></div></div>
   </div>
+  <div class="card">
+    <div class="ch"><div class="ch-ico" style="background:#E8F2FB;">📋</div><div class="ch-ttl">B.DOORS 受付</div><div class="ch-tag tag-navy">3名</div></div>
+    <div class="team-block">
+      <div class="members"><span class="member leader">齋田（リーダー）📻</span><span class="member">矢賀部</span><span class="member">篠原</span></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ch"><div class="ch-ico" style="background:#E8F2FB;">🏫</div><div class="ch-ttl">B.DOORS 学校対応</div><div class="ch-tag tag-navy">6名</div></div>
+    <div class="team-block">
+      <div class="team-name">チーム A</div>
+      <div class="members"><span class="member leader">大山（リーダー）📻</span><span class="member">堺</span><span class="member">榊原</span></div>
+    </div>
+    <div class="team-block">
+      <div class="team-name">チーム B</div>
+      <div class="members"><span class="member">宇野</span><span class="member">藤本</span><span class="member">田中</span></div>
+    </div>
+    <div class="team-block"><div class="tsub">学校ごとに生徒をまとめてリストバンドを配布し、スタンプラリーを説明する。</div></div>
+  </div>
+  <div class="card">
+    <div class="ch"><div class="ch-ico" style="background:#FEF4E1;">🎁</div><div class="ch-ttl">B.DOORS 景品担当</div><div class="ch-tag tag-amber">7名</div></div>
+    <div class="team-block">
+      <div class="members"><span class="member">増田</span><span class="member">志村</span><span class="member">宅間</span><span class="member">山本</span><span class="member">加藤</span><span class="member">小名木</span><span class="member">横山</span></div>
+    </div>
+    <div class="team-block"><div class="tsub">スタンプ5個以上の学生に三角くじを引いてもらい景品手渡し。<br><b>3等当選者</b>はceteraアプリ取得を促し、深掘りされたらceteraブースへご案内。</div></div>
+  </div>
+
+  <div class="slbl">beauty collection</div>
+  <div class="card">
+    <div class="ch"><div class="ch-ico" style="background:var(--pur-lt);">⭐</div><div class="ch-ttl">BC 運営責任者</div></div>
+    <div class="team-block"><div class="members"><span class="member resp">吉岡 📻</span></div></div>
+  </div>
+  <div class="card">
+    <div class="ch"><div class="ch-ico" style="background:var(--pur-lt);">🎫</div><div class="ch-ttl">BC 受付・抽選</div><div class="ch-tag tag-purple">12名</div></div>
+    <div class="team-block">
+      <div class="members"><span class="member leader">井出（リーダー）📻</span><span class="member">鈴木</span><span class="member">榎本</span><span class="member">福井</span><span class="member">山崎</span><span class="member">菅野</span><span class="member">伊藤</span><span class="member">森本</span><span class="member">石井</span><span class="member">邊見</span><span class="member">小山</span><span class="member">光永</span></div>
+    </div>
+    <div class="team-block"><div class="tsub">10時開場前に抽選賞品の仕分けを全員で実施。開場後は受付・ガラポン抽選を担当。<br>連絡手段：社用スマホ／LINE（リーダー：トランシーバー）</div></div>
+  </div>
+  <div class="card">
+    <div class="ch"><div class="ch-ico" style="background:var(--grn-lt);">🏪</div><div class="ch-ttl">ceteraブース</div><div class="ch-tag tag-green">3名</div></div>
+    <div class="team-block">
+      <div class="members"><span class="member">三嶽</span><span class="member">亀ヶ谷</span><span class="member">鈴木</span></div>
+    </div>
+    <div class="team-block"><div class="tsub">初めてceteraアプリを取得する方へ先着100名・1000ポイント引換券を配布。<br>当日の引き換えは横浜店のみ。<b>B.DOORS景品担当から引き継ぎを受けた学生にも丁寧に対応。</b></div></div>
+  </div>
+</div>
+
+<!-- ===== チェックリスト ===== -->
+<div id="checklist" class="sec">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+    <div class="slbl" style="margin:0;">開場前チェックリスト</div>
+    <button class="edit-btn" id="cl-edit-btn" onclick="toggleEdit()">✏️ 編集</button>
+  </div>
+  <div class="slbl">外誘導（樋口・永井）</div>
+  <div class="card"><div id="cl-general"></div></div>
+  <div class="slbl">B.DOORS チーム（菊永・齋田〜）</div>
+  <div class="card"><div id="cl-bdoors"></div></div>
+  <div class="slbl">BC受付チーム（吉岡・井出〜）</div>
+  <div class="card"><div id="cl-bc"></div></div>
 </div>
 
 <!-- ===== B.DOORS ===== -->
-<div id="bdoors" class="section">
-  <div class="section-label">学生誘導フロー</div>
+<div id="bdoors" class="sec">
+  <div class="slbl">来場予定校・生徒数</div>
   <div class="card">
-    <div class="card-head">
-      <div class="card-head-icon" style="background:#E8F2FB;">📋</div>
-      <div class="card-head-title">受付〜スタンプ完了フロー</div>
+    <div style="overflow-x:auto;">
+      <table class="school-table">
+        <thead><tr><th>学校名</th><th>来場</th><th style="text-align:right;">人数</th></tr></thead>
+        <tbody>
+          <tr><td>アルファ専門学校</td><td><span class="wave w10">10時〜</span></td><td style="text-align:right;" class="nb">57</td></tr>
+          <tr><td>横浜ビューティーアート専門学校</td><td><span class="wave w10">10時〜</span></td><td style="text-align:right;" class="nb">250</td></tr>
+          <tr class="subtotal"><td colspan="2" style="color:var(--red);">第1波 小計</td><td style="text-align:right;color:var(--red);">307</td></tr>
+          <tr><td>すず学園高等専修学校</td><td><span class="wave w12">12時〜</span></td><td style="text-align:right;" class="nb">40</td></tr>
+          <tr><td>鎌倉早見芸術学園</td><td><span class="wave w12">12時〜</span></td><td style="text-align:right;" class="nb">81</td></tr>
+          <tr class="subtotal"><td colspan="2" style="color:var(--amber);">第2波 小計</td><td style="text-align:right;color:var(--amber);">121</td></tr>
+          <tr><td>横浜fカレッジ</td><td><span class="wave w13">13時〜</span></td><td style="text-align:right;" class="nb">385</td></tr>
+          <tr><td>MDFビューティカレッジ</td><td><span class="wave w13">13時〜</span></td><td style="text-align:right;" class="nb">20</td></tr>
+          <tr><td>岩谷学園</td><td><span class="wave w13">13時〜</span></td><td style="text-align:right;" class="nb">33</td></tr>
+          <tr class="subtotal"><td colspan="2" style="color:var(--purple);">第3波 小計 ⚠️ 最大波</td><td style="text-align:right;color:var(--purple);font-size:15px;">438</td></tr>
+          <tr><td>アイム湘南美容専門学校</td><td><span class="wave w14">14時〜</span></td><td style="text-align:right;" class="nb">68</td></tr>
+          <tr class="subtotal"><td colspan="2" style="color:var(--green);">第4波 小計</td><td style="text-align:right;color:var(--green);">68</td></tr>
+          <tr class="total"><td colspan="2">合計</td><td style="text-align:right;font-size:15px;">934名</td></tr>
+        </tbody>
+      </table>
     </div>
-    <div class="flow-list" id="flow-bd"></div>
+    <div style="padding:8px 14px;background:#F8FAFD;border-top:1px solid var(--border);font-size:11px;color:var(--sub);">
+      ※ 横浜市立横浜商業高等学校別科・横浜芸術専修学校は来場予定なし
+    </div>
   </div>
 
-  <div class="section-label">景品カウンター（三角くじ）</div>
+  <div class="slbl">リストバンド（学年別色分け）</div>
   <div class="card">
-    <div class="card-head">
-      <div class="card-head-icon" style="background:#FEF4E1;">🎁</div>
-      <div class="card-head-title">残数管理</div>
-      <div class="card-head-badge" style="background:var(--accent-light);color:var(--amber);">リアルタイム更新</div>
-    </div>
-    <div class="counter-grid" id="prize-grid"></div>
-    <div style="padding:10px 16px;background:#FAFCFF;border-top:1px solid var(--border);">
-      <button onclick="resetPrizes()" style="font-size:12px;color:var(--text-sub);background:none;border:none;cursor:pointer;text-decoration:underline;">カウンターをリセット</button>
+    <div class="wb-legend">
+      <div class="wb-item"><div class="wb-dot" style="background:#F472B6;"></div>1年生（ピンク）</div>
+      <div class="wb-item"><div class="wb-dot" style="background:#FB923C;"></div>2年生（オレンジ）</div>
+      <div class="wb-item"><div class="wb-dot" style="background:#60A5FA;"></div>3年生（ブルー）</div>
     </div>
   </div>
 
-  <div class="section-label">抽選会 進行メモ</div>
+  <div class="slbl">学生誘導フロー</div>
+  <div class="card"><div id="flow-bd"></div></div>
+
+  <div class="slbl">景品カウンター（三角くじ）</div>
   <div class="card">
-    <div class="p-16">
-      <div class="text-sub">■ くじ引き順序：スタンプ5個完了の学生から順次案内<br>■ 1等が出た場合：全スタッフへトランシーバーで共有<br>■ 景品がなくなり次第、代替ノベルティ（要責任者確認）<br>■ 抽選後は必ず写真撮影して運営リーダーへ共有</div>
+    <div class="ch"><div class="ch-ico" style="background:#FEF4E1;">🎁</div><div class="ch-ttl">残数管理</div><div class="ch-tag tag-amber">景品担当：増田ほか</div></div>
+    <div class="prize-grid" id="prize-grid"></div>
+    <div class="prize-foot">
+      <span style="font-size:11px;color:var(--sub);">操作は景品担当の1台で行うこと</span>
+      <button class="reset-btn" onclick="resetPrizes()">リセット</button>
     </div>
   </div>
+
+  <!-- 3等当選時アクション -->
+  <div class="rk3-alert">
+    <b>🔴 3等（赤）当選者への対応フロー</b><br>
+    ① 「おめでとうございます！」とメーカー商品を手渡す<br>
+    ② 「ceteraアプリはもうお持ちですか？」と声がけ<br>
+    ③ 未取得 or 興味あり → <b>ceteraブースへご案内</b>して担当（三嶽・亀ヶ谷・鈴木）へ引き継ぎ<br>
+    ④ 「先着100名で1000ポイントもらえますよ！」と伝えて誘導
+  </div>
+
+  <div class="card">
+    <div class="ch"><div class="ch-ico" style="background:#E8F2FB;">📝</div><div class="ch-ttl">4等当選時の案内スクリプト</div></div>
+    <div class="sbox" style="margin-bottom:12px;">
+      <div class="sbox-lbl">4等（ceteraポイント500円券）当選者へ</div>
+      「おめでとうございます！ceteraポイント500円分の引換券です。ceteraアプリをスマホにダウンロードいただくと使えます。引き換えは<b>6月30日まで</b>、<b>横浜店のみ</b>でのご対応になります。」
+    </div>
+  </div>
+
+  <div class="slbl">フリーメモ（B.DOORS）</div>
+  <div class="card"><div class="note-box"><textarea id="memo-bdoors" placeholder="気づいた点・状況変化などをメモ…" rows="3"></textarea><div class="note-saved" id="saved-bdoors">✓ 保存済み</div></div></div>
 </div>
 
 <!-- ===== BC受付 ===== -->
-<div id="bc" class="section">
-  <div class="section-label">入場受付フロー</div>
-  <div class="card">
-    <div class="card-head">
-      <div class="card-head-icon" style="background:#E8F2FB;">📋</div>
-      <div class="card-head-title">BC入場手順</div>
-    </div>
-    <div class="flow-list" id="flow-bc"></div>
-  </div>
-
-  <div class="card">
-    <div class="card-head">
-      <div class="card-head-icon" style="background:#E8F2FB;">🎤</div>
-      <div class="card-head-title">タップ促進スクリプト</div>
-    </div>
-    <div style="padding:12px 16px 16px;">
-      <div class="script-box">
-        <div class="script-label">入場時</div>
-        「本日はご来場ありがとうございます。各メーカーブースにQRコードがございます。ご訪問の際にタップ（読み取り）いただくと、後日担当者よりお得な情報をご案内できます。ぜひご利用ください！」
-      </div>
-      <div class="script-box" style="margin-top:8px;">
-        <div class="script-label">ブース案内時</div>
-        「こちらのブース、ご興味はいかがでしょうか？QRタップしていただくと弊社からもフォローさせていただきます！」
-      </div>
-    </div>
-  </div>
-
-  <div class="section-label">cetera 先着100名 ポイント付与カウンター</div>
-  <div class="card">
-    <div class="card-head">
-      <div class="card-head-icon" style="background:#E8F2FB;">🏪</div>
-      <div class="card-head-title">cetera紹介ブース 受付人数</div>
-      <div class="card-head-badge" style="background:#E6F5EF;color:var(--green);">先着100名限定</div>
-    </div>
-    <div class="cetera-wrap">
-      <div class="cetera-big" id="cetera-num">0</div>
-      <div class="cetera-of">/ 100名</div>
-      <div class="cetera-bar-bg"><div class="cetera-bar-fill" id="cetera-bar" style="width:0%"></div></div>
-      <div class="cetera-btns">
-        <button class="cetera-btn minus" onclick="ceteraChange(-1)">－ 1名</button>
-        <button class="cetera-btn plus" onclick="ceteraChange(1)">＋ 1名</button>
-      </div>
-      <div class="cetera-msg remaining" id="cetera-msg">あと100名</div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== TROUBLE ===== -->
-<div id="trouble" class="section">
-  <div class="section-label">よくあるトラブルと対応</div>
-  <div class="card">
-    <div class="card-body" id="faq-list"></div>
-  </div>
-
-  <div class="section-label">エスカレーション基準</div>
-  <div class="card">
-    <div class="p-16">
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;background:var(--red-light);border-radius:var(--radius-sm);">
-          <span style="color:var(--red);font-size:16px;flex-shrink:0;">🔴</span>
-          <div style="font-size:13px;color:var(--red);font-weight:500;">即時報告（責任者へ直接）<br><span style="font-weight:400;color:#78344D;">けが・体調不良・クレーム発生・紛失・機材故障</span></div>
-        </div>
-        <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;background:var(--amber-light);border-radius:var(--radius-sm);">
-          <span style="color:var(--amber);font-size:16px;flex-shrink:0;">🟡</span>
-          <div style="font-size:13px;color:var(--amber);font-weight:500;">5分以内に報告<br><span style="font-weight:400;color:#78614A;">景品不足・QR不具合・入場者数の急増</span></div>
-        </div>
-        <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;background:var(--green-light);border-radius:var(--radius-sm);">
-          <span style="color:var(--green);font-size:16px;flex-shrink:0;">🟢</span>
-          <div style="font-size:13px;color:var(--green);font-weight:500;">次の報告タイミングで共有<br><span style="font-weight:400;color:#2D6B50;">軽微な問い合わせ・案内ミス・動線の提案</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== SALES ===== -->
-<div id="sales" class="section">
-  <div class="alert-box">
-    <div class="alert-icon">⚠️</div>
+<div id="bc" class="sec">
+  <div class="alert">
+    <div class="alert-ico">📦</div>
     <div>
-      <div class="alert-title">重要：伝票入力の徹底</div>
-      <div class="alert-body">催事後の効果測定のため、今回のイベントで接触した顧客への伝票起伝時は必ず<br><strong>「イベント企画」</strong><br>を担当コード欄に入力してください。漏れなく徹底！</div>
+      <div class="alert-ttl">開場前：抽選賞品の仕分け</div>
+      <div class="alert-body">10時の開場前に<strong>全員で</strong>抽選賞品の仕分けを行うこと。</div>
     </div>
   </div>
 
-  <div class="section-label">事後フォロー アクションリスト</div>
-  <div class="card">
-    <div id="sales-list"></div>
-  </div>
+  <div class="slbl">入場受付フロー</div>
+  <div class="card"><div id="flow-bc"></div></div>
 
-  <div class="section-label">効果測定 指標</div>
   <div class="card">
-    <div class="p-16">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-        <div style="padding:12px;background:var(--light-blue);border-radius:var(--radius-sm);text-align:center;">
-          <div style="font-size:11px;color:var(--text-sub);margin-bottom:4px;">タップ件数</div>
-          <div style="font-size:22px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif;">記録中</div>
-        </div>
-        <div style="padding:12px;background:var(--light-blue);border-radius:var(--radius-sm);text-align:center;">
-          <div style="font-size:11px;color:var(--text-sub);margin-bottom:4px;">名刺収集枚数</div>
-          <div style="font-size:22px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif;">記録中</div>
-        </div>
-        <div style="padding:12px;background:var(--light-blue);border-radius:var(--radius-sm);text-align:center;">
-          <div style="font-size:11px;color:var(--text-sub);margin-bottom:4px;">cetera誘導数</div>
-          <div style="font-size:22px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif;" id="kpi-cetera">0</div>
-        </div>
-        <div style="padding:12px;background:var(--light-blue);border-radius:var(--radius-sm);text-align:center;">
-          <div style="font-size:11px;color:var(--text-sub);margin-bottom:4px;">B.DOORS参加者</div>
-          <div style="font-size:22px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif;">記録中</div>
-        </div>
+    <div class="ch"><div class="ch-ico" style="background:var(--pur-lt);">🎤</div><div class="ch-ttl">受付時の声がけスクリプト</div></div>
+    <div style="padding:10px 0 12px;">
+      <div class="sbox">
+        <div class="sbox-lbl">入場証ありの方</div>
+        「入場証のご確認ありがとうございます。場内では、スマホに表示される城内マップ上でご訪問いただいたブースをタップしてご記録ください！」
+      </div>
+      <div class="sbox" style="margin-top:6px;">
+        <div class="sbox-lbl">当日受付の方</div>
+        「こちらの用紙にご記入をお願いします。入場後は城内マップ上で訪問ブースをタップしてご記録いただけます！」
       </div>
     </div>
   </div>
+
+  <div class="card">
+    <div class="ch"><div class="ch-ico" style="background:var(--pur-lt);">🎰</div><div class="ch-ttl">ガラポン抽選</div><div class="ch-tag tag-purple">来場者全員対象</div></div>
+    <div class="p14 tsub">来場者全員を対象にガラポン抽選を実施。詳細は別途決定予定。</div>
+    <div class="note-box" style="padding-top:0;"><textarea id="memo-garapon" placeholder="ガラポン詳細が決まり次第ここに記入…" rows="2"></textarea><div class="note-saved" id="saved-garapon">✓ 保存済み</div></div>
+  </div>
+
+  <div class="slbl">cetera 先着100名 ポイント付与カウンター</div>
+  <div class="card">
+    <div class="ch"><div class="ch-ico" style="background:var(--grn-lt);">🏪</div><div class="ch-ttl">ceteraブース 受付人数</div><div class="ch-tag tag-green">担当：三嶽・亀ヶ谷・鈴木</div></div>
+    <div class="cetw">
+      <div class="cet-big" id="cet-num">0</div>
+      <div class="cet-of">/ 100名</div>
+      <div class="cet-bar-bg"><div class="cet-bar" id="cet-bar" style="width:0%"></div></div>
+      <div class="cet-btns">
+        <button class="cet-btn m" onclick="cetChange(-1)">－ 1名</button>
+        <button class="cet-btn p" onclick="cetChange(1)">＋ 1名</button>
+      </div>
+      <div class="cet-msg cet-rem" id="cet-msg">あと100名</div>
+    </div>
+    <div style="padding:0 14px 12px;">
+      <div class="info-box">初めてceteraアプリを取得する方限定。1000ポイント引換券を配布。<b>当日の引き換えは横浜店のみ</b>対応。B.DOORS景品担当から引き継いだ学生も対象。</div>
+    </div>
+  </div>
+
+  <div class="slbl">フリーメモ（BC受付）</div>
+  <div class="card"><div class="note-box"><textarea id="memo-bc" placeholder="気づいた点・状況変化などをメモ…" rows="3"></textarea><div class="note-saved" id="saved-bc">✓ 保存済み</div></div></div>
+</div>
+
+<!-- ===== 会場マップ ===== -->
+<div id="map" class="sec">
+  <div class="slbl">beauty collection — 場内ブース配置図</div>
+  <div class="card">
+    <div class="map-wrap">
+      <!-- 
+        PDFレイアウト原本に基づく正確な配置
+        上段：メーカーブース（ロレアル〜イムダイン、タカラ〜販促企画）
+        中段：家電・機器ブース（KINUJO〜大西）
+        就活サロン：1〜63
+        AED、2F入口/出口
+      -->
+      <svg viewBox="0 0 960 620" xmlns="http://www.w3.org/2000/svg" style="min-width:760px;width:100%;height:auto;font-family:'Noto Sans JP','DM Sans',sans-serif;font-size:8px;">
+        <!-- 外枠 -->
+        <rect x="4" y="4" width="952" height="612" rx="8" fill="#F8FAFD" stroke="#D1DCE8" stroke-width="1.5"/>
+
+        <!-- 2F入口/出口 -->
+        <rect x="330" y="588" width="100" height="22" rx="4" fill="#0A2D5E"/>
+        <text x="380" y="603" text-anchor="middle" fill="white" font-size="10" font-weight="700">← 2F 入口</text>
+        <rect x="580" y="588" width="100" height="22" rx="4" fill="#0A2D5E"/>
+        <text x="630" y="603" text-anchor="middle" fill="white" font-size="10" font-weight="700">2F 出口 →</text>
+
+        <!-- ======= 上段メーカーブース ======= -->
+        <!-- 行1: ロレアル〜アリミノ / ホーユー / 武田〜千代田化学 / ユーグレナ〜イムダイン -->
+        <!-- セフィーヌは縦長で間に挟まる -->
+
+        <!-- ロレアル -->
+        <rect x="12" y="12" width="54" height="26" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="39" y="29" text-anchor="middle" fill="#1E40AF">ロレアル</text>
+        <!-- アマトラ -->
+        <rect x="68" y="12" width="50" height="26" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="93" y="29" text-anchor="middle" fill="#1E40AF">アマトラ</text>
+        <!-- セフティ -->
+        <rect x="120" y="12" width="46" height="26" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="143" y="29" text-anchor="middle" fill="#1E40AF">セフティ</text>
+        <!-- リアル化学 -->
+        <rect x="168" y="12" width="56" height="26" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="196" y="29" text-anchor="middle" fill="#1E40AF">リアル化学</text>
+
+        <!-- ホーユー -->
+        <rect x="270" y="12" width="50" height="26" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="295" y="29" text-anchor="middle" fill="#1E40AF">ホーユー</text>
+
+        <!-- 武田 -->
+        <rect x="370" y="12" width="46" height="26" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="393" y="29" text-anchor="middle" fill="#1E40AF">武田</text>
+        <!-- 千代田化学 -->
+        <rect x="418" y="12" width="62" height="26" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="449" y="29" text-anchor="middle" fill="#1E40AF">千代田化学</text>
+
+        <!-- セフィーヌ（縦長） -->
+        <rect x="510" y="12" width="26" height="54" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="523" y="28" text-anchor="middle" fill="#1E40AF" writing-mode="tb" glyph-orientation-vertical="0">セ</text>
+        <text x="523" y="42" text-anchor="middle" fill="#1E40AF" writing-mode="tb">フ</text>
+        <text x="523" y="55" text-anchor="middle" fill="#1E40AF" writing-mode="tb">ィ</text>
+
+        <!-- TOOB -->
+        <rect x="545" y="12" width="44" height="26" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="567" y="29" text-anchor="middle" fill="#1E40AF">TOOB</text>
+
+        <!-- ユーグレナ -->
+        <rect x="620" y="12" width="54" height="26" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="647" y="29" text-anchor="middle" fill="#1E40AF">ユーグレナ</text>
+
+        <!-- 販促企画（オレンジ、大きめ） -->
+        <rect x="700" y="12" width="80" height="54" rx="3" fill="#FED7AA" stroke="#FB923C" stroke-width="1.5"/>
+        <text x="740" y="37" text-anchor="middle" fill="#9A3412" font-size="10" font-weight="700">販促企画</text>
+
+        <!-- コーセー -->
+        <rect x="788" y="12" width="48" height="26" rx="3" fill="#E8F5E9" stroke="#86EFAC" stroke-width="1"/>
+        <text x="812" y="29" text-anchor="middle" fill="#166534">コーセー</text>
+        <!-- プロラッシュ -->
+        <rect x="838" y="12" width="54" height="26" rx="3" fill="#E8F5E9" stroke="#86EFAC" stroke-width="1"/>
+        <text x="865" y="29" text-anchor="middle" fill="#166534">プロラッシュ</text>
+        <!-- BJC -->
+        <rect x="894" y="12" width="34" height="26" rx="3" fill="#E8F5E9" stroke="#86EFAC" stroke-width="1"/>
+        <text x="911" y="29" text-anchor="middle" fill="#166534">BJC</text>
+        <!-- イムダイン -->
+        <rect x="930" y="12" width="22" height="26" rx="3" fill="#E8F5E9" stroke="#86EFAC" stroke-width="1"/>
+        <text x="941" y="29" text-anchor="middle" fill="#166534" font-size="7">イム</text>
+
+        <!-- 行2: ミルボン〜アリミノ / ウェラ〜ルベル / SHIGETA〜マイハニー -->
+        <rect x="12" y="40" width="54" height="26" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="39" y="57" text-anchor="middle" fill="#1E40AF">ミルボン</text>
+        <rect x="68" y="40" width="50" height="26" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="93" y="57" text-anchor="middle" fill="#1E40AF">ヘンケル</text>
+        <rect x="120" y="40" width="56" height="26" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="148" y="57" text-anchor="middle" fill="#1E40AF">ニューウェイ</text>
+        <rect x="178" y="40" width="52" height="26" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="204" y="57" text-anchor="middle" fill="#1E40AF">アリミノ</text>
+        <!-- ウェラ -->
+        <rect x="270" y="40" width="44" height="26" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="292" y="57" text-anchor="middle" fill="#1E40AF">ウェラ</text>
+        <!-- UnG -->
+        <rect x="316" y="40" width="36" height="26" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="334" y="57" text-anchor="middle" fill="#1E40AF">UnG</text>
+        <!-- GOALD -->
+        <rect x="354" y="40" width="48" height="26" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="378" y="57" text-anchor="middle" fill="#1E40AF">GOALD</text>
+        <!-- ルベル -->
+        <rect x="404" y="40" width="42" height="26" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="425" y="57" text-anchor="middle" fill="#1E40AF">ルベル</text>
+        <!-- SHIGETA -->
+        <rect x="620" y="40" width="54" height="26" rx="3" fill="#E8F5E9" stroke="#86EFAC" stroke-width="1"/>
+        <text x="647" y="57" text-anchor="middle" fill="#166534">SHIGETA</text>
+        <!-- マイハニー -->
+        <rect x="676" y="40" width="22" height="26" rx="3" fill="#E8F5E9" stroke="#86EFAC" stroke-width="1"/>
+        <text x="687" y="50" text-anchor="middle" fill="#166534" font-size="7">マイ</text>
+        <text x="687" y="62" text-anchor="middle" fill="#166534" font-size="7">ハニ</text>
+
+        <!-- ======= タカラ行 ======= -->
+        <rect x="12" y="76" width="48" height="24" rx="3" fill="#FEF9C3" stroke="#FDE047" stroke-width="1"/>
+        <text x="36" y="92" text-anchor="middle" fill="#854D0E">タカラ</text>
+        <rect x="62" y="76" width="58" height="24" rx="3" fill="#FEF9C3" stroke="#FDE047" stroke-width="1"/>
+        <text x="91" y="92" text-anchor="middle" fill="#854D0E">エステシモ</text>
+        <rect x="122" y="76" width="66" height="24" rx="3" fill="#FEF9C3" stroke="#FDE047" stroke-width="1"/>
+        <text x="155" y="92" text-anchor="middle" fill="#854D0E">マイクロバブル</text>
+        <rect x="190" y="76" width="70" height="24" rx="3" fill="#FEF9C3" stroke="#FDE047" stroke-width="1"/>
+        <text x="225" y="92" text-anchor="middle" fill="#854D0E">ビューティメリット</text>
+        <rect x="262" y="76" width="52" height="24" rx="3" fill="#FEF9C3" stroke="#FDE047" stroke-width="1"/>
+        <text x="288" y="92" text-anchor="middle" fill="#854D0E">So easy</text>
+        <rect x="316" y="76" width="40" height="24" rx="3" fill="#FEF9C3" stroke="#FDE047" stroke-width="1"/>
+        <text x="336" y="92" text-anchor="middle" fill="#854D0E">滝川</text>
+        <rect x="358" y="76" width="40" height="24" rx="3" fill="#FEF9C3" stroke="#FDE047" stroke-width="1"/>
+        <text x="378" y="92" text-anchor="middle" fill="#854D0E">菊星</text>
+        <rect x="400" y="76" width="48" height="24" rx="3" fill="#FEF9C3" stroke="#FDE047" stroke-width="1"/>
+        <text x="424" y="92" text-anchor="middle" fill="#854D0E">ダイソン</text>
+        <rect x="450" y="76" width="46" height="24" rx="3" fill="#FEF9C3" stroke="#FDE047" stroke-width="1"/>
+        <text x="473" y="92" text-anchor="middle" fill="#854D0E">AVEDA</text>
+        <rect x="498" y="76" width="74" height="24" rx="3" fill="#FEF9C3" stroke="#FDE047" stroke-width="1"/>
+        <text x="535" y="92" text-anchor="middle" fill="#854D0E">モロッカンオイル</text>
+
+        <!-- ======= メーカー中段 Be-x〜ハホニコ行 ======= -->
+        <!-- 行1 -->
+        <rect x="12" y="108" width="46" height="24" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="35" y="124" text-anchor="middle" fill="#1E40AF">Be-x</text>
+        <rect x="60" y="108" width="56" height="24" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="88" y="124" text-anchor="middle" fill="#1E40AF">サンコール</text>
+        <rect x="140" y="108" width="80" height="24" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="180" y="124" text-anchor="middle" fill="#1E40AF">グランクラージュ/デミ</text>
+        <rect x="232" y="108" width="46" height="24" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="255" y="124" text-anchor="middle" fill="#1E40AF">イーラル</text>
+        <rect x="280" y="108" width="42" height="24" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="301" y="124" text-anchor="middle" fill="#1E40AF">ナプラ</text>
+        <rect x="362" y="108" width="58" height="24" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="391" y="124" text-anchor="middle" fill="#1E40AF">香栄化学</text>
+        <rect x="422" y="108" width="56" height="24" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="450" y="124" text-anchor="middle" fill="#1E40AF">ワイマック</text>
+        <rect x="500" y="108" width="56" height="24" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="528" y="124" text-anchor="middle" fill="#1E40AF">野口総研</text>
+        <rect x="560" y="108" width="68" height="24" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="594" y="124" text-anchor="middle" fill="#1E40AF">グランテックス</text>
+        <rect x="630" y="108" width="76" height="24" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="668" y="124" text-anchor="middle" fill="#1E40AF">パシフィックプロダクツ</text>
+        <rect x="708" y="108" width="46" height="24" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="731" y="124" text-anchor="middle" fill="#1E40AF">カエタス</text>
+        <!-- JC/F'sビューティ -->
+        <rect x="780" y="108" width="80" height="24" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="820" y="124" text-anchor="middle" fill="#1E40AF">JC/F'sビューティ</text>
+        <!-- バルクオム〜アデランス -->
+        <rect x="862" y="108" width="54" height="24" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="889" y="124" text-anchor="middle" fill="#1E40AF">バルクオム</text>
+        <rect x="918" y="108" width="34" height="24" rx="3" fill="#E8F5E9" stroke="#86EFAC" stroke-width="1"/>
+        <text x="935" y="124" text-anchor="middle" fill="#166534">サク</text>
+
+        <!-- 行2 -->
+        <rect x="12" y="134" width="60" height="24" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="42" y="150" text-anchor="middle" fill="#1E40AF">中野製薬</text>
+        <rect x="74" y="134" width="64" height="24" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="106" y="150" text-anchor="middle" fill="#1E40AF">テクノエイト</text>
+        <rect x="140" y="134" width="62" height="24" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="171" y="150" text-anchor="middle" fill="#1E40AF">ビーファースト</text>
+        <rect x="204" y="134" width="44" height="24" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="226" y="150" text-anchor="middle" fill="#1E40AF">マデナ</text>
+        <rect x="250" y="134" width="34" height="24" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="267" y="150" text-anchor="middle" fill="#1E40AF">Sins</text>
+        <rect x="286" y="134" width="48" height="24" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="310" y="150" text-anchor="middle" fill="#1E40AF">ハホニコ</text>
+        <rect x="862" y="134" width="54" height="24" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="889" y="150" text-anchor="middle" fill="#1E40AF">水谷シザー</text>
+        <rect x="918" y="134" width="34" height="24" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="935" y="150" text-anchor="middle" fill="#1E40AF">フェザ</text>
+
+        <!-- ======= KINUJO〜大西（家電） ======= -->
+        <text x="12" y="172" fill="#6B7280" font-size="9" font-weight="700">家電・機器ブース</text>
+        <rect x="12" y="176" width="52" height="24" rx="3" fill="#FCE7F3" stroke="#F9A8D4" stroke-width="1"/>
+        <text x="38" y="192" text-anchor="middle" fill="#9D174D">KINUJO</text>
+        <rect x="66" y="176" width="46" height="24" rx="3" fill="#FCE7F3" stroke="#F9A8D4" stroke-width="1"/>
+        <text x="89" y="192" text-anchor="middle" fill="#9D174D">Kirala</text>
+        <rect x="114" y="176" width="50" height="24" rx="3" fill="#FCE7F3" stroke="#F9A8D4" stroke-width="1"/>
+        <text x="139" y="192" text-anchor="middle" fill="#9D174D">YA-MAN</text>
+        <rect x="166" y="176" width="38" height="24" rx="3" fill="#FCE7F3" stroke="#F9A8D4" stroke-width="1"/>
+        <text x="185" y="192" text-anchor="middle" fill="#9D174D">MUK</text>
+        <rect x="206" y="176" width="60" height="24" rx="3" fill="#FCE7F3" stroke="#F9A8D4" stroke-width="1"/>
+        <text x="236" y="192" text-anchor="middle" fill="#9D174D">ツインバード</text>
+        <rect x="268" y="176" width="60" height="24" rx="3" fill="#FCE7F3" stroke="#F9A8D4" stroke-width="1"/>
+        <text x="298" y="192" text-anchor="middle" fill="#9D174D">アンドナイン</text>
+        <rect x="330" y="176" width="38" height="24" rx="3" fill="#FCE7F3" stroke="#F9A8D4" stroke-width="1"/>
+        <text x="349" y="192" text-anchor="middle" fill="#9D174D">LOA</text>
+        <rect x="370" y="176" width="38" height="24" rx="3" fill="#FCE7F3" stroke="#F9A8D4" stroke-width="1"/>
+        <text x="389" y="192" text-anchor="middle" fill="#9D174D">1DK</text>
+        <rect x="410" y="176" width="44" height="24" rx="3" fill="#FCE7F3" stroke="#F9A8D4" stroke-width="1"/>
+        <text x="432" y="192" text-anchor="middle" fill="#9D174D">awaas</text>
+        <rect x="456" y="176" width="46" height="24" rx="3" fill="#FCE7F3" stroke="#F9A8D4" stroke-width="1"/>
+        <text x="479" y="192" text-anchor="middle" fill="#9D174D">LOBAL</text>
+        <rect x="504" y="176" width="40" height="24" rx="3" fill="#FCE7F3" stroke="#F9A8D4" stroke-width="1"/>
+        <text x="524" y="192" text-anchor="middle" fill="#9D174D">大西</text>
+
+        <!-- ヤマノ・内海・ニチリ・アデランス（右端列）-->
+        <rect x="862" y="176" width="44" height="24" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="884" y="192" text-anchor="middle" fill="#1E40AF">ヤマノ</text>
+        <rect x="908" y="176" width="44" height="24" rx="3" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1"/>
+        <text x="930" y="192" text-anchor="middle" fill="#1E40AF">内海</text>
+
+        <!-- ======= 就活サロンブース ======= -->
+        <!-- 仕切り線 -->
+        <line x1="12" y1="210" x2="952" y2="210" stroke="#D1DCE8" stroke-width="1" stroke-dasharray="4,3"/>
+        <text x="12" y="224" fill="#6B7280" font-size="9" font-weight="700">就活サロンブース（美容室・サロン）</text>
+
+        <!-- 48〜63行（上段） -->
+        <text x="12" y="238" fill="#0A2D5E" font-size="8" font-weight="700">48〜63</text>
+        <!-- 各サロンを横並びに -->
+        <g id="s-top">
+          <rect x="12"  y="242" width="56" height="32" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="40"  y="255" text-anchor="middle" fill="#166534" font-size="7">48</text>
+          <text x="40"  y="267" text-anchor="middle" fill="#166534" font-size="7">イレブン</text>
+
+          <rect x="70"  y="242" width="52" height="32" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="96"  y="255" text-anchor="middle" fill="#166534" font-size="7">49</text>
+          <text x="96"  y="267" text-anchor="middle" fill="#166534" font-size="7">L'aube</text>
+
+          <rect x="124" y="242" width="48" height="32" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="148" y="255" text-anchor="middle" fill="#166534" font-size="7">50 Loops</text>
+
+          <rect x="174" y="242" width="52" height="32" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="200" y="255" text-anchor="middle" fill="#166534" font-size="7">51</text>
+          <text x="200" y="267" text-anchor="middle" fill="#166534" font-size="7">グランジ</text>
+
+          <rect x="228" y="242" width="52" height="32" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="254" y="255" text-anchor="middle" fill="#166534" font-size="7">52 M.Plus</text>
+
+          <rect x="282" y="242" width="48" height="32" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="306" y="255" text-anchor="middle" fill="#166534" font-size="7">53 UNIX</text>
+
+          <rect x="332" y="242" width="40" height="32" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="352" y="255" text-anchor="middle" fill="#166534" font-size="7">54 Ley</text>
+
+          <rect x="374" y="242" width="64" height="32" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="406" y="255" text-anchor="middle" fill="#166534" font-size="7">55</text>
+          <text x="406" y="267" text-anchor="middle" fill="#166534" font-size="7">ラクサス溝の口</text>
+
+          <rect x="440" y="242" width="46" height="32" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="463" y="255" text-anchor="middle" fill="#166534" font-size="7">56 acca</text>
+
+          <rect x="488" y="242" width="46" height="32" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="511" y="255" text-anchor="middle" fill="#166534" font-size="7">57 EARTH</text>
+
+          <rect x="536" y="242" width="46" height="32" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="559" y="255" text-anchor="middle" fill="#166534" font-size="7">58 Anphi</text>
+
+          <rect x="584" y="242" width="44" height="32" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="606" y="255" text-anchor="middle" fill="#166534" font-size="7">59 warm</text>
+
+          <rect x="630" y="242" width="60" height="32" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="660" y="255" text-anchor="middle" fill="#166534" font-size="7">60 TRIPLE-ef</text>
+
+          <rect x="692" y="242" width="64" height="32" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="724" y="255" text-anchor="middle" fill="#166534" font-size="7">61</text>
+          <text x="724" y="267" text-anchor="middle" fill="#166534" font-size="7">LuLu表参道</text>
+
+          <rect x="758" y="242" width="52" height="32" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="784" y="255" text-anchor="middle" fill="#166534" font-size="7">62 EARTH</text>
+
+          <rect x="812" y="242" width="48" height="32" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="836" y="255" text-anchor="middle" fill="#166534" font-size="7">63 アイス</text>
+        </g>
+
+        <!-- 33〜47行 -->
+        <text x="12" y="290" fill="#0A2D5E" font-size="8" font-weight="700">33〜47</text>
+        <g id="s-mid">
+          <rect x="12"  y="294" width="50" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="37"  y="313" text-anchor="middle" fill="#166534" font-size="7">33 oggi</text>
+
+          <rect x="64"  y="294" width="50" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="89"  y="313" text-anchor="middle" fill="#166534" font-size="7">34 ZEST</text>
+
+          <rect x="116" y="294" width="50" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="141" y="313" text-anchor="middle" fill="#166534" font-size="7">35 insence</text>
+
+          <rect x="168" y="294" width="52" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="194" y="313" text-anchor="middle" fill="#166534" font-size="7">36 Neolive</text>
+
+          <rect x="222" y="294" width="48" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="246" y="313" text-anchor="middle" fill="#166534" font-size="7">37 CLAPS</text>
+
+          <rect x="272" y="294" width="56" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="300" y="313" text-anchor="middle" fill="#166534" font-size="7">38 TC GROUP</text>
+
+          <rect x="330" y="294" width="50" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="355" y="313" text-anchor="middle" fill="#166534" font-size="7">39 Puente</text>
+
+          <rect x="382" y="294" width="54" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="409" y="313" text-anchor="middle" fill="#166534" font-size="7">40 and art</text>
+
+          <rect x="438" y="294" width="50" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="463" y="313" text-anchor="middle" fill="#166534" font-size="7">41 xxxys</text>
+
+          <rect x="490" y="294" width="58" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="519" y="313" text-anchor="middle" fill="#166534" font-size="7">42 toconova</text>
+
+          <rect x="550" y="294" width="74" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="587" y="313" text-anchor="middle" fill="#166534" font-size="7">43 ナンバーワンクラブ</text>
+
+          <rect x="626" y="294" width="58" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="655" y="313" text-anchor="middle" fill="#166534" font-size="7">44 フォルテ</text>
+
+          <rect x="686" y="294" width="62" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="717" y="313" text-anchor="middle" fill="#166534" font-size="7">45 LAG HAIR</text>
+
+          <rect x="750" y="294" width="62" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="781" y="313" text-anchor="middle" fill="#166534" font-size="7">46 dot tokyo</text>
+
+          <rect x="814" y="294" width="58" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="843" y="313" text-anchor="middle" fill="#166534" font-size="7">47 ヨコタ</text>
+        </g>
+
+        <!-- 25〜32行 -->
+        <text x="12" y="338" fill="#0A2D5E" font-size="8" font-weight="700">25〜32</text>
+        <g id="s-25to32">
+          <rect x="12"  y="342" width="50" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="37"  y="361" text-anchor="middle" fill="#166534" font-size="7">25 shalu</text>
+          <rect x="64"  y="342" width="50" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="89"  y="361" text-anchor="middle" fill="#166534" font-size="7">26 enx</text>
+          <rect x="116" y="342" width="50" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="141" y="361" text-anchor="middle" fill="#166534" font-size="7">27 Appias</text>
+          <rect x="168" y="342" width="52" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="194" y="361" text-anchor="middle" fill="#166534" font-size="7">28 SPRING</text>
+          <rect x="222" y="342" width="48" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="246" y="361" text-anchor="middle" fill="#166534" font-size="7">29 Legit</text>
+          <rect x="272" y="342" width="50" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="297" y="361" text-anchor="middle" fill="#166534" font-size="7">30 MOPS</text>
+          <rect x="324" y="342" width="74" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="361" y="361" text-anchor="middle" fill="#166534" font-size="7">31 ソシエワールド</text>
+          <rect x="400" y="342" width="60" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="430" y="361" text-anchor="middle" fill="#166534" font-size="7">32 Ashグループ</text>
+        </g>
+
+        <!-- 17〜24行 -->
+        <text x="12" y="386" fill="#0A2D5E" font-size="8" font-weight="700">17〜24</text>
+        <g id="s-17to24">
+          <rect x="12"  y="390" width="64" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="44"  y="409" text-anchor="middle" fill="#166534" font-size="7">17 OORDER/LOUIE</text>
+          <rect x="78"  y="390" width="50" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="103" y="409" text-anchor="middle" fill="#166534" font-size="7">18 Mahalo</text>
+          <rect x="130" y="390" width="62" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="161" y="409" text-anchor="middle" fill="#166534" font-size="7">19 KENJEグループ</text>
+          <rect x="194" y="390" width="60" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="224" y="409" text-anchor="middle" fill="#166534" font-size="7">20 collec+ism</text>
+          <rect x="256" y="390" width="44" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="278" y="409" text-anchor="middle" fill="#166534" font-size="7">21 shalu</text>
+          <rect x="302" y="390" width="46" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="325" y="409" text-anchor="middle" fill="#166534" font-size="7">22 Legit</text>
+          <rect x="350" y="390" width="52" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="376" y="409" text-anchor="middle" fill="#166534" font-size="7">23 SPRING</text>
+          <rect x="404" y="390" width="50" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="429" y="409" text-anchor="middle" fill="#166534" font-size="7">24 Appias</text>
+        </g>
+
+        <!-- 9〜16行 -->
+        <text x="12" y="434" fill="#0A2D5E" font-size="8" font-weight="700">9〜16</text>
+        <g id="s-9to16">
+          <rect x="12"  y="438" width="50" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="37"  y="457" text-anchor="middle" fill="#166534" font-size="7">9 モザミ</text>
+          <rect x="64"  y="438" width="68" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="98"  y="457" text-anchor="middle" fill="#166534" font-size="7">10 MENIMENs</text>
+          <rect x="134" y="438" width="48" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="158" y="457" text-anchor="middle" fill="#166534" font-size="7">11 HEART</text>
+          <rect x="184" y="438" width="44" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="206" y="457" text-anchor="middle" fill="#166534" font-size="7">12 牛若丸</text>
+          <rect x="230" y="438" width="56" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="258" y="457" text-anchor="middle" fill="#166534" font-size="7">13 IMAGE-A</text>
+          <rect x="288" y="438" width="48" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="312" y="457" text-anchor="middle" fill="#166534" font-size="7">14 bianca</text>
+          <rect x="338" y="438" width="64" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="370" y="457" text-anchor="middle" fill="#166534" font-size="7">15 シエルAVEDA</text>
+          <rect x="404" y="438" width="52" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="430" y="457" text-anchor="middle" fill="#166534" font-size="7">16 OORDER</text>
+        </g>
+
+        <!-- 1〜8行 -->
+        <text x="12" y="482" fill="#0A2D5E" font-size="8" font-weight="700">1〜8</text>
+        <g id="s-1to8">
+          <rect x="12"  y="486" width="58" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="41"  y="505" text-anchor="middle" fill="#166534" font-size="7">1 NOB hairdesign</text>
+          <rect x="72"  y="486" width="50" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="97"  y="505" text-anchor="middle" fill="#166534" font-size="7">2 TORCH</text>
+          <rect x="124" y="486" width="54" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="151" y="505" text-anchor="middle" fill="#166534" font-size="7">3 Produce</text>
+          <rect x="180" y="486" width="60" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="210" y="505" text-anchor="middle" fill="#166534" font-size="7">4 KINGDOM</text>
+          <rect x="242" y="486" width="58" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="271" y="505" text-anchor="middle" fill="#166534" font-size="7">5 ジャルダングループ</text>
+          <rect x="302" y="486" width="44" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="324" y="505" text-anchor="middle" fill="#166534" font-size="7">6 FORS</text>
+          <rect x="348" y="486" width="56" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="376" y="505" text-anchor="middle" fill="#166534" font-size="7">7 ANHUTTE</text>
+          <rect x="406" y="486" width="50" height="30" rx="3" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1"/>
+          <text x="431" y="505" text-anchor="middle" fill="#166534" font-size="7">8 rodina</text>
+        </g>
+
+        <!-- AED -->
+        <rect x="860" y="486" width="44" height="28" rx="3" fill="#FDECEA" stroke="#F87171" stroke-width="2"/>
+        <text x="882" y="498" text-anchor="middle" fill="#991B1B" font-size="9" font-weight="700">AED</text>
+        <text x="882" y="510" text-anchor="middle" fill="#991B1B" font-size="7">緊急時</text>
+
+        <!-- G103 昼食室 -->
+        <rect x="860" y="440" width="90" height="38" rx="3" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2"/>
+        <text x="905" y="456" text-anchor="middle" fill="#92400E" font-size="9" font-weight="700">G103</text>
+        <text x="905" y="470" text-anchor="middle" fill="#92400E" font-size="8">🍱 昼食（11時〜）</text>
+
+        <!-- 喫煙所 -->
+        <rect x="860" y="390" width="90" height="44" rx="3" fill="#FFF7ED" stroke="#FB923C" stroke-width="2"/>
+        <text x="905" y="408" text-anchor="middle" fill="#7C2D12" font-size="9" font-weight="700">🚬 喫煙所</text>
+        <text x="905" y="422" text-anchor="middle" fill="#7C2D12" font-size="8">ノース 2F</text>
+        <text x="905" y="432" text-anchor="middle" fill="#7C2D12" font-size="7">紙タバコ可</text>
+
+        <!-- 2F 上り下り -->
+        <rect x="860" y="530" width="44" height="22" rx="3" fill="#D1DCE8"/>
+        <text x="882" y="545" text-anchor="middle" fill="#374151" font-size="8">2F 下り</text>
+        <rect x="906" y="530" width="46" height="22" rx="3" fill="#D1DCE8"/>
+        <text x="929" y="545" text-anchor="middle" fill="#374151" font-size="8">2F 上り</text>
+      </svg>
+    </div>
+    <div class="map-legend">
+      <div class="leg-item"><div class="leg-dot" style="background:#DBEAFE;border:1px solid #93C5FD;"></div>メーカーブース</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#FEF9C3;border:1px solid #FDE047;"></div>機器・ツール</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#FCE7F3;border:1px solid #F9A8D4;"></div>家電・機器</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#E8F5E9;border:1px solid #86EFAC;"></div>コーセー系</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#FED7AA;border:1px solid #FB923C;"></div>販促企画</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#DCFCE7;border:1px solid #86EFAC;"></div>就活サロン</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#FEF3C7;border:1.5px solid #F59E0B;"></div>G103 昼食室</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#FFF7ED;border:1.5px solid #FB923C;"></div>喫煙所(2F)</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#FDECEA;border:1.5px solid #F87171;"></div>AED</div>
+    </div>
+    <div style="padding:8px 14px;background:#F8FAFD;border-top:1px solid var(--border);font-size:11px;color:var(--sub);">
+      ※ 左右スクロールで全体を確認できます。PDFレイアウト案に基づく概略図です。実際の配置と異なる場合は当日のスタッフへ確認を。
+    </div>
+  </div>
+</div>
+
+<!-- ===== トラブル ===== -->
+<div id="trouble" class="sec">
+  <div class="slbl">よくあるトラブルと対応</div>
+  <div class="card"><div id="faq-list"></div></div>
+  <div class="slbl">エスカレーション基準</div>
+  <div class="card">
+    <div class="p14">
+      <div class="esc-item" style="background:var(--red-lt);">
+        <span style="font-size:16px;flex-shrink:0;">🔴</span>
+        <div style="font-size:13px;color:var(--red);font-weight:500;">即時報告（河合へ直接 or トランシーバー）<br><span style="font-weight:400;color:#78344D;">けが・体調不良・クレーム・紛失・機材故障</span></div>
+      </div>
+      <div class="esc-item" style="background:var(--amb-lt);">
+        <span style="font-size:16px;flex-shrink:0;">🟡</span>
+        <div style="font-size:13px;color:var(--amber);font-weight:500;">5分以内に各責任者へ（トランシーバーor LINE）<br><span style="font-weight:400;color:#78614A;">景品不足・QR不具合・入場者急増</span></div>
+      </div>
+      <div class="esc-item" style="background:var(--grn-lt);">
+        <span style="font-size:16px;flex-shrink:0;">🟢</span>
+        <div style="font-size:13px;color:var(--green);font-weight:500;">次の報告タイミングでLINE共有<br><span style="font-weight:400;color:#2D6B50;">軽微な問い合わせ・案内ミス・動線提案</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 営業支援 ===== -->
+<div id="sales" class="sec">
+  <div class="alert">
+    <div class="alert-ico">⚠️</div>
+    <div>
+      <div class="alert-ttl">伝票入力の徹底</div>
+      <div class="alert-body">今回のイベントで接触した顧客への伝票起伝時は必ず<br><strong>「イベント企画」</strong><br>を担当コード欄に入力してください。漏れ厳禁！</div>
+    </div>
+  </div>
+  <div class="slbl">事後フォロー アクションリスト</div>
+  <div class="card"><div id="sales-list"></div></div>
+  <div class="slbl">効果測定 指標</div>
+  <div class="card">
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-lbl">タップ件数</div><div class="kpi-val">—</div></div>
+      <div class="kpi-card"><div class="kpi-lbl">BC来場者数</div><div class="kpi-val">—</div></div>
+      <div class="kpi-card"><div class="kpi-lbl">cetera誘導数</div><div class="kpi-val" id="kpi-cetera">0</div></div>
+      <div class="kpi-card"><div class="kpi-lbl">B.DOORS参加者</div><div class="kpi-val">—</div></div>
+    </div>
+  </div>
+  <div class="slbl">フリーメモ（営業）</div>
+  <div class="card"><div class="note-box"><textarea id="memo-sales" placeholder="商談メモ・フォロー候補などをメモ…" rows="4"></textarea><div class="note-saved" id="saved-sales">✓ 保存済み</div></div></div>
 </div>
 
 </div><!-- /main -->
 
 <script>
-/* ===== DATA ===== */
 var clGeneral=[
   "メッシュサイン（誘導矢印）の設置完了",
   "B.DOORS入口・BC入口 分岐案内板の設置",
-  "スタッフ間トランシーバーの動作確認",
-  "全スタッフへ緊急連絡先リストを共有",
-  "当日タイムライン・担当エリアの最終確認"
+  "トランシーバー6台の配布・動作確認（各責任者へ）",
+  "全スタッフへLINEグループの共有確認",
+  "外誘導2名（樋口・永井）の配置確認"
 ];
 var clBdoors=[
   "学校別プラカード（学校名入り）の準備完了",
-  "リストバンド在庫確認・配布台の設置",
+  "リストバンド（1年:ピンク／2年:オレンジ／3年:ブルー）在庫確認",
   "QR読み取り端末（5台）の動作確認",
-  "5ブース 担当者配置の確認",
-  "三角くじ在庫確認（1等4本・2等50本・3等50本）",
-  "抽選会 進行台本・MCシナリオの確認",
-  "景品の保管場所・引き渡しフローの確認"
+  "5ブース 担当者配置（学校対応チーム）確認",
+  "三角くじ在庫確認（1等×2・2等×2・3等×50・4等×100）",
+  "くじの色確認（1等:金色／2等:青／3等:赤）",
+  "3等当選時のceteraブース引き継ぎフロー確認（増田）",
+  "4等ceteraポイント案内文確認（6/30まで・横浜店のみ）",
+  "景品の保管場所・引き渡しフロー確認（増田）"
 ];
 var clBc=[
   "入場証リスト（事前申込分）の印刷・確認",
-  "当日申込用紙・ペンの準備",
-  "cetera紹介ブース 先着100名カウンターの準備",
-  "タップ用QRコード表示と動作確認",
-  "名刺・情報収集シートの準備",
-  "抽選会場セッティング完了確認"
+  "当日受付用紙・ペンの準備",
+  "【10時開場前】抽選賞品の仕分け（全員で実施）",
+  "城内マップ（スマホ表示）の動作確認",
+  "cetera先着100名カウンター準備（三嶽）",
+  "ガラポン抽選の準備・設置確認（井出）",
+  "9:30 BC全体朝礼のアジェンダ確認（吉岡・井出）",
+  "昼食会場G103の確認・メーカー様への声がけ準備"
 ];
 
 var flowBd=[
-  {n:1,t:"リストバンド装着",d:"学校名を確認し、色分けリストバンドを装着。同行の先生・保護者にも忘れずに。"},
-  {n:2,t:"QR読み取り説明",d:"「各ブース前のQRをスマホで読み取り、スタンプを5つ集めてください」と案内。"},
-  {n:3,t:"5ブース回遊案内",d:"マップを手渡しながらブースを紹介。各ブース10〜15分の滞在を目安に促す。"},
-  {n:4,t:"スタンプ完了確認",d:"5つ揃った学生を抽選会場へ誘導。「全部回れた！おめでとう！」と声がけ。"},
-  {n:5,t:"三角くじ・景品手渡し",d:"くじを1本引かせて景品を手渡し。笑顔で「またぜひ参加してください！」と見送る。"}
+  {n:1,t:"学校到着確認・集合誘導",d:"学校対応チームが担当学校ごとに集合場所へ誘導。入口への殺到を防ぐ。"},
+  {n:2,t:"リストバンド配布",d:"学年を確認してリストバンドを装着。\n1年生:ピンク／2年生:オレンジ／3年生:ブルー"},
+  {n:3,t:"スタンプラリー説明",d:"「5ヶ所のブースでQRを読み取りスタンプを集めてください。5つ集まったら景品抽選ができます！」"},
+  {n:4,t:"5ブース回遊・スタンプ収集",d:"学生が各ブースを回遊。担当者はフォローに回り迷っている学生をサポート。"},
+  {n:5,t:"スタンプ5個完了→景品担当へ引き継ぎ",d:"5つ揃った学生を増田ほか景品担当へ引き継ぐ。"},
+  {n:6,t:"三角くじ・景品手渡し",d:"くじを引かせて色で当選を確認。\n1等(金)・2等(青)・3等(赤)・4等(緑?)\n【3等当選】ceteraアプリ取得を促す。深掘りされたらceteraブースへ案内・引き継ぎ。\n【4等当選】専用スクリプトで案内。"}
 ];
 
 var flowBc=[
-  {n:1,t:"事前申込あり",d:"リストから名前を確認 → 入場証を発行 → 「タップをお忘れなく！」と案内。"},
-  {n:2,t:"事前申込なし（当日）",d:"当日申込用紙に記入依頼 → 入場証を発行 → 同様に案内。"},
-  {n:3,t:"名刺・情報収集",d:"「お名刺を1枚いただけますか？」と声がけ。受け取った名刺は担当者へ即時引き継ぎ。"},
-  {n:4,t:"タップ促進の声がけ",d:"「各ブース前のQRからタップをお願いします！」を毎回かかさず案内する。"}
+  {n:1,t:"入場証確認（事前申込あり）",d:"「入場証」を確認して入場案内。城内マップのタップを促す。"},
+  {n:2,t:"当日受付（申込なし・入場証不明）",d:"当日受付用紙に記入いただき入場案内。城内マップのタップを促す。"},
+  {n:3,t:"城内マップのタップ促進",d:"「スマホの城内マップ上で、ご訪問いただいたブースをタップしてご記録ください！」"},
+  {n:4,t:"ガラポン抽選案内",d:"来場者全員を対象に抽選あり。来場時または退場前に案内する。（詳細決定次第更新）"}
 ];
 
 var faqs=[
-  {
-    q:"QRコードが読み込めない",
-    a:"① スマホのカメラアプリを再起動する\n② 明るい場所でQRコードに近づいて試す\n③ それでも無理なら担当スタッフのIDで代理入力\n④ 記録シートに手書きで記入し、後日入力対応"
-  },
-  {
-    q:"リストバンドを紛失した",
-    a:"① 本人確認（学生証・名刺等）を行う\n② 予備リストバンドを1本支給する\n③ 事象を運営リストに記録して報告"
-  },
-  {
-    q:"BC入場証を紛失・忘れた",
-    a:"① 事前申込リストで名前を照合する\n② 確認できれば仮入場証を発行する\n③ 確認できない場合は身分証の提示を求める\n④ 判断できない場合は必ず責任者に確認"
-  },
-  {
-    q:"景品の在庫がなくなった",
-    a:"① 上位等を繰り上げ可能か責任者へ即確認\n② 代替品（非売品ノベルティ）での対応を指示待ち\n③ 「ただいま準備中です」とやわらかく伝え待機\n④ 絶対に独断で判断しない"
-  },
-  {
-    q:"学生が迷子・行方不明になった",
-    a:"① トランシーバーで全スタッフに周知\n② 会場入口・出口スタッフが目視確認\n③ 引率教員へ即座に連絡\n④ 見つかったら責任者へ報告"
-  },
-  {
-    q:"保護者・引率教員からのクレーム",
-    a:"① まず「ご不便をおかけして大変申し訳ございません」と受け止める\n② 詳細をメモしながら傾聴する\n③ 運営責任者へ取り次ぐ（自分で解決しようとしない）\n④ 解決後、再度お礼と謝罪を伝える"
-  },
-  {
-    q:"機材（QR端末・タブレット等）が故障",
-    a:"① 予備機がある場合は即座に交換\n② 予備機がない場合は記録シートで手書き対応\n③ 責任者へ報告し、修理または代替手段を相談"
-  }
+  {q:"QRコードが読み込めない",a:"① スマホのカメラアプリを再起動\n② 明るい場所でQRに近づいて試す\n③ それでも無理なら担当スタッフのIDで代理入力\n④ 記録シートに手書き → 後日入力対応"},
+  {q:"リストバンドを紛失した",a:"① 本人確認（学生証等）を行う\n② 予備リストバンドを1本支給\n③ 事象を記録 → トランシーバーで菊永へ報告"},
+  {q:"BC入場証を紛失・忘れた",a:"① 事前申込リストで名前を照合\n② 確認できれば仮入場証を発行\n③ 確認できない場合は身分証提示を求める\n④ 判断できない場合は吉岡へLINEまたはトランシーバーで確認"},
+  {q:"景品の在庫がなくなった",a:"① 菊永・河合へトランシーバーで即確認\n② 代替品対応を指示待ち\n③ 「ただいま準備中です」とやわらかく伝える\n④ 独断で判断しない"},
+  {q:"3等当選者からceteraをもっと聞きたいと言われた",a:"① 「ぜひceteraブースへご案内します！」とご案内\n② ceteraブース担当（三嶽・亀ヶ谷・鈴木）へ引き継ぎ\n③ 「先着100名で1000ポイントもらえますよ！」と伝えて誘導"},
+  {q:"学生が迷子・行方不明になった",a:"① トランシーバーで全スタッフへ周知\n② 会場入口・出口スタッフが目視確認\n③ 引率教員へ即座に連絡\n④ 見つかったら菊永・河合へ報告"},
+  {q:"保護者・引率教員からのクレーム",a:"① 「ご不便をおかけして申し訳ございません」と受け止め\n② 詳細をメモしながら傾聴\n③ 河合または各責任者へ取り次ぐ（自分で解決しようとしない）"},
+  {q:"喫煙したいと言われた",a:"「ノース館内の喫煙所は2Fにございます。館内はそれ以外全域禁煙となっております。」と案内する。"}
 ];
 
 var salesItems=[
   "タップ記録あり顧客 → 翌営業日中に担当者から電話フォロー",
-  "名刺回収顧客 → 「本日はご来場ありがとうございました」のメール送付",
-  "cetera先着100名 → ポイント付与確認後、次回来店促進の案内を送る",
+  "BC来場者（当日受付分）→ 翌営業日中にお礼連絡",
+  "cetera先着100名 → ポイント付与確認後、次回来店促進の案内",
   "伝票起伝時：担当コード欄に「イベント企画」を必ず入力（漏れ厳禁）",
   "効果測定：翌週の月次レポートにイベント経由売上を記載",
-  "社内共有：当日のタップ数・名刺数・cetera誘導数を集計して報告"
+  "社内共有：タップ数・BC来場者数・cetera誘導数を集計して報告"
 ];
 
+/* prizes: 1等金/2等青/3等赤/4等緑 */
 var prizes=[
-  {label:"1等",init:4,cls:"rank1"},
-  {label:"2等",init:50,cls:"rank2"},
-  {label:"3等",init:50,cls:"rank3"}
+  {label:"1等",name:"Amazonギフト券 5,000円",init:2,cc:"rk1",bc:"rk1-card"},
+  {label:"2等",name:"Amazonギフト券 3,000円",init:2,cc:"rk2",bc:"rk2-card"},
+  {label:"3等",name:"メーカー商品",init:50,cc:"rk3",bc:"rk3-card"},
+  {label:"4等",name:"ceteraポイント 500円券",init:100,cc:"rk4",bc:"rk4-card"}
 ];
 var pcounts=prizes.map(function(p){return p.init;});
+var cetCount=0;
+var editMode=false;
 
-var ceteraCount=0;
-
-/* ===== BUILD FUNCTIONS ===== */
 function buildChecklist(items,cid){
   var c=document.getElementById(cid);
-  var total=items.length,done=0;
   items.forEach(function(item,i){
-    var div=document.createElement('div');
-    div.className='check-item';
-    div.id='ci_'+cid+'_'+i;
-    var cb=document.createElement('input');
-    cb.type='checkbox';
-    cb.id='cb_'+cid+'_'+i;
-    cb.onchange=function(){
-      var row=document.getElementById('ci_'+cid+'_'+i);
-      row.classList.toggle('done',this.checked);
-      updateProgress(cid,items.length);
+    var id='cb_'+cid+'_'+i;
+    var div=document.createElement('div');div.className='ci';div.id='ci_'+cid+'_'+i;
+    div.innerHTML='<input type="checkbox" id="'+id+'"><label class="ci-lbl" for="'+id+'" id="lbl_'+cid+'_'+i+'">'+item+'</label>';
+    div.querySelector('input').onchange=function(){
+      document.getElementById('ci_'+cid+'_'+i).classList.toggle('done',this.checked);
+      updateProg(cid,items.length);
     };
-    var lbl=document.createElement('label');
-    lbl.className='check-label';
-    lbl.htmlFor=cb.id;
-    lbl.textContent=item;
-    div.appendChild(cb);
-    div.appendChild(lbl);
-    div.onclick=function(e){if(e.target!==cb){cb.checked=!cb.checked;cb.dispatchEvent(new Event('change'));}};
+    div.onclick=function(e){var cb=div.querySelector('input');if(e.target!==cb&&e.target.tagName!=='LABEL'){cb.checked=!cb.checked;cb.dispatchEvent(new Event('change'));}};
     c.appendChild(div);
   });
-  var prog=document.createElement('div');
-  prog.className='check-progress';
-  prog.innerHTML='<span id="prog_text_'+cid+'">0 / '+total+' 完了</span><div class="progress-bar-bg"><div class="progress-bar-fill" id="prog_bar_'+cid+'" style="width:0%"></div></div>';
-  c.appendChild(prog);
+  var p=document.createElement('div');p.className='prog-row';
+  p.innerHTML='<span id="pt_'+cid+'">0/'+items.length+' 完了</span><div class="prog-bg"><div class="prog-fill" id="pf_'+cid+'" style="width:0%"></div></div>';
+  c.appendChild(p);
 }
-
-function updateProgress(cid,total){
-  var checked=document.querySelectorAll('#'+cid+' input[type=checkbox]:checked').length;
-  document.getElementById('prog_text_'+cid).textContent=checked+' / '+total+' 完了';
-  document.getElementById('prog_bar_'+cid).style.width=Math.round(checked/total*100)+'%';
+function updateProg(cid,total){
+  var n=document.querySelectorAll('#'+cid+' input[type=checkbox]:checked').length;
+  document.getElementById('pt_'+cid).textContent=n+'/'+total+' 完了';
+  document.getElementById('pf_'+cid).style.width=Math.round(n/total*100)+'%';
 }
 
 function buildFlow(steps,cid){
   var c=document.getElementById(cid);
   steps.forEach(function(s){
-    var div=document.createElement('div');
-    div.className='flow-step';
-    var num=document.createElement('div');
-    num.className='step-num';
-    num.textContent=s.n;
-    var body=document.createElement('div');
-    body.className='step-body';
-    var t=document.createElement('div');
-    t.className='step-title';
-    t.textContent=s.t;
-    var d=document.createElement('div');
-    d.className='step-note';
-    d.textContent=s.d;
-    body.appendChild(t);
-    body.appendChild(d);
-    div.appendChild(num);
-    div.appendChild(body);
-    c.appendChild(div);
+    var d=document.createElement('div');d.className='fstep';
+    var n=document.createElement('div');n.className='fnum';n.textContent=s.n;
+    var b=document.createElement('div');b.className='fbody';
+    b.innerHTML='<div class="fttl">'+s.t+'</div><div class="fnote">'+s.d.replace(/\n/g,'<br>')+'</div>';
+    d.appendChild(n);d.appendChild(b);c.appendChild(d);
   });
 }
 
-function buildPrizeCounters(){
-  var grid=document.getElementById('prize-grid');
+function buildPrizes(){
+  var g=document.getElementById('prize-grid');
   prizes.forEach(function(p,i){
-    var col=document.createElement('div');
-    col.className='counter-col';
-    col.id='pc_col_'+i;
-    col.innerHTML=
-      '<div class="prize-rank '+p.cls+'">'+p.label+'</div>'+
-      '<div class="counter-num" id="pc_num_'+i+'">'+pcounts[i]+'</div>'+
-      '<div class="counter-init">初期：'+p.init+'本</div>'+
-      '<div class="counter-btns">'+
-        '<button class="cbtn minus" onclick="pc('+i+',-1)">－</button>'+
-        '<button class="cbtn plus" onclick="pc('+i+',1)">＋</button>'+
-      '</div>';
-    grid.appendChild(col);
+    var card=document.createElement('div');
+    card.className='prize-card '+p.bc;card.id='pc_col_'+i;
+    card.innerHTML=
+      '<div class="prize-rank-badge '+p.cc+'">'+p.label+'</div>'+
+      '<div class="prize-name">'+p.name+'</div>'+
+      '<div class="prize-num" id="pc_'+i+'">'+p.init+'</div>'+
+      '<div class="prize-init">初期 '+p.init+'本</div>'+
+      '<div class="prize-btns"><button class="cbtn m" onclick="pc('+i+',-1)">－</button><button class="cbtn p" onclick="pc('+i+',1)">＋</button></div>';
+    g.appendChild(card);
   });
 }
-
 function pc(i,d){
   pcounts[i]=Math.max(0,Math.min(prizes[i].init,pcounts[i]+d));
-  var el=document.getElementById('pc_num_'+i);
-  el.textContent=pcounts[i];
-  document.getElementById('pc_col_'+i).className='counter-col'+(pcounts[i]===0?' counter-zero':'');
+  document.getElementById('pc_'+i).textContent=pcounts[i];
+  var col=document.getElementById('pc_col_'+i);
+  col.className='prize-card '+prizes[i].bc+(pcounts[i]===0?' prize-zero':'');
 }
+function resetPrizes(){prizes.forEach(function(p,i){pcounts[i]=p.init;document.getElementById('pc_'+i).textContent=p.init;document.getElementById('pc_col_'+i).className='prize-card '+p.bc;});}
 
-function resetPrizes(){
-  prizes.forEach(function(p,i){
-    pcounts[i]=p.init;
-    document.getElementById('pc_num_'+i).textContent=p.init;
-    document.getElementById('pc_col_'+i).className='counter-col';
-  });
-}
-
-function ceteraChange(d){
-  ceteraCount=Math.max(0,Math.min(100,ceteraCount+d));
-  document.getElementById('cetera-num').textContent=ceteraCount;
-  document.getElementById('cetera-bar').style.width=ceteraCount+'%';
-  var msg=document.getElementById('cetera-msg');
-  var kpi=document.getElementById('kpi-cetera');
-  if(kpi)kpi.textContent=ceteraCount;
-  if(ceteraCount>=100){
-    msg.textContent='先着100名 達成！';
-    msg.className='cetera-msg done';
-  } else {
-    msg.textContent='あと'+(100-ceteraCount)+'名';
-    msg.className='cetera-msg remaining';
-  }
+function cetChange(d){
+  cetCount=Math.max(0,Math.min(100,cetCount+d));
+  document.getElementById('cet-num').textContent=cetCount;
+  document.getElementById('cet-bar').style.width=cetCount+'%';
+  var kpi=document.getElementById('kpi-cetera');if(kpi)kpi.textContent=cetCount;
+  var msg=document.getElementById('cet-msg');
+  if(cetCount>=100){msg.textContent='先着100名 達成！';msg.className='cet-msg cet-done';}
+  else{msg.textContent='あと'+(100-cetCount)+'名';msg.className='cet-msg cet-rem';}
 }
 
 function buildFaq(){
   var c=document.getElementById('faq-list');
   faqs.forEach(function(f,i){
-    var item=document.createElement('div');
-    item.className='faq-item';
-    var q=document.createElement('div');
-    q.className='faq-q';
-    q.innerHTML='<span>'+f.q+'</span><span class="faq-arrow" id="fa_'+i+'">▼</span>';
+    var item=document.createElement('div');item.className='faq-item';
+    var q=document.createElement('div');q.className='faq-q';
+    q.innerHTML='<span>'+f.q+'</span><span class="faq-arr" id="fa_'+i+'">▼</span>';
     q.onclick=function(){
-      var a=document.getElementById('faq_a_'+i);
-      var arr=document.getElementById('fa_'+i);
-      var isOpen=a.classList.contains('open');
-      a.classList.toggle('open',!isOpen);
-      arr.classList.toggle('open',!isOpen);
+      var a=document.getElementById('fa_a_'+i);var open=a.classList.contains('open');
+      a.classList.toggle('open',!open);document.getElementById('fa_'+i).classList.toggle('open',!open);
     };
-    var a=document.createElement('div');
-    a.className='faq-a';
-    a.id='faq_a_'+i;
-    a.innerHTML=f.a.split('\n').map(function(l){return l?'<strong>'+l.split(' ')[0]+'</strong> '+l.split(' ').slice(1).join(' '):'';}).join('<br>');
-    item.appendChild(q);
-    item.appendChild(a);
-    c.appendChild(item);
+    var a=document.createElement('div');a.className='faq-a';a.id='fa_a_'+i;
+    a.innerHTML=f.a.split('\n').join('<br>');
+    item.appendChild(q);item.appendChild(a);c.appendChild(item);
   });
 }
 
 function buildSales(){
   var c=document.getElementById('sales-list');
   salesItems.forEach(function(item){
-    var div=document.createElement('div');
-    div.className='sales-item';
-    var dot=document.createElement('div');
-    dot.className='sales-dot';
-    var txt=document.createElement('div');
-    txt.className='sales-text';
-    txt.textContent=item;
-    div.appendChild(dot);
-    div.appendChild(txt);
-    c.appendChild(div);
+    var d=document.createElement('div');d.className='sale-item';
+    d.innerHTML='<div class="sale-dot"></div><div class="sale-txt">'+item+'</div>';
+    c.appendChild(d);
   });
 }
 
+function toggleEdit(){
+  editMode=!editMode;
+  var btn=document.getElementById('cl-edit-btn');
+  btn.textContent=editMode?'✅ 完了':'✏️ 編集';
+  btn.className='edit-btn'+(editMode?' on':'');
+  ['cl-general','cl-bdoors','cl-bc'].forEach(function(cid){
+    document.querySelectorAll('#'+cid+' .ci-lbl').forEach(function(lbl){
+      lbl.contentEditable=editMode?'true':'false';
+    });
+  });
+}
+
+['schedule','bdoors','bc','garapon','sales'].forEach(function(key){
+  var el=document.getElementById('memo-'+key);
+  if(!el)return;
+  var saved=localStorage.getItem('memo_'+key);
+  if(saved)el.value=saved;
+  el.addEventListener('input',function(){
+    localStorage.setItem('memo_'+key,el.value);
+    var sv=document.getElementById('saved-'+key);
+    if(sv){sv.style.display='block';clearTimeout(el._t);el._t=setTimeout(function(){sv.style.display='none';},1500);}
+  });
+});
+
 function showTab(id,el){
-  document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active');});
+  document.querySelectorAll('.sec').forEach(function(s){s.classList.remove('active');});
   document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
   document.getElementById(id).classList.add('active');
   el.classList.add('active');
   window.scrollTo(0,0);
 }
 
-/* ===== INIT ===== */
 buildChecklist(clGeneral,'cl-general');
 buildChecklist(clBdoors,'cl-bdoors');
 buildChecklist(clBc,'cl-bc');
 buildFlow(flowBd,'flow-bd');
 buildFlow(flowBc,'flow-bc');
-buildPrizeCounters();
+buildPrizes();
 buildFaq();
 buildSales();
 </script>
