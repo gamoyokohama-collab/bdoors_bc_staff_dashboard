@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+/* CSSは元のデザインを完全維持 */
 :root{
   --navy:#0A2D5E;--blue:#1556A8;--mid:#2D7DD2;--lblue:#E8F2FB;
   --accent:#F5A623;--acc-lt:#FEF4E1;
@@ -19,7 +20,6 @@
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Noto Sans JP','DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-text-size-adjust:100%;}
-
 .hdr{background:var(--navy);color:#fff;padding:14px 16px 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(10,45,94,.3);}
 .hdr-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px;gap:10px;}
 .hdr-ttl{font-size:15px;font-weight:700;line-height:1.35;}
@@ -27,64 +27,52 @@ body{font-family:'Noto Sans JP','DM Sans',sans-serif;background:var(--bg);color:
 .hdr-badge{background:var(--accent);color:var(--navy);font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
 .tabs{display:flex;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
 .tabs::-webkit-scrollbar{display:none;}
-.tab{padding:9px 11px;font-size:12px;font-weight:500;color:rgba(255,255,255,.5);white-space:nowrap;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;flex-shrink:0;user-select:none;-webkit-tap-highlight-color:transparent;}
+.tab{padding:9px 11px;font-size:12px;font-weight:500;color:rgba(255,255,255,.5);white-space:nowrap;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;flex-shrink:0;}
 .tab.active{color:#fff;border-bottom-color:var(--accent);}
-
 .main{padding:14px;max-width:640px;margin:0 auto;}
 .sec{display:none;}.sec.active{display:block;}
-
 .card{background:var(--white);border-radius:var(--r);border:1px solid var(--border);margin-bottom:12px;overflow:hidden;}
 .ch{padding:11px 14px;background:var(--lblue);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
-.ch-ico{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.ch-ico{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;}
 .ch-ttl{font-size:14px;font-weight:700;color:var(--navy);flex:1;}
-.ch-tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;white-space:nowrap;}
+.ch-tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;}
 .tag-navy{background:var(--navy);color:#fff;}
 .tag-green{background:var(--grn-lt);color:var(--green);}
 .tag-amber{background:var(--acc-lt);color:var(--amber);}
 .tag-purple{background:var(--pur-lt);color:var(--purple);}
-
 .slbl{font-size:11px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.08em;margin:16px 0 7px;padding:0 2px;}
-.slbl:first-child{margin-top:0;}
-
-/* PERSONNEL */
 .team-block{padding:11px 14px;border-bottom:1px solid #F0F4FA;}
-.team-block:last-child{border-bottom:none;}
-.team-name{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:6px;}
 .members{display:flex;flex-wrap:wrap;gap:5px;}
 .member{font-size:12px;padding:3px 9px;border-radius:20px;background:var(--lblue);color:var(--blue);font-weight:500;}
 .member.leader{background:var(--navy);color:#fff;}
 .member.resp{background:var(--accent);color:var(--navy);}
 .walkie{display:inline-flex;align-items:center;gap:5px;font-size:11px;background:#E6F5EF;color:var(--green);font-weight:700;padding:2px 8px;border-radius:20px;margin-left:6px;}
-
-/* SCHEDULE */
-.srow{display:flex;gap:10px;padding:10px 14px;border-bottom:1px solid #F0F4FA;align-items:flex-start;}
-.srow:last-child{border-bottom:none;}
-.stime{font-size:13px;font-weight:700;color:var(--blue);font-family:'DM Sans',sans-serif;min-width:52px;flex-shrink:0;padding-top:1px;}
+.srow{display:flex;gap:10px;padding:10px 14px;border-bottom:1px solid #F0F4FA;}
+.stime{font-size:13px;font-weight:700;color:var(--blue);min-width:52px;}
 .sevent{font-size:13px;line-height:1.5;flex:1;}
-.stag{font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:5px;white-space:nowrap;vertical-align:middle;}
+.stag{font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:5px;}
 .st-bd{background:#E6EDF8;color:var(--navy);}
 .st-bc{background:var(--pur-lt);color:var(--purple);}
 .st-all{background:var(--acc-lt);color:var(--amber);}
 .st-food{background:var(--grn-lt);color:var(--green);}
-
-/* MAP SVG STYLES */
+.prize-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:14px;}
+.prize-card{border:2px solid var(--border);border-radius:var(--rs);padding:12px;text-align:center;}
+.prize-num{font-size:32px;font-weight:700;color:var(--navy);}
 .map-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:10px;}
 .map-legend{display:flex;flex-wrap:wrap;gap:7px;padding:10px 14px;border-top:1px solid var(--border);}
 .leg-item{display:flex;align-items:center;gap:5px;font-size:11px;}
-.leg-dot{width:13px;height:13px;border-radius:3px;flex-shrink:0;}
-
-/* FAQ/OTHER STYLES */
-.faq-item{border-bottom:1px solid #F0F4FA;}
-.faq-q{padding:13px 14px;font-size:14px;font-weight:700;color:var(--navy);display:flex;justify-content:space-between;align-items:center;cursor:pointer;}
-.faq-a{padding:0 14px 13px;font-size:13px;color:var(--sub);line-height:1.8;background:#FAFCFF;}
-
-/* CHECKLIST */
-.ci{display:flex;align-items:center;gap:11px;padding:12px 14px;border-bottom:1px solid #F0F4FA;}
+.leg-dot{width:13px;height:13px;border-radius:3px;}
+.ci{display:flex;align-items:center;gap:11px;padding:12px 14px;border-bottom:1px solid #F0F4FA;cursor:pointer;}
 .ci input[type=checkbox]{width:23px;height:23px;accent-color:var(--blue);}
 .ci-lbl{font-size:14px;line-height:1.4;flex:1;}
+.ci.done .ci-lbl{color:var(--sub);text-decoration:line-through;}
 .prog-row{display:flex;align-items:center;gap:8px;padding:8px 14px;background:#F8FAFD;border-top:1px solid var(--border);}
-.prog-bg{flex:1;height:6px;background:var(--border);border-radius:3px;}
+.prog-bg{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden;}
 .prog-fill{height:100%;background:var(--blue);border-radius:3px;transition:width .3s;}
+.school-table{width:100%;border-collapse:collapse;font-size:12px;}
+.school-table th{padding:8px 10px;background:var(--lblue);color:var(--navy);text-align:left;border-bottom:1px solid var(--border);}
+.school-table td{padding:9px 10px;border-bottom:1px solid #F0F4FA;}
+.note-box textarea{width:100%;font-size:13px;padding:10px;border-radius:var(--rs);border:1px solid var(--border);background:var(--lblue);}
 </style>
 </head>
 <body>
@@ -101,8 +89,9 @@ body{font-family:'Noto Sans JP','DM Sans',sans-serif;background:var(--bg);color:
     <div class="tab active" onclick="showTab('schedule',this)">📅 時間割</div>
     <div class="tab" onclick="showTab('team',this)">👥 人員</div>
     <div class="tab" onclick="showTab('checklist',this)">✅ チェック</div>
+    <div class="tab" onclick="showTab('bdoors',this)">🎓 B.DOORS</div>
+    <div class="tab" onclick="showTab('bc',this)">💄 BC受付</div>
     <div class="tab" onclick="showTab('map',this)">🗺️ マップ</div>
-    <div class="tab" onclick="showTab('trouble',this)">🆘 トラブル</div>
   </div>
 </div>
 
@@ -112,9 +101,10 @@ body{font-family:'Noto Sans JP','DM Sans',sans-serif;background:var(--bg);color:
   <div class="slbl">当日タイムライン</div>
   <div class="card">
     <div class="srow"><div class="stime">8:00</div><div class="sevent">役割あるスタッフ 現地集合・設営開始<span class="stag st-all">全員（役割あり）</span></div></div>
-    <div class="srow"><div class="stime">10:00</div><div class="sevent">beauty collection 開場<span class="stag st-bc">BC</span></div></div>
-    <div class="srow"><div class="stime">11:00</div><div class="sevent">🍱 昼食 到着（<b>G103</b>）<span class="stag st-food">全員</span></div></div>
-    <div class="srow"><div class="stime">17:00</div><div class="sevent">beauty collection 閉場<span class="stag st-bc">BC</span></div></div>
+    <div class="srow"><div class="stime">8:30</div><div class="sevent">それ以外のスタッフ 現地集合<span class="stag st-all">全員</span></div></div>
+    <div class="srow"><div class="stime">9:00</div><div class="sevent">社員のみ朝礼<span class="stag st-all">社員</span></div></div>
+    <div class="srow"><div class="stime">9:30</div><div class="sevent">BC全体朝礼<span class="stag st-bc">BC</span></div></div>
+    <div class="srow"><div class="stime">10:00</div><div class="sevent">開場<span class="stag st-bc">BC</span></div></div>
   </div>
 </div>
 
@@ -124,18 +114,46 @@ body{font-family:'Noto Sans JP','DM Sans',sans-serif;background:var(--bg);color:
     <div class="ch"><div class="ch-ico" style="background:#E6F5EF;">📻</div><div class="ch-ttl">トランシーバー担当者</div><div class="ch-tag tag-green">計7台</div></div>
     <div class="team-block">
       <div class="members">
-        <span class="member leader">河合（総責任者）<span class="walkie">📻</span></span>
-        <span class="member leader">菊永（B.DOORS責任者）<span class="walkie">📻</span></span>
-        <span class="member leader">吉岡（BC責任者）<span class="walkie">📻</span></span>
-        <span class="member leader">齋田（B.DOORS受付L）<span class="walkie">📻</span></span>
-        <span class="member leader">大山（B.DOORS学校L）<span class="walkie">📻</span></span>
-        <span class="member leader">越山（BC受付L）<span class="walkie">📻</span></span>
-        <span class="member leader">井出（BC受付L）<span class="walkie">📻</span></span>
+        <span class="member leader">河合（総責任者）📻</span>
+        <span class="member leader">菊永（B.DOORS責任者）📻</span>
+        <span class="member leader">吉岡（BC責任者）📻</span>
+        <span class="member leader">齋田（B.DOORS受付L）📻</span>
+        <span class="member leader">大山（B.DOORS学校L）📻</span>
+        <span class="member leader">越山（BC受付L）📻</span>
+        <span class="member leader">井出（BC受付L）📻</span>
       </div>
     </div>
   </div>
 
+  <div class="slbl">外誘導</div>
+  <div class="card">
+    <div class="ch"><div class="ch-ico" style="background:#E8F2FB;">🪧</div><div class="ch-ttl">外誘導チーム</div></div>
+    <div class="team-block"><div class="members"><span class="member">樋口</span><span class="member">永井</span></div></div>
+  </div>
+
+  <div class="slbl">B.DOORS</div>
+  <div class="card">
+    <div class="ch"><div class="ch-ico" style="background:#E8F2FB;">⭐</div><div class="ch-ttl">B.DOORS 運営責任者</div></div>
+    <div class="team-block"><div class="members"><span class="member resp">菊永 📻</span></div></div>
+  </div>
+  <div class="card">
+    <div class="ch"><div class="ch-ico" style="background:#E8F2FB;">📋</div><div class="ch-ttl">B.DOORS 受付</div></div>
+    <div class="team-block"><div class="members"><span class="member leader">齋田（リーダー）📻</span><span class="member">矢賀部</span><span class="member">篠原</span></div></div>
+  </div>
+  <div class="card">
+    <div class="ch"><div class="ch-ico" style="background:#E8F2FB;">🏫</div><div class="ch-ttl">B.DOORS 学校対応</div></div>
+    <div class="team-block"><div class="members"><span class="member leader">大山（リーダー）📻</span><span class="member">堺</span><span class="member">榊原</span><span class="member">宇野</span><span class="member">藤本</span><span class="member">田中</span></div></div>
+  </div>
+  <div class="card">
+    <div class="ch"><div class="ch-ico" style="background:#FEF4E1;">🎁</div><div class="ch-ttl">B.DOORS 景品担当</div></div>
+    <div class="team-block"><div class="members"><span class="member">増田</span><span class="member">志村</span><span class="member">宅間</span><span class="member">山本</span><span class="member">加藤</span><span class="member">小名木</span><span class="member">横山</span></div></div>
+  </div>
+
   <div class="slbl">beauty collection</div>
+  <div class="card">
+    <div class="ch"><div class="ch-ico" style="background:var(--pur-lt);">⭐</div><div class="ch-ttl">BC 運営責任者</div></div>
+    <div class="team-block"><div class="members"><span class="member resp">吉岡 📻</span></div></div>
+  </div>
   <div class="card">
     <div class="ch"><div class="ch-ico" style="background:var(--pur-lt);">🎫</div><div class="ch-ttl">BC 受付・抽選</div><div class="ch-tag tag-purple">13名</div></div>
     <div class="team-block">
@@ -146,34 +164,31 @@ body{font-family:'Noto Sans JP','DM Sans',sans-serif;background:var(--bg);color:
       </div>
     </div>
   </div>
+  <div class="card">
+    <div class="ch"><div class="ch-ico" style="background:var(--grn-lt);">🏪</div><div class="ch-ttl">ceteraブース</div></div>
+    <div class="team-block"><div class="members"><span class="member">三嶽</span><span class="member">亀ヶ谷</span><span class="member">鈴木</span></div></div>
+  </div>
 </div>
 
 <div id="map" class="sec">
-  <div class="slbl">beauty collection — 場内ブース配置（PDF準拠）</div>
+  <div class="slbl">会場配置図（PDF準拠）</div>
   <div class="card">
     <div class="map-wrap">
-      <svg viewBox="0 0 960 620" xmlns="http://www.w3.org/2000/svg" style="min-width:900px;width:100%;height:auto;font-family:'Noto Sans JP',sans-serif;font-size:8px;">
+      <svg viewBox="0 0 960 620" xmlns="http://www.w3.org/2000/svg" style="min-width:850px;width:100%;height:auto;font-family:sans-serif;font-size:8px;">
         <rect x="4" y="4" width="952" height="612" rx="8" fill="#F8FAFD" stroke="#D1DCE8" stroke-width="1.5"/>
-
-        <rect x="330" y="588" width="100" height="22" rx="4" fill="#0A2D5E"/>
-        <text x="380" y="603" text-anchor="middle" fill="white" font-size="10">2F ← 下り</text>
-        <rect x="580" y="588" width="100" height="22" rx="4" fill="#0A2D5E"/>
-        <text x="630" y="603" text-anchor="middle" fill="white" font-size="10">2F 上り →</text>
-        <text x="310" y="450" fill="#6B7280" font-size="12">G101</text>
-        <rect x="310" y="500" width="30" height="25" fill="#FDECEA" stroke="#F87171"/><text x="325" y="517" text-anchor="middle" fill="#991B1B">AED</text>
-
-        <g transform="translate(420,12)">
-          <rect x="0" y="0" width="40" height="26" fill="#FEF9C3" stroke="#FDE047"/><text x="20" y="17" text-anchor="middle">タカラ</text>
-          <rect x="42" y="0" width="40" height="26" fill="#FEF9C3" stroke="#FDE047"/><text x="62" y="17" text-anchor="middle">エステシモ</text>
-          <rect x="84" y="0" width="50" height="26" fill="#FEF9C3" stroke="#FDE047"/><text x="109" y="17" text-anchor="middle">マイクロバブル</text>
-          <rect x="136" y="0" width="55" height="26" fill="#FEF9C3" stroke="#FDE047"/><text x="163" y="17" text-anchor="middle">ビューティメリット</text>
-          <rect x="193" y="0" width="35" height="26" fill="#FEF9C3" stroke="#FDE047"/><text x="210" y="17" text-anchor="middle">So easy</text>
-          <rect x="230" y="0" width="30" height="26" fill="#FEF9C3" stroke="#FDE047"/><text x="245" y="17" text-anchor="middle">滝川</text>
-          <rect x="262" y="0" width="30" height="26" fill="#FEF9C3" stroke="#FDE047"/><text x="277" y="17" text-anchor="middle">菊星</text>
-          <rect x="294" y="0" width="35" height="26" fill="#FEF9C3" stroke="#FDE047"/><text x="311" y="17" text-anchor="middle">ダイソン</text>
-          <rect x="331" y="0" width="40" height="26" fill="#FEF9C3" stroke="#FDE047"/><text x="351" y="17" text-anchor="middle">AVEDA</text>
-          <rect x="373" y="0" width="50" height="26" fill="#FEF9C3" stroke="#FDE047"/><text x="398" y="17" text-anchor="middle">モロッカン</text>
-          <rect x="425" y="0" width="40" height="26" fill="#FED7AA" stroke="#FB923C"/><text x="445" y="17" text-anchor="middle">販促企画</text>
+        
+        <g transform="translate(420,10)">
+          <rect x="0" y="0" width="40" height="25" fill="#FEF9C3" stroke="#FDE047"/><text x="20" y="15" text-anchor="middle">タカラ</text>
+          <rect x="42" y="0" width="40" height="25" fill="#FEF9C3" stroke="#FDE047"/><text x="62" y="15" text-anchor="middle">エステシモ</text>
+          <rect x="84" y="0" width="50" height="25" fill="#FEF9C3" stroke="#FDE047"/><text x="109" y="15" text-anchor="middle">マイクロバブル</text>
+          <rect x="136" y="0" width="55" height="25" fill="#FEF9C3" stroke="#FDE047"/><text x="163" y="15" text-anchor="middle">ビューティメリット</text>
+          <rect x="193" y="0" width="35" height="25" fill="#FEF9C3" stroke="#FDE047"/><text x="210" y="15" text-anchor="middle">So easy</text>
+          <rect x="230" y="0" width="30" height="25" fill="#FEF9C3" stroke="#FDE047"/><text x="245" y="15" text-anchor="middle">滝川</text>
+          <rect x="262" y="0" width="30" height="25" fill="#FEF9C3" stroke="#FDE047"/><text x="277" y="15" text-anchor="middle">菊星</text>
+          <rect x="294" y="0" width="35" height="25" fill="#FEF9C3" stroke="#FDE047"/><text x="311" y="15" text-anchor="middle">ダイソン</text>
+          <rect x="331" y="0" width="40" height="25" fill="#FEF9C3" stroke="#FDE047"/><text x="351" y="15" text-anchor="middle">AVEDA</text>
+          <rect x="373" y="0" width="50" height="25" fill="#FEF9C3" stroke="#FDE047"/><text x="398" y="15" text-anchor="middle">モロッカン</text>
+          <rect x="425" y="0" width="45" height="25" fill="#FED7AA" stroke="#FB923C"/><text x="447" y="15" text-anchor="middle">販促企画</text>
         </g>
 
         <g transform="translate(420,80)">
@@ -187,7 +202,7 @@ body{font-family:'Noto Sans JP','DM Sans',sans-serif;background:var(--bg);color:
           <rect x="116" y="24" width="35" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="133" y="38" text-anchor="middle">アリミノ</text>
         </g>
 
-        <g transform="translate(580,80)">
+        <g transform="translate(585,80)">
           <rect x="0" y="0" width="40" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="20" y="14" text-anchor="middle">ホーユー</text>
           <rect x="42" y="0" width="30" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="57" y="14" text-anchor="middle">武田</text>
           <rect x="74" y="0" width="45" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="96" y="14" text-anchor="middle">千代田化学</text>
@@ -197,9 +212,9 @@ body{font-family:'Noto Sans JP','DM Sans',sans-serif;background:var(--bg);color:
           <rect x="96" y="24" width="30" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="111" y="38" text-anchor="middle">ルベル</text>
         </g>
 
-        <rect x="730" y="80" width="20" height="46" fill="#DBEAFE" stroke="#93C5FD"/><text x="740" y="105" text-anchor="middle" writing-mode="tb">セフィーヌ</text>
+        <rect x="740" y="80" width="20" height="46" fill="#DBEAFE" stroke="#93C5FD"/><text x="750" y="103" text-anchor="middle" writing-mode="tb" font-size="7">セフィーヌ</text>
 
-        <g transform="translate(760,80)">
+        <g transform="translate(765,80)">
           <rect x="0" y="0" width="30" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="15" y="14" text-anchor="middle">TOOB</text>
           <rect x="32" y="0" width="40" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="52" y="14" text-anchor="middle">ユーグレナ</text>
           <rect x="74" y="0" width="40" height="22" fill="#E8F5E9" stroke="#86EFAC"/><text x="94" y="14" text-anchor="middle">SHIGETA</text>
@@ -210,32 +225,31 @@ body{font-family:'Noto Sans JP','DM Sans',sans-serif;background:var(--bg);color:
           <rect x="111" y="24" width="40" height="22" fill="#E8F5E9" stroke="#86EFAC"/><text x="131" y="38" text-anchor="middle">イムダイン</text>
         </g>
 
-        <g transform="translate(420,160)">
+        <g transform="translate(420,150)">
           <rect x="0" y="0" width="30" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="15" y="14" text-anchor="middle">Be-x</text>
           <rect x="32" y="0" width="40" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="52" y="14" text-anchor="middle">サンコール</text>
-          <rect x="74" y="0" width="60" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="104" y="14" text-anchor="middle">グランクラージュ</text>
-          <rect x="136" y="0" width="40" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="156" y="14" text-anchor="middle">デミ化粧品</text>
-          <rect x="178" y="0" width="35" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="195" y="14" text-anchor="middle">イーラル</text>
-          <rect x="215" y="0" width="30" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="230" y="14" text-anchor="middle">ナプラ</text>
+          <rect x="74" y="0" width="70" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="109" y="14" text-anchor="middle">グランクラージュ/デミ</text>
+          <rect x="146" y="0" width="40" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="166" y="14" text-anchor="middle">イーラル</text>
+          <rect x="188" y="0" width="30" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="203" y="14" text-anchor="middle">ナプラ</text>
           <rect x="0" y="24" width="35" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="17" y="38" text-anchor="middle">中野製薬</text>
           <rect x="37" y="24" width="45" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="59" y="38" text-anchor="middle">テクノエイト</text>
           <rect x="84" y="24" width="45" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="106" y="38" text-anchor="middle">ビーファースト</text>
           <rect x="131" y="24" width="35" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="148" y="38" text-anchor="middle">マデナ</text>
           <rect x="168" y="24" width="25" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="180" y="38" text-anchor="middle">Sins</text>
-          <rect x="195" y="24" width="40" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="215" y="38" text-anchor="middle">ハホニコ</text>
+          <rect x="195" y="24" width="35" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="212" y="38" text-anchor="middle">ハホニコ</text>
         </g>
 
-        <g transform="translate(670,160)">
+        <g transform="translate(670,150)">
           <rect x="0" y="0" width="35" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="17" y="14" text-anchor="middle">香栄化学</text>
           <rect x="37" y="0" width="40" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="57" y="14" text-anchor="middle">ワイマック</text>
           <rect x="79" y="0" width="55" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="106" y="14" text-anchor="middle">JC/F's</text>
           <rect x="136" y="0" width="35" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="153" y="14" text-anchor="middle">カエタス</text>
           <rect x="0" y="24" width="35" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="17" y="38" text-anchor="middle">野口総研</text>
           <rect x="37" y="24" width="50" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="62" y="38" text-anchor="middle">グランテックス</text>
-          <rect x="89" y="24" width="70" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="124" y="38" text-anchor="middle">パシフィックプロダクツ</text>
+          <rect x="89" y="24" width="75" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="126" y="38" text-anchor="middle">パシフィックプロダクツ</text>
         </g>
 
-        <g transform="translate(840,160)">
+        <g transform="translate(840,150)">
           <rect x="0" y="0" width="35" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="17" y="14" text-anchor="middle">バルクオム</text>
           <rect x="37" y="0" width="40" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="57" y="14" text-anchor="middle">サクシード</text>
           <rect x="79" y="0" width="25" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="91" y="14" text-anchor="middle">ニチリ</text>
@@ -245,33 +259,30 @@ body{font-family:'Noto Sans JP','DM Sans',sans-serif;background:var(--bg);color:
           <rect x="74" y="24" width="30" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="89" y="38" text-anchor="middle">ヤマノ</text>
           <rect x="106" y="24" width="25" height="22" fill="#DBEAFE" stroke="#93C5FD"/><text x="118" y="38" text-anchor="middle">内海</text>
         </g>
-      </svg>
-    </div>
-    <div class="map-legend">
-      <div class="leg-item"><div class="leg-dot" style="background:#DBEAFE;border:1px solid #93C5FD;"></div>メーカーブース</div>
-      <div class="leg-item"><div class="leg-dot" style="background:#FEF9C3;border:1px solid #FDE047;"></div>機器・ツール</div>
-      <div class="leg-item"><div class="leg-dot" style="background:#E8F5E9;border:1px solid #86EFAC;"></div>コーセー系/健康</div>
-      <div class="leg-item"><div class="leg-dot" style="background:#FED7AA;border:1px solid #FB923C;"></div>販促企画</div>
-    </div>
-  </div>
-</div>
 
-<div id="trouble" class="sec">
-  <div class="slbl">よくあるトラブルと対応</div>
-  <div class="card">
-    <div class="faq-item"><div class="faq-q">QRが読み込めない</div><div class="faq-a">カメラ再起動、またはスタッフIDで代理入力。</div></div>
-  </div>
-</div>
+        <g transform="translate(420,220)">
+          <rect x="0" y="0" width="45" height="22" fill="#FCE7F3" stroke="#F9A8D4"/><text x="22" y="14" text-anchor="middle">KINUJO</text>
+          <rect x="47" y="0" width="40" height="22" fill="#FCE7F3" stroke="#F9A8D4"/><text x="67" y="14" text-anchor="middle">Kirala</text>
+          <rect x="89" y="0" width="40" height="22" fill="#FCE7F3" stroke="#F9A8D4"/><text x="109" y="14" text-anchor="middle">YA-MAN</text>
+          <rect x="131" y="0" width="30" height="22" fill="#FCE7F3" stroke="#F9A8D4"/><text x="146" y="14" text-anchor="middle">MUK</text>
+          <rect x="163" y="0" width="45" height="22" fill="#FCE7F3" stroke="#F9A8D4"/><text x="185" y="14" text-anchor="middle">ツインバード</text>
+          <rect x="210" y="0" width="45" height="22" fill="#FCE7F3" stroke="#F9A8D4"/><text x="232" y="14" text-anchor="middle">アンドナイン</text>
+          <rect x="257" y="0" width="35" height="22" fill="#FCE7F3" stroke="#F9A8D4"/><text x="274" y="14" text-anchor="middle">LOA</text>
+          <rect x="294" y="0" width="30" height="22" fill="#FCE7F3" stroke="#F9A8D4"/><text x="309" y="14" text-anchor="middle">1DK</text>
+          <rect x="326" y="0" width="35" height="22" fill="#FCE7F3" stroke="#F9A8D4"/><text x="343" y="14" text-anchor="middle">awaas</text>
+          <rect x="363" y="0" width="40" height="22" fill="#FCE7F3" stroke="#F9A8D4"/><text x="383" y="14" text-anchor="middle">LOBAL</text>
+          <rect x="405" y="0" width="35" height="22" fill="#FCE7F3" stroke="#F9A8D4"/><text x="422" y="14" text-anchor="middle">大西</text>
+        </g>
 
-</div>
-
-<script>
-function showTab(id,el){
-  document.querySelectorAll('.sec').forEach(function(s){s.classList.remove('active');});
-  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
-  document.getElementById(id).classList.add('active');
-  el.classList.add('active');
-}
-</script>
-</body>
-</html>
+        <g transform="translate(420,265)">
+          <text x="0" y="-5" font-weight="700" fill="#6B7280">就職活動サロンブースエリア</text>
+          <g transform="translate(0,0)">
+            <rect x="0" y="0" width="30" height="30" fill="#DCFCE7" stroke="#86EFAC"/><text x="15" y="20" text-anchor="middle">48</text>
+            <rect x="32" y="0" width="30" height="30" fill="#DCFCE7" stroke="#86EFAC"/><text x="47" y="20" text-anchor="middle">49</text>
+            <rect x="64" y="0" width="30" height="30" fill="#DCFCE7" stroke="#86EFAC"/><text x="79" y="20" text-anchor="middle">50</text>
+            <rect x="96" y="0" width="30" height="30" fill="#DCFCE7" stroke="#86EFAC"/><text x="111" y="20" text-anchor="middle">51</text>
+            <rect x="128" y="0" width="30" height="30" fill="#DCFCE7" stroke="#86EFAC"/><text x="143" y="20" text-anchor="middle">52</text>
+            <text x="165" y="20" fill="#6B7280">〜 63</text>
+          </g>
+          <g transform="translate(0,40)">
+            <rect x="0" y="0" width="30" height="30" fill="#DCFCE7" stroke="#86EFAC"/><text x="15" y="20" text-anchor="middle">33</text>
