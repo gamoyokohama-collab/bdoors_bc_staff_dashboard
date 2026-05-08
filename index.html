@@ -211,17 +211,11 @@ body{font-family:'Noto Sans JP','DM Sans',sans-serif;background:var(--bg);color:
 /* ===== MAP STYLES ===== */
 .map-container{padding:12px 14px;}
 .map-note{font-size:11px;color:var(--sub);padding:8px 14px;background:#F8FAFD;border-top:1px solid var(--border);line-height:1.6;}
-
-/* ゾーンラベル */
 .zone-label{font-size:10px;font-weight:700;color:var(--sub);letter-spacing:.06em;padding:6px 0 3px;text-transform:uppercase;}
-
-/* ブースグリッド共通 */
 .booth-grid{display:grid;gap:4px;margin-bottom:4px;}
 .booth{border-radius:5px;padding:4px 3px;text-align:center;font-size:10px;font-weight:500;line-height:1.25;min-height:38px;display:flex;flex-direction:column;align-items:center;justify-content:center;}
 .booth-num{font-size:9px;font-weight:700;opacity:.7;margin-bottom:1px;}
 .booth-name{font-size:10px;font-weight:600;line-height:1.2;}
-
-/* ゾーン別カラー */
 .booth.maker{background:#DBEAFE;color:#1E3A5F;border:1px solid #93C5FD;}
 .booth.tool{background:#FEF9C3;color:#854D0E;border:1px solid #FDE047;}
 .booth.appliance{background:#FCE7F3;color:#9D174D;border:1px solid #F9A8D4;}
@@ -229,32 +223,36 @@ body{font-family:'Noto Sans JP','DM Sans',sans-serif;background:var(--bg);color:
 .booth.salon{background:#DCFCE7;color:#14532D;border:1px solid #6EE7B7;}
 .booth.promo{background:#FED7AA;color:#9A3412;border:1px solid #FB923C;}
 .booth.special{background:#EDE9FE;color:#4C1D95;border:1px solid #A78BFA;}
-
-/* 特殊ブース */
 .map-special-row{display:flex;gap:6px;margin-bottom:4px;}
 .map-special{border-radius:6px;padding:8px 10px;font-size:11px;font-weight:700;text-align:center;flex:1;}
 .map-special.aed{background:#FEE2E2;color:#991B1B;border:2px solid #F87171;}
 .map-special.lunch{background:#FEF3C7;color:#92400E;border:2px solid #F59E0B;}
 .map-special.smoking{background:#FFF7ED;color:#7C2D12;border:2px solid #FB923C;}
 .map-special.entrance{background:var(--navy);color:#fff;border:2px solid var(--navy);}
-
-/* 凡例 */
 .map-legend{display:flex;flex-wrap:wrap;gap:6px;padding:10px 0;}
 .leg-item{display:flex;align-items:center;gap:4px;font-size:10px;font-weight:500;color:var(--text);}
 .leg-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0;}
-
-/* セパレーター */
 .zone-sep{height:1px;background:var(--border);margin:8px 0;}
-
-/* 2列グリッド (salon番号ブロック用) */
 .salon-row{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:3px;}
 .salon-row .booth{flex:0 0 calc(25% - 3px);}
-
-/* 3列グリッド (maker段) */
 .grid-3{grid-template-columns:repeat(3,1fr);}
 .grid-4{grid-template-columns:repeat(4,1fr);}
 .grid-5{grid-template-columns:repeat(5,1fr);}
 .grid-6{grid-template-columns:repeat(6,1fr);}
+
+/* ===== ガラポン色凡例 ===== */
+.garapon-legend{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:14px;}
+.gara-item{display:flex;flex-direction:column;align-items:center;gap:6px;}
+.gara-ball{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;box-shadow:inset -3px -3px 8px rgba(0,0,0,.18),inset 2px 2px 6px rgba(255,255,255,.35),0 3px 8px rgba(0,0,0,.18);position:relative;flex-shrink:0;}
+.gara-ball::after{content:'';position:absolute;top:7px;left:10px;width:12px;height:7px;background:rgba(255,255,255,.45);border-radius:50%;transform:rotate(-30deg);}
+.gara-rank{font-size:12px;font-weight:700;color:var(--navy);}
+.gara-color{font-size:10px;color:var(--sub);font-weight:500;}
+.ball-gold{background:radial-gradient(circle at 35% 35%,#FFE566,#D4AF37,#A07C00);}
+.ball-pink{background:radial-gradient(circle at 35% 35%,#FBCFE8,#EC4899,#9D174D);}
+.ball-sky{background:radial-gradient(circle at 35% 35%,#BAE6FD,#38BDF8,#0369A1);}
+.ball-yellow{background:radial-gradient(circle at 35% 35%,#FEF08A,#EAB308,#854D0E);}
+.ball-red{background:radial-gradient(circle at 35% 35%,#FCA5A5,#EF4444,#7F1D1D);}
+.garapon-note{font-size:11px;color:var(--sub);padding:0 14px 12px;line-height:1.7;}
 
 .p14{padding:14px;}
 .tsub{font-size:12px;color:var(--sub);line-height:1.7;}
@@ -462,9 +460,6 @@ body{font-family:'Noto Sans JP','DM Sans',sans-serif;background:var(--bg);color:
         </tbody>
       </table>
     </div>
-    <div style="padding:8px 14px;background:#F8FAFD;border-top:1px solid var(--border);font-size:11px;color:var(--sub);">
-    
-    </div>
   </div>
 
   <div class="slbl">リストバンド（学年別色分け）</div>
@@ -536,10 +531,39 @@ body{font-family:'Noto Sans JP','DM Sans',sans-serif;background:var(--bg);color:
     </div>
   </div>
 
+  <!-- ガラポン抽選カード（更新済み） -->
   <div class="card">
     <div class="ch"><div class="ch-ico" style="background:var(--pur-lt);">🎰</div><div class="ch-ttl">ガラポン抽選</div><div class="ch-tag tag-purple">来場者全員対象</div></div>
-    <div class="p14 tsub">来場者全員を対象にガラポン抽選を実施。</div>
-    <div class="note-box" style="padding-top:0;"><textarea id="memo-garapon" placeholder="ガラポン詳細が決まり次第ここに記入…" rows="2"></textarea><div class="note-saved" id="saved-garapon">✓ 保存済み</div></div>
+
+    <!-- 玉色凡例 -->
+    <div class="garapon-legend">
+      <div class="gara-item">
+        <div class="gara-ball ball-gold">1</div>
+        <div class="gara-rank">1等</div>
+        <div class="gara-color">金色</div>
+      </div>
+      <div class="gara-item">
+        <div class="gara-ball ball-pink">2</div>
+        <div class="gara-rank">2等</div>
+        <div class="gara-color">ピンク</div>
+      </div>
+      <div class="gara-item">
+        <div class="gara-ball ball-sky">3</div>
+        <div class="gara-rank">3等</div>
+        <div class="gara-color">水色</div>
+      </div>
+      <div class="gara-item">
+        <div class="gara-ball ball-yellow">4</div>
+        <div class="gara-rank">4等</div>
+        <div class="gara-color">黄色</div>
+      </div>
+      <div class="gara-item">
+        <div class="gara-ball ball-red">5</div>
+        <div class="gara-rank">5等</div>
+        <div class="gara-color">赤色</div>
+      </div>
+    </div>
+    <div class="garapon-note">※ 賞品詳細は後日更新予定。玉の色を見て等級を案内してください。</div>
   </div>
 
   <div class="slbl">cetera 先着100名 ポイント付与カウンター</div>
@@ -567,93 +591,60 @@ body{font-family:'Noto Sans JP','DM Sans',sans-serif;background:var(--bg);color:
 <!-- ===== 場内案内 ===== -->
 <div id="map" class="sec">
   <div class="slbl">beauty collection — 場内案内</div>
-
-  <!-- ===== エリア位置図（SVG） ===== -->
   <div class="card" style="margin-bottom:10px;">
     <div style="padding:11px 14px 6px;font-size:12px;font-weight:700;color:var(--navy);">エリア配置図（概略）</div>
     <div style="padding:0 10px 10px;overflow-x:auto;">
       <svg viewBox="0 0 340 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:400px;height:auto;display:block;margin:0 auto;font-family:'Noto Sans JP',sans-serif;">
-        <!-- 外枠 -->
         <rect x="1" y="1" width="338" height="278" rx="6" fill="#F8FAFD" stroke="#D1DCE8" stroke-width="1.5"/>
-
-        <!-- アネックスホール側ラベル -->
         <text x="8" y="140" font-size="7.5" fill="#9CA3AF" transform="rotate(-90,8,140)" text-anchor="middle">アネックスホール側</text>
-
-        <!-- 入退場口 -->
         <rect x="105" y="264" width="60" height="13" rx="3" fill="#0A2D5E"/>
         <text x="135" y="273.5" text-anchor="middle" font-size="8" fill="white" font-weight="700">← 入退場口</text>
-
-        <!-- Aエリア（上段横長）-->
         <rect x="18" y="8" width="310" height="32" rx="4" fill="#FEF9C3" stroke="#FDE047" stroke-width="1.2"/>
         <text x="23" y="19" font-size="8.5" font-weight="700" fill="#854D0E">A</text>
         <text x="23" y="30" font-size="7" fill="#854D0E">タカラ・エステシモ・マイクロバブル・ビューティメリット・So easy</text>
         <text x="23" y="38" font-size="7" fill="#854D0E">滝川・菊星・ダイソン・AVEDA・モロッカンオイル・販促企画</text>
-
-        <!-- Bエリア -->
         <rect x="18" y="46" width="118" height="38" rx="4" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1.2"/>
         <text x="23" y="57" font-size="8.5" font-weight="700" fill="#1E3A5F">B</text>
         <text x="23" y="67" font-size="6.5" fill="#1E3A5F">ロレアル・アマトラ・セフティ</text>
         <text x="23" y="76" font-size="6.5" fill="#1E3A5F">リアル化学・ミルボン・ヘンケル・ニューウェイ・アリミノ</text>
-
-        <!-- Cエリア -->
         <rect x="142" y="46" width="90" height="38" rx="4" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1.2"/>
         <text x="147" y="57" font-size="8.5" font-weight="700" fill="#1E3A5F">C</text>
         <text x="147" y="67" font-size="6.5" fill="#1E3A5F">ホーユー・武田・千代田化学</text>
         <text x="147" y="76" font-size="6.5" fill="#1E3A5F">ウェラ・UnG・GOALD・ルベル</text>
-
-        <!-- Dエリア -->
         <rect x="238" y="46" width="90" height="38" rx="4" fill="#EDE9FE" stroke="#A78BFA" stroke-width="1.2"/>
         <text x="243" y="57" font-size="8.5" font-weight="700" fill="#4C1D95">D</text>
         <text x="243" y="67" font-size="6.5" fill="#4C1D95">ユーグレナ・セフィーヌ・TOOB</text>
         <text x="243" y="76" font-size="6.5" fill="#4C1D95">SHIGETA・マイハニー・コーセー・プロラッシュ・BJC・イムダイン</text>
-
-        <!-- Eエリア -->
         <rect x="18" y="90" width="62" height="30" rx="4" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1.2"/>
         <text x="23" y="101" font-size="8.5" font-weight="700" fill="#1E3A5F">E</text>
         <text x="23" y="111" font-size="6.5" fill="#1E3A5F">Be-x・サンコール</text>
         <text x="23" y="118" font-size="6.5" fill="#1E3A5F">中野製薬・テクノエイト</text>
-
-        <!-- Fエリア -->
         <rect x="86" y="90" width="106" height="30" rx="4" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1.2"/>
         <text x="91" y="101" font-size="8.5" font-weight="700" fill="#1E3A5F">F</text>
         <text x="91" y="111" font-size="6.5" fill="#1E3A5F">グランクラージュ・デミ・イーラル・ナプラ</text>
         <text x="91" y="118" font-size="6.5" fill="#1E3A5F">ビーファースト・マデナ・Sins・ハホニコ</text>
-
-        <!-- Gエリア -->
         <rect x="198" y="90" width="130" height="30" rx="4" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1.2"/>
         <text x="203" y="101" font-size="8.5" font-weight="700" fill="#1E3A5F">G</text>
         <text x="203" y="111" font-size="6.5" fill="#1E3A5F">香栄化学・ワイマック・自由が丘クリニック・F'sビューティ</text>
         <text x="203" y="118" font-size="6.5" fill="#1E3A5F">野口総研・グランテックス・パシフィックプロダクツ・カエタス</text>
-
-        <!-- Hエリア -->
         <rect x="240" y="126" width="88" height="28" rx="4" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1.2"/>
         <text x="245" y="137" font-size="8.5" font-weight="700" fill="#1E3A5F">H</text>
         <text x="245" y="147" font-size="6.5" fill="#1E3A5F">バルクオム・サクシード・ニチリ・アデランス</text>
         <text x="245" y="154" font-size="6" fill="#1E3A5F">水谷シザー・フェザー・ヤマノ・内海</text>
-
-        <!-- Iエリア（横長） -->
         <rect x="18" y="126" width="216" height="28" rx="4" fill="#FCE7F3" stroke="#F9A8D4" stroke-width="1.2"/>
         <text x="23" y="137" font-size="8.5" font-weight="700" fill="#9D174D">I</text>
         <text x="23" y="147" font-size="6.5" fill="#9D174D">KINUJO・Kirala・YA-MAN・MUK・ツインバード・アンドナイン・LOA・1DK・awaas・LOBAL・大西</text>
-
-        <!-- B.DOORSエリア -->
         <rect x="18" y="162" width="310" height="46" rx="4" fill="#DCFCE7" stroke="#6EE7B7" stroke-width="1.5"/>
         <text x="173" y="182" text-anchor="middle" font-size="11" font-weight="700" fill="#14532D">B.DOORS エリア</text>
         <text x="173" y="198" text-anchor="middle" font-size="7.5" fill="#166534">（就活サロンブース 1〜63）</text>
-
-        <!-- 学生移動導線矢印 -->
         <text x="35" y="158" font-size="6.5" fill="#6B7280">↓ 学生移動導線</text>
         <text x="265" y="158" font-size="6.5" fill="#6B7280">↑ 学生移動導線</text>
-
-        <!-- 施設：G101・喫煙所・AED -->
         <rect x="18" y="214" width="60" height="22" rx="3" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.2"/>
         <text x="48" y="223" text-anchor="middle" font-size="7.5" font-weight="700" fill="#92400E">🍱 G101</text>
         <text x="48" y="232" text-anchor="middle" font-size="6.5" fill="#92400E">昼食（11時〜）</text>
-
         <rect x="84" y="214" width="60" height="22" rx="3" fill="#FFF7ED" stroke="#FB923C" stroke-width="1.2"/>
         <text x="114" y="223" text-anchor="middle" font-size="7.5" font-weight="700" fill="#7C2D12">🚬 喫煙所</text>
         <text x="114" y="232" text-anchor="middle" font-size="6.5" fill="#7C2D12">ノース 2F</text>
-
         <rect x="150" y="214" width="50" height="22" rx="3" fill="#FDECEA" stroke="#F87171" stroke-width="1.5"/>
         <text x="175" y="223" text-anchor="middle" font-size="7.5" font-weight="700" fill="#991B1B">🚨 AED</text>
         <text x="175" y="232" text-anchor="middle" font-size="6.5" fill="#991B1B">緊急時</text>
@@ -662,121 +653,23 @@ body{font-family:'Noto Sans JP','DM Sans',sans-serif;background:var(--bg);color:
     <div style="padding:6px 14px 10px;font-size:10px;color:var(--sub);">※ 概略図です。実際の配置は当日確認してください。</div>
   </div>
 
-  <!-- ===== A〜Iエリア メーカー詳細リスト ===== -->
   <div class="slbl">メーカーブース エリア別詳細</div>
+  <div class="card" style="margin-bottom:8px;"><div class="ch" style="background:#FEF9C3;border-color:#FDE047;"><div class="ch-ico" style="background:#FDE047;font-size:14px;font-weight:700;color:#854D0E;">A</div><div class="ch-ttl" style="color:#854D0E;">Aエリア</div></div><div style="padding:10px 14px;font-size:13px;line-height:2;color:var(--text);">タカラ／エステシモ／マイクロバブル／ビューティメリット／So easy／滝川／菊星／ダイソン／AVEDA／モロッカンオイル／販促企画</div></div>
+  <div class="card" style="margin-bottom:8px;"><div class="ch" style="background:#DBEAFE;border-color:#93C5FD;"><div class="ch-ico" style="background:#3B82F6;font-size:14px;font-weight:700;color:#fff;">B</div><div class="ch-ttl" style="color:#1E3A5F;">Bエリア</div></div><div style="padding:10px 14px;font-size:13px;line-height:2;color:var(--text);">ロレアル／アマトラ／セフティ／リアル化学／ミルボン（インプレア）／ヘンケル／ニューウェイジャパン／アリミノ</div></div>
+  <div class="card" style="margin-bottom:8px;"><div class="ch" style="background:#DBEAFE;border-color:#93C5FD;"><div class="ch-ico" style="background:#3B82F6;font-size:14px;font-weight:700;color:#fff;">C</div><div class="ch-ttl" style="color:#1E3A5F;">Cエリア</div></div><div style="padding:10px 14px;font-size:13px;line-height:2;color:var(--text);">ホーユー／武田／千代田化学／ウェラ／UnG／GOALD／ルベル</div></div>
+  <div class="card" style="margin-bottom:8px;"><div class="ch" style="background:#EDE9FE;border-color:#A78BFA;"><div class="ch-ico" style="background:#7C3AED;font-size:14px;font-weight:700;color:#fff;">D</div><div class="ch-ttl" style="color:#4C1D95;">Dエリア</div></div><div style="padding:10px 14px;font-size:13px;line-height:2;color:var(--text);">ユーグレナ／セフィーヌ／TOOB／SHIGETA／マイハニー／コーセー／プロラッシュ／BJC／イムダイン</div></div>
+  <div class="card" style="margin-bottom:8px;"><div class="ch" style="background:#DBEAFE;border-color:#93C5FD;"><div class="ch-ico" style="background:#3B82F6;font-size:14px;font-weight:700;color:#fff;">E</div><div class="ch-ttl" style="color:#1E3A5F;">Eエリア</div></div><div style="padding:10px 14px;font-size:13px;line-height:2;color:var(--text);">Be-x／サンコール／中野製薬／テクノエイト</div></div>
+  <div class="card" style="margin-bottom:8px;"><div class="ch" style="background:#DBEAFE;border-color:#93C5FD;"><div class="ch-ico" style="background:#3B82F6;font-size:14px;font-weight:700;color:#fff;">F</div><div class="ch-ttl" style="color:#1E3A5F;">Fエリア</div></div><div style="padding:10px 14px;font-size:13px;line-height:2;color:var(--text);">グランクラージュ／デミ化粧品／イーラル／ナプラ／ビーファースト／マデナ／Sinsコスメティクス／ハホニコ</div></div>
+  <div class="card" style="margin-bottom:8px;"><div class="ch" style="background:#DBEAFE;border-color:#93C5FD;"><div class="ch-ico" style="background:#3B82F6;font-size:14px;font-weight:700;color:#fff;">G</div><div class="ch-ttl" style="color:#1E3A5F;">Gエリア</div></div><div style="padding:10px 14px;font-size:13px;line-height:2;color:var(--text);">香栄化学／ワイマック／自由が丘クリニック／F'sビューティ／野口総合研究所／グランテックス／パシフィックプロダクツ／カエタス</div></div>
+  <div class="card" style="margin-bottom:8px;"><div class="ch" style="background:#DBEAFE;border-color:#93C5FD;"><div class="ch-ico" style="background:#3B82F6;font-size:14px;font-weight:700;color:#fff;">H</div><div class="ch-ttl" style="color:#1E3A5F;">Hエリア</div></div><div style="padding:10px 14px;font-size:13px;line-height:2;color:var(--text);">バルクオム／サクシード／ニチリ／アデランス／水谷シザー／フェザー／ヤマノ／内海</div></div>
+  <div class="card" style="margin-bottom:8px;"><div class="ch" style="background:#FCE7F3;border-color:#F9A8D4;"><div class="ch-ico" style="background:#EC4899;font-size:14px;font-weight:700;color:#fff;">I</div><div class="ch-ttl" style="color:#9D174D;">Iエリア</div></div><div style="padding:10px 14px;font-size:13px;line-height:2;color:var(--text);">KINUJO／Kirala／YA-MAN／MUK／ツインバード／アンドナイン／LOA／1DK／awaas／LOBAL／大西</div></div>
 
-  <!-- Aエリア -->
-  <div class="card" style="margin-bottom:8px;">
-    <div class="ch" style="background:#FEF9C3;border-color:#FDE047;">
-      <div class="ch-ico" style="background:#FDE047;font-size:14px;font-weight:700;color:#854D0E;">A</div>
-      <div class="ch-ttl" style="color:#854D0E;">Aエリア</div>
-    </div>
-    <div style="padding:10px 14px;font-size:13px;line-height:2;color:var(--text);">
-      タカラ／エステシモ／マイクロバブル／ビューティメリット／So easy／滝川／菊星／ダイソン／AVEDA／モロッカンオイル／販促企画
-    </div>
-  </div>
-
-  <!-- Bエリア -->
-  <div class="card" style="margin-bottom:8px;">
-    <div class="ch" style="background:#DBEAFE;border-color:#93C5FD;">
-      <div class="ch-ico" style="background:#3B82F6;font-size:14px;font-weight:700;color:#fff;">B</div>
-      <div class="ch-ttl" style="color:#1E3A5F;">Bエリア</div>
-    </div>
-    <div style="padding:10px 14px;font-size:13px;line-height:2;color:var(--text);">
-      ロレアル／アマトラ／セフティ／リアル化学／ミルボン（インプレア）／ヘンケル／ニューウェイジャパン／アリミノ
-    </div>
-  </div>
-
-  <!-- Cエリア -->
-  <div class="card" style="margin-bottom:8px;">
-    <div class="ch" style="background:#DBEAFE;border-color:#93C5FD;">
-      <div class="ch-ico" style="background:#3B82F6;font-size:14px;font-weight:700;color:#fff;">C</div>
-      <div class="ch-ttl" style="color:#1E3A5F;">Cエリア</div>
-    </div>
-    <div style="padding:10px 14px;font-size:13px;line-height:2;color:var(--text);">
-      ホーユー／武田／千代田化学／ウェラ／UnG／GOALD／ルベル
-    </div>
-  </div>
-
-  <!-- Dエリア -->
-  <div class="card" style="margin-bottom:8px;">
-    <div class="ch" style="background:#EDE9FE;border-color:#A78BFA;">
-      <div class="ch-ico" style="background:#7C3AED;font-size:14px;font-weight:700;color:#fff;">D</div>
-      <div class="ch-ttl" style="color:#4C1D95;">Dエリア</div>
-    </div>
-    <div style="padding:10px 14px;font-size:13px;line-height:2;color:var(--text);">
-      ユーグレナ／セフィーヌ／TOOB／SHIGETA／マイハニー／コーセー／プロラッシュ／BJC／イムダイン
-    </div>
-  </div>
-
-  <!-- Eエリア -->
-  <div class="card" style="margin-bottom:8px;">
-    <div class="ch" style="background:#DBEAFE;border-color:#93C5FD;">
-      <div class="ch-ico" style="background:#3B82F6;font-size:14px;font-weight:700;color:#fff;">E</div>
-      <div class="ch-ttl" style="color:#1E3A5F;">Eエリア</div>
-    </div>
-    <div style="padding:10px 14px;font-size:13px;line-height:2;color:var(--text);">
-      Be-x／サンコール／中野製薬／テクノエイト
-    </div>
-  </div>
-
-  <!-- Fエリア -->
-  <div class="card" style="margin-bottom:8px;">
-    <div class="ch" style="background:#DBEAFE;border-color:#93C5FD;">
-      <div class="ch-ico" style="background:#3B82F6;font-size:14px;font-weight:700;color:#fff;">F</div>
-      <div class="ch-ttl" style="color:#1E3A5F;">Fエリア</div>
-    </div>
-    <div style="padding:10px 14px;font-size:13px;line-height:2;color:var(--text);">
-      グランクラージュ／デミ化粧品／イーラル／ナプラ／ビーファースト／マデナ／Sinsコスメティクス／ハホニコ
-    </div>
-  </div>
-
-  <!-- Gエリア -->
-  <div class="card" style="margin-bottom:8px;">
-    <div class="ch" style="background:#DBEAFE;border-color:#93C5FD;">
-      <div class="ch-ico" style="background:#3B82F6;font-size:14px;font-weight:700;color:#fff;">G</div>
-      <div class="ch-ttl" style="color:#1E3A5F;">Gエリア</div>
-    </div>
-    <div style="padding:10px 14px;font-size:13px;line-height:2;color:var(--text);">
-      香栄化学／ワイマック／自由が丘クリニック／F'sビューティ／野口総合研究所／グランテックス／パシフィックプロダクツ／カエタス
-    </div>
-  </div>
-
-  <!-- Hエリア -->
-  <div class="card" style="margin-bottom:8px;">
-    <div class="ch" style="background:#DBEAFE;border-color:#93C5FD;">
-      <div class="ch-ico" style="background:#3B82F6;font-size:14px;font-weight:700;color:#fff;">H</div>
-      <div class="ch-ttl" style="color:#1E3A5F;">Hエリア</div>
-    </div>
-    <div style="padding:10px 14px;font-size:13px;line-height:2;color:var(--text);">
-      バルクオム／サクシード／ニチリ／アデランス／水谷シザー／フェザー／ヤマノ／内海
-    </div>
-  </div>
-
-  <!-- Iエリア -->
-  <div class="card" style="margin-bottom:8px;">
-    <div class="ch" style="background:#FCE7F3;border-color:#F9A8D4;">
-      <div class="ch-ico" style="background:#EC4899;font-size:14px;font-weight:700;color:#fff;">I</div>
-      <div class="ch-ttl" style="color:#9D174D;">Iエリア</div>
-    </div>
-    <div style="padding:10px 14px;font-size:13px;line-height:2;color:var(--text);">
-      KINUJO／Kirala／YA-MAN／MUK／ツインバード／アンドナイン／LOA／1DK／awaas／LOBAL／大西
-    </div>
-  </div>
-
-  <!-- ===== 就活サロン番号リスト ===== -->
   <div class="slbl">B.DOORSエリア — 就活サロン一覧（1〜63）</div>
   <div class="card" style="margin-bottom:8px;">
-    <div class="ch" style="background:#DCFCE7;border-color:#6EE7B7;">
-      <div class="ch-ico" style="background:#16A34A;font-size:11px;font-weight:700;color:#fff;">B.D</div>
-      <div class="ch-ttl" style="color:#14532D;">就活サロンブース 全63店</div>
-    </div>
-    <div style="padding:10px 14px;">
-      <div id="salon-list" style="column-count:2;column-gap:16px;font-size:13px;line-height:1.9;color:var(--text);"></div>
-    </div>
+    <div class="ch" style="background:#DCFCE7;border-color:#6EE7B7;"><div class="ch-ico" style="background:#16A34A;font-size:11px;font-weight:700;color:#fff;">B.D</div><div class="ch-ttl" style="color:#14532D;">就活サロンブース 全63店</div></div>
+    <div style="padding:10px 14px;"><div id="salon-list" style="column-count:2;column-gap:16px;font-size:13px;line-height:1.9;color:var(--text);"></div></div>
   </div>
 
-  <!-- 施設案内 -->
   <div class="slbl">施設案内</div>
   <div class="card" style="margin-bottom:12px;">
     <div style="padding:10px 14px;">
@@ -839,34 +732,9 @@ body{font-family:'Noto Sans JP','DM Sans',sans-serif;background:var(--bg);color:
 </div><!-- /main -->
 
 <script>
-var clGeneral=[
-  "メッシュサイン（誘導矢印）の設置完了",
-  "B.DOORS入口・BC入口 分岐案内板の設置",
-  "トランシーバー6台の配布・動作確認（各責任者へ）",
-  "全スタッフへLINEグループの共有確認",
-  "外誘導2名（樋口・永井）の配置確認"
-];
-var clBdoors=[
-  "学校別プラカード（学校名入り）の準備完了",
-  "リストバンド（1年:ピンク／2年:オレンジ／3年:ブルー）在庫確認",
-  "QR読み取り端末（5台）の動作確認",
-  "5ブース 担当者配置（学校対応チーム）確認",
-  "三角くじ在庫確認（1等×2・2等×2・3等×50・4等×100）",
-  "くじの色確認（1等:金色／2等:青／3等:赤）",
-  "3等当選時のceteraブース引き継ぎフロー確認（越山）",
-  "4等ceteraポイント案内文確認（6/30まで・横浜店のみ）",
-  "景品の保管場所・引き渡しフロー確認（越山）"
-];
-var clBc=[
-  "入場証リスト（事前申込分）の印刷・確認",
-  "当日受付・QRの準備",
-  "【10時開場前】抽選賞品の仕分け（全員で実施）",
-  "場内マップ（スマホ表示）の動作確認",
-  "cetera先着100名カウンター準備（三嶽）",
-  "ガラポン抽選の準備・設置確認（井出）",
-  "9:30 BC全体朝礼のアジェンダ確認（吉岡・井出）",
-  "昼食会場G101の確認・メーカー様への声がけ準備"
-];
+var clGeneral=["メッシュサイン（誘導矢印）の設置完了","B.DOORS入口・BC入口 分岐案内板の設置","トランシーバー6台の配布・動作確認（各責任者へ）","全スタッフへLINEグループの共有確認","外誘導2名（樋口・永井）の配置確認"];
+var clBdoors=["学校別プラカード（学校名入り）の準備完了","リストバンド（1年:ピンク／2年:オレンジ／3年:ブルー）在庫確認","QR読み取り端末（5台）の動作確認","5ブース 担当者配置（学校対応チーム）確認","三角くじ在庫確認（1等×2・2等×2・3等×50・4等×100）","くじの色確認（1等:金色／2等:青／3等:赤）","3等当選時のceteraブース引き継ぎフロー確認（越山）","4等ceteraポイント案内文確認（6/30まで・横浜店のみ）","景品の保管場所・引き渡しフロー確認（越山）"];
+var clBc=["入場証リスト（事前申込分）の印刷・確認","当日受付・QRの準備","【10時開場前】抽選賞品の仕分け（全員で実施）","場内マップ（スマホ表示）の動作確認","cetera先着100名カウンター準備（三嶽）","ガラポン抽選の準備・設置確認（井出）","9:30 BC全体朝礼のアジェンダ確認（吉岡・井出）","昼食会場G101の確認・メーカー様への声がけ準備"];
 
 var flowBd=[
   {n:1,t:"学校到着確認・集合誘導",d:"学校対応チームが担当学校ごとに集合場所へ誘導。入口への殺到を防ぐ。"},
@@ -876,14 +744,12 @@ var flowBd=[
   {n:5,t:"スタンプ5個完了→景品担当へ引き継ぎ",d:"5つ揃った学生を越山ほか景品担当へ引き継ぐ。"},
   {n:6,t:"三角くじ・景品手渡し",d:"くじを引かせて色で当選を確認。\n1等(金)・2等(青)・3等(赤)・4等(緑)\n【3等当選】ceteraアプリ取得を促す。深掘りされたらceteraブースへ案内・引き継ぎ。\n【4等当選】専用スクリプトで案内。"}
 ];
-
 var flowBc=[
   {n:1,t:"入場証確認（事前申込あり）",d:"「入場証」を確認して入場案内。城内マップのタップを促す。"},
   {n:2,t:"当日受付（申込なし・入場証不明）",d:"当日受付用QRを読んでいただき入場案内。城内マップのタップを促す。"},
   {n:3,t:"場内マップのタップ促進",d:"「スマホの場内マップ上で、ご訪問いただいたブースをタップしてご記録ください！」"},
-  {n:4,t:"ガラポン抽選案内",d:"来場者全員を対象に抽選あり。来場時または退場前に案内する。（詳細決定次第更新）"}
+  {n:4,t:"ガラポン抽選案内",d:"来場者全員を対象に抽選あり。来場時または退場前に案内する。"}
 ];
-
 var faqs=[
   {q:"QRコードが読み込めない",a:"① スマホのカメラアプリを再起動\n② 明るい場所でQRに近づいて試す\n③ それでも無理なら担当スタッフのIDで代理入力\n④ 記録シートに手書き → 後日入力対応"},
   {q:"リストバンドを紛失した",a:"① 本人確認（学生証等）を行う\n② 予備リストバンドを1本支給\n③ 事象を記録 → トランシーバーで菊永へ報告"},
@@ -894,16 +760,7 @@ var faqs=[
   {q:"保護者・引率教員からのクレーム",a:"① 「ご不便をおかけして申し訳ございません」と受け止め\n② 詳細をメモしながら傾聴\n③ 河合または各責任者へ取り次ぐ（自分で解決しようとしない）"},
   {q:"喫煙したいと言われた",a:"「ノース館内の喫煙所は2Fにございます。館内はそれ以外全域禁煙となっております。」と案内する。"}
 ];
-
-var salesItems=[
-  "タップ記録あり顧客 → 翌営業日中に担当者から電話フォロー",
-  "BC来場者（当日受付分）→ 翌営業日中にお礼連絡",
-  "cetera先着100名 → ポイント付与確認後、次回来店促進の案内",
-  "伝票起伝時：担当コード欄に「イベント企画」を必ず入力（漏れ厳禁）",
-  "効果測定：翌週の月次レポートにイベント経由売上を記載",
-  "社内共有：タップ数・BC来場者数・cetera誘導数を集計して報告"
-];
-
+var salesItems=["タップ記録あり顧客 → 翌営業日中に担当者から電話フォロー","BC来場者（当日受付分）→ 翌営業日中にお礼連絡","cetera先着100名 → ポイント付与確認後、次回来店促進の案内","伝票起伝時：担当コード欄に「イベント企画」を必ず入力（漏れ厳禁）","効果測定：翌週の月次レポートにイベント経由売上を記載","社内共有：タップ数・BC来場者数・cetera誘導数を集計して報告"];
 var prizes=[
   {label:"1等",name:"Amazonギフト券 5,000円",init:2,cc:"rk1",bc:"rk1-card"},
   {label:"2等",name:"Amazonギフト券 3,000円",init:2,cc:"rk2",bc:"rk2-card"},
@@ -936,7 +793,6 @@ function updateProg(cid,total){
   document.getElementById('pt_'+cid).textContent=n+'/'+total+' 完了';
   document.getElementById('pf_'+cid).style.width=Math.round(n/total*100)+'%';
 }
-
 function buildFlow(steps,cid){
   var c=document.getElementById(cid);
   steps.forEach(function(s){
@@ -947,18 +803,12 @@ function buildFlow(steps,cid){
     d.appendChild(n);d.appendChild(b);c.appendChild(d);
   });
 }
-
 function buildPrizes(){
   var g=document.getElementById('prize-grid');
   prizes.forEach(function(p,i){
     var card=document.createElement('div');
     card.className='prize-card '+p.bc;card.id='pc_col_'+i;
-    card.innerHTML=
-      '<div class="prize-rank-badge '+p.cc+'">'+p.label+'</div>'+
-      '<div class="prize-name">'+p.name+'</div>'+
-      '<div class="prize-num" id="pc_'+i+'">'+p.init+'</div>'+
-      '<div class="prize-init">初期 '+p.init+'本</div>'+
-      '<div class="prize-btns"><button class="cbtn m" onclick="pc('+i+',-1)">－</button><button class="cbtn p" onclick="pc('+i+',1)">＋</button></div>';
+    card.innerHTML='<div class="prize-rank-badge '+p.cc+'">'+p.label+'</div><div class="prize-name">'+p.name+'</div><div class="prize-num" id="pc_'+i+'">'+p.init+'</div><div class="prize-init">初期 '+p.init+'本</div><div class="prize-btns"><button class="cbtn m" onclick="pc('+i+',-1)">－</button><button class="cbtn p" onclick="pc('+i+',1)">＋</button></div>';
     g.appendChild(card);
   });
 }
@@ -969,7 +819,6 @@ function pc(i,d){
   col.className='prize-card '+prizes[i].bc+(pcounts[i]===0?' prize-zero':'');
 }
 function resetPrizes(){prizes.forEach(function(p,i){pcounts[i]=p.init;document.getElementById('pc_'+i).textContent=p.init;document.getElementById('pc_col_'+i).className='prize-card '+p.bc;});}
-
 function cetChange(d){
   cetCount=Math.max(0,Math.min(100,cetCount+d));
   document.getElementById('cet-num').textContent=cetCount;
@@ -979,23 +828,18 @@ function cetChange(d){
   if(cetCount>=100){msg.textContent='先着100名 達成！';msg.className='cet-msg cet-done';}
   else{msg.textContent='あと'+(100-cetCount)+'名';msg.className='cet-msg cet-rem';}
 }
-
 function buildFaq(){
   var c=document.getElementById('faq-list');
   faqs.forEach(function(f,i){
     var item=document.createElement('div');item.className='faq-item';
     var q=document.createElement('div');q.className='faq-q';
     q.innerHTML='<span>'+f.q+'</span><span class="faq-arr" id="fa_'+i+'">▼</span>';
-    q.onclick=function(){
-      var a=document.getElementById('fa_a_'+i);var open=a.classList.contains('open');
-      a.classList.toggle('open',!open);document.getElementById('fa_'+i).classList.toggle('open',!open);
-    };
+    q.onclick=function(){var a=document.getElementById('fa_a_'+i);var open=a.classList.contains('open');a.classList.toggle('open',!open);document.getElementById('fa_'+i).classList.toggle('open',!open);};
     var a=document.createElement('div');a.className='faq-a';a.id='fa_a_'+i;
     a.innerHTML=f.a.split('\n').join('<br>');
     item.appendChild(q);item.appendChild(a);c.appendChild(item);
   });
 }
-
 function buildSales(){
   var c=document.getElementById('sales-list');
   salesItems.forEach(function(item){
@@ -1004,19 +848,15 @@ function buildSales(){
     c.appendChild(d);
   });
 }
-
 function toggleEdit(){
   editMode=!editMode;
   var btn=document.getElementById('cl-edit-btn');
   btn.textContent=editMode?'✅ 完了':'✏️ 編集';
   btn.className='edit-btn'+(editMode?' on':'');
   ['cl-general','cl-bdoors','cl-bc'].forEach(function(cid){
-    document.querySelectorAll('#'+cid+' .ci-lbl').forEach(function(lbl){
-      lbl.contentEditable=editMode?'true':'false';
-    });
+    document.querySelectorAll('#'+cid+' .ci-lbl').forEach(function(lbl){lbl.contentEditable=editMode?'true':'false';});
   });
 }
-
 ['schedule','bdoors','bc','garapon','sales'].forEach(function(key){
   var el=document.getElementById('memo-'+key);
   if(!el)return;
@@ -1028,7 +868,6 @@ function toggleEdit(){
     if(sv){sv.style.display='block';clearTimeout(el._t);el._t=setTimeout(function(){sv.style.display='none';},1500);}
   });
 });
-
 function showTab(id,el){
   document.querySelectorAll('.sec').forEach(function(s){s.classList.remove('active');});
   document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
@@ -1046,7 +885,6 @@ buildPrizes();
 buildFaq();
 buildSales();
 
-/* 就活サロン番号リスト */
 var salons=[
   [1,'NOB hairdesign'],[2,'TORCH'],[3,'Produce'],[4,'KINGDOM'],[5,'ジャルダングループ'],
   [6,'FORS'],[7,'ANHUTTE'],[8,'rodina'],[9,'モザミ'],[10,"MENIMENs SALON"],
