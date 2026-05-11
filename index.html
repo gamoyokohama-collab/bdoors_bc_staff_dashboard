@@ -69,6 +69,11 @@ body{font-family:'Noto Sans JP','DM Sans',sans-serif;background:var(--bg);color:
 .member.resp{background:var(--accent);color:var(--navy);}
 .walkie{display:inline-flex;align-items:center;gap:5px;font-size:11px;background:#E6F5EF;color:var(--green);font-weight:700;padding:2px 8px;border-radius:20px;margin-left:6px;}
 
+/* ATTEND NOTICE */
+.attend-notice{background:#FFF7ED;border:1.5px solid #FB923C;border-radius:var(--rs);padding:11px 13px;margin:10px 14px;font-size:12px;color:#7C2D12;line-height:1.8;}
+.attend-notice b{color:#9A3412;}
+.attend-notice-icon{font-size:15px;margin-right:4px;}
+
 /* SCHEDULE */
 .srow{display:flex;gap:10px;padding:10px 14px;border-bottom:1px solid #F0F4FA;align-items:flex-start;}
 .srow:last-child{border-bottom:none;}
@@ -294,7 +299,7 @@ body{font-family:'Noto Sans JP','DM Sans',sans-serif;background:var(--bg);color:
     <div class="srow"><div class="stime">〜10:00</div><div class="sevent">外誘導スタンバイ（山下・樋口）<br><span style="font-size:11px;color:var(--sub);">ランドマーク方面〜ノース入口まで。10:30頃まで。</span><span class="stag st-all">外誘導</span></div></div>
     <div class="srow"><div class="stime">10:00</div><div class="sevent">beauty collection 開場<span class="stag st-bc">BC</span></div></div>
     <div class="srow"><div class="stime">10:00〜</div><div class="sevent">B.DOORS 第1波 受付（307名予定）<br><span style="font-size:11px;color:var(--sub);">アルファ専門・横浜ビューティーアート専門</span><span class="stag st-bd">B.DOORS</span></div></div>
-    <div class="srow"><div class="stime">10:30</div><div class="sevent">外誘導 解散 → 各セクションへ合流<span class="stag st-all">外誘導</span></div></div>
+    <div class="srow"><div class="stime">10:30</div><div class="sevent">外誘導 解散 → B.DOORS景品担当チームへ合流<span class="stag st-all">外誘導</span></div></div>
     <div class="srow"><div class="stime">11:00</div><div class="sevent">🍱 昼食 到着（<b>G101</b>）<br><span style="font-size:11px;color:var(--sub);">ガモウ社員はメーカー様にも随時お声がけを</span><span class="stag st-food">全員</span></div></div>
     <div class="srow"><div class="stime">12:00〜</div><div class="sevent">B.DOORS 第2波 受付（121名予定）<br><span style="font-size:11px;color:var(--sub);">すず学園・鎌倉早見芸術学園</span><span class="stag st-bd">B.DOORS</span></div></div>
     <div class="srow"><div class="stime">13:00〜</div><div class="sevent">B.DOORS 第3波 受付（<b>438名・最大波</b>）<br><span style="font-size:11px;color:var(--sub);">横浜Fカレッジ・MDF・岩谷学園 ⚠️ 体制を厚めに</span><span class="stag st-bd">B.DOORS</span></div></div>
@@ -332,6 +337,14 @@ body{font-family:'Noto Sans JP','DM Sans',sans-serif;background:var(--bg);color:
 
 <!-- ===== 人員配置 ===== -->
 <div id="team" class="sec">
+
+  <!-- 全チーム共通ルール -->
+  <div class="attend-notice">
+    <b><span class="attend-notice-icon">🏆</span>全チーム共通：最優先行動ルール</b><br>
+    <b>来場されたお客様（サロン様・学生）のアテンドが最優先です。</b><br>
+    アテンドのため持ち場を離れる際は、必ず<b>チームリーダーに一声かけてから</b>行動してください。
+  </div>
+
   <div class="slbl">トランシーバー配布（6台）</div>
   <div class="card">
     <div class="ch"><div class="ch-ico" style="background:#E6F5EF;">📻</div><div class="ch-ttl">トランシーバー担当者</div><div class="ch-tag tag-green">計6台</div></div>
@@ -354,7 +367,7 @@ body{font-family:'Noto Sans JP','DM Sans',sans-serif;background:var(--bg);color:
     <div class="team-block">
       <div class="members"><span class="member">山下</span><span class="member">樋口</span></div>
     </div>
-    <div class="team-block"><div class="tsub">ランドマーク方面から誘導。10:30頃まで → 解散後各セクションへ合流。<br>連絡手段：社用スマホ／LINE</div></div>
+    <div class="team-block"><div class="tsub">ランドマーク方面から誘導。10:30頃まで → <b>解散後はB.DOORS景品担当チームへ合流</b>。<br>連絡手段：社用スマホ／LINE</div></div>
   </div>
 
   <div class="slbl">B.DOORS</div>
@@ -372,20 +385,24 @@ body{font-family:'Noto Sans JP','DM Sans',sans-serif;background:var(--bg);color:
     <div class="ch"><div class="ch-ico" style="background:#E8F2FB;">🏫</div><div class="ch-ttl">B.DOORS 学校対応</div><div class="ch-tag tag-navy">6名</div></div>
     <div class="team-block">
       <div class="team-name">チーム A</div>
-      <div class="members"><span class="member leader">大山（リーダー）📻</span><span class="member">堺</span><span class="member">榊原</span></div>
+      <div class="members"><span class="member leader">大山（リーダー）📻</span><span class="member">田中</span></div>
     </div>
     <div class="team-block">
       <div class="team-name">チーム B</div>
-      <div class="members"><span class="member">宇野</span><span class="member">藤本</span><span class="member">田中</span></div>
+      <div class="members"><span class="member">堺</span><span class="member">榊原</span></div>
+    </div>
+    <div class="team-block">
+      <div class="team-name">チーム C</div>
+      <div class="members"><span class="member">宇野</span><span class="member">藤本</span></div>
     </div>
     <div class="team-block"><div class="tsub">学校ごとに生徒をまとめてリストバンドを配布し、スタンプラリーを説明する。</div></div>
   </div>
   <div class="card">
-    <div class="ch"><div class="ch-ico" style="background:#FEF4E1;">🎁</div><div class="ch-ttl">B.DOORS 景品担当</div><div class="ch-tag tag-amber">8名</div></div>
+    <div class="ch"><div class="ch-ico" style="background:#FEF4E1;">🎁</div><div class="ch-ttl">B.DOORS 景品担当</div><div class="ch-tag tag-amber">8名＋外誘導合流</div></div>
     <div class="team-block">
       <div class="members"><span class="member leader">越山（リーダー）</span><span class="member">増田</span><span class="member">志村</span><span class="member">宅間</span><span class="member">山本</span><span class="member">加藤</span><span class="member">小名木</span><span class="member">横山</span></div>
     </div>
-    <div class="team-block"><div class="tsub">スタンプ5個以上の学生に三角くじを引いてもらい景品手渡し。<br><b>3等当選者</b>はceteraアプリ取得を促し、深掘りされたらceteraブースへご案内。</div></div>
+    <div class="team-block"><div class="tsub">スタンプ5個以上の学生に三角くじを引いてもらい景品手渡し。<br><b>3等当選者</b>はceteraアプリ取得を促し、深掘りされたらceteraブースへご案内。<br>※ 外誘導チーム（山下・樋口）が10:30以降こちらに合流。</div></div>
   </div>
 
   <div class="slbl">beauty collection</div>
@@ -531,11 +548,9 @@ body{font-family:'Noto Sans JP','DM Sans',sans-serif;background:var(--bg);color:
     </div>
   </div>
 
-  <!-- ガラポン抽選カード（更新済み） -->
+  <!-- ガラポン抽選カード -->
   <div class="card">
     <div class="ch"><div class="ch-ico" style="background:var(--pur-lt);">🎰</div><div class="ch-ttl">ガラポン抽選</div><div class="ch-tag tag-purple">来場者全員対象</div></div>
-
-    <!-- 玉色凡例 -->
     <div class="garapon-legend">
       <div class="gara-item">
         <div class="gara-ball ball-gold">1</div>
